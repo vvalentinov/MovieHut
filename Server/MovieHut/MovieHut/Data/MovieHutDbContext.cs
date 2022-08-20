@@ -2,6 +2,7 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
+    using MovieHut.InitialSeed;
     using MovieHut.Models;
 
     public class MovieHutDbContext : DbContext
@@ -27,6 +28,8 @@
                 .HasMany(x => x.Comments)
                 .WithOne(x => x.Movie)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.ApplyConfiguration(new InitialDataConfiguration<Genre>(@"InitialSeed/genres.json"));
 
             base.OnModelCreating(modelBuilder);
         }
