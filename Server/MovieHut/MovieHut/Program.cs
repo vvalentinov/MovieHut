@@ -1,5 +1,8 @@
 namespace MovieHut
 {
+    using Microsoft.EntityFrameworkCore;
+    using MovieHut.Data;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -12,6 +15,11 @@ namespace MovieHut
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<MovieHutDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnectionString"));
+            });
 
             var app = builder.Build();
 
