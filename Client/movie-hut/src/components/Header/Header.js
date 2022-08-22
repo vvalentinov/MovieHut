@@ -1,6 +1,8 @@
+import styles from './Header.module.css';
+
 export const Header = () => {
     return (
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav className={`navbar navbar-expand-lg ${styles.navbarBackground}`}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
                     Navbar
@@ -77,6 +79,5 @@ export const Header = () => {
                 </div>
             </div>
         </nav>
-
     )
 }

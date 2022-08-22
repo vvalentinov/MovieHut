@@ -1,0 +1,11 @@
+.banner{
+    background-image: url(../../../images//banner.jpg);
+    background-size: cover;
+    background-position: center center;
+    top: 100px;
+    height: 80vh;
+    width: 100%;
+}
+.bannerChildren{
+    padding-top: 100px;
+}

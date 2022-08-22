@@ -2,7 +2,7 @@ export const Footer = () => {
     return (
         <footer
             className=" text-center text-white"
-            style={{ backgroundColor: "#636ea7" }}
+            style={{ backgroundColor: "#32CD32" }}
         >
             <div className="container p-4">
                 <section className="mb-4">
