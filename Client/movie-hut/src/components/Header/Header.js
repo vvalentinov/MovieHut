@@ -34,7 +34,12 @@ export const Header = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/actors/all">
+                            <Link className="nav-link" to='/tv-show/all'>
+                                Tv Shows
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/actor/all">
                                 Actors
                             </Link>
                         </li>

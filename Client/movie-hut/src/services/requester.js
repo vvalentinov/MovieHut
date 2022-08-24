@@ -7,9 +7,8 @@ const request = async (method, url, data) => {
         }
 
         let headers = {}
-        //Bearer and Authorization
         if (auth?.accessToken) {
-            headers['X-Authorization'] = auth.accessToken;
+            headers['Authorization'] = 'Bearer ' + auth.accessToken;
         }
 
         let beginningRequest;
