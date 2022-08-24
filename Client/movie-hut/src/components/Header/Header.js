@@ -1,13 +1,15 @@
 import styles from './Header.module.css';
 import logo from '../../images/logo.jpg'
-
+import {
+    Link
+} from "react-router-dom";
 export const Header = () => {
     return (
         <nav className={`navbar navbar-expand-lg ${styles.navbarBackground}`}>
             <div className="container-fluid">
-                <a className="navbar-brand mx-3" to="/">
+                <Link className="navbar-brand mx-3" to="/">
                     <img src={logo} alt="" width={45} height={45} />
-                </a>
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -22,31 +24,31 @@ export const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className={`navbar-nav me-auto mb-2 mb-lg-0`}>
                         <li className="nav-item">
-                            <a className="nav-link" aria-current="page" href="#">
+                            <Link className="nav-link" aria-current="page" to='/'>
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" to='/movie/all'>
                                 Movies
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" to="/actors/all">
                                 Actors
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                     <ul className="navbar-nav me-auto-reverse mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link" href="/register">
+                            <Link className="nav-link" to="/register">
                                 Register
-                            </a >
+                            </Link >
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/login">
+                            <Link className="nav-link" to="/login">
                                 Login
-                            </a >
+                            </Link >
                         </li>
                     </ul>
                 </div>
