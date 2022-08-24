@@ -54,6 +54,7 @@ namespace MovieHut
                     ValidateAudience = false,
                 };
             });
+            builder.Services.AddCors();
 
             var app = builder.Build();
 
@@ -64,6 +65,12 @@ namespace MovieHut
 
             app.UseRouting();
 
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
             app.UseAuthentication();
             app.UseAuthorization();
 
