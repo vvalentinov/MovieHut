@@ -6,7 +6,7 @@ export const Footer = () => {
         >
             <div className="container p-4">
                 <section className="mb-4">
-                    <p>Movie Hub</p>
+                    <p>Movie Hut</p>
                 </section>
             </div>
             {/* Grid container */}
