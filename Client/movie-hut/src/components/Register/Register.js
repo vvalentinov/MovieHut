@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import image from '../../images/register.jpg'
 import './Register.css'
 
 export const Register = () => {
@@ -9,14 +10,22 @@ export const Register = () => {
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-md-9 col-lg-6 col-xl-5">
                         <img
-                            src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-135.jpg?w=2000"
+                            src={image}
                             className="img-fluid"
-                            alt="Sample image"
+                            alt="Login img"
                         />
                     </div>
                     <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                         <form>
                             <p className='display-4 font-weight-light'>Register</p>
+
+                            {/* Alert */}
+                            <div className="alert alert-danger d-flex align-items-center" role="alert">
+                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
+                                <div className="text-center">
+                                    Please provide a valid email address.
+                                </div>
+                            </div>
                             {/* Email input */}
                             <div className="form-outline mb-4">
                                 <input
@@ -71,7 +80,7 @@ export const Register = () => {
                                     className="btn btn-success btn-lg"
                                     style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}
                                 >
-                                    Login
+                                    Register
                                 </button>
                                 <p className="small mt-2 pt-1 mb-0">
                                     Already have an account?{" "}
