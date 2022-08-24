@@ -9,7 +9,7 @@ namespace MovieHut.Data.Migrations
     using MovieHut.Data;
     using System;
 
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(MovieHutDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {

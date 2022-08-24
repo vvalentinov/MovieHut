@@ -2,10 +2,11 @@
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using MovieHut.Data.Models;
 
-    public class ApplicationDbContext : IdentityDbContext
+    public class MovieHutDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public MovieHutDbContext(DbContextOptions<MovieHutDbContext> options)
             : base(options)
         {
         }
