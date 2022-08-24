@@ -10,18 +10,21 @@ import { Home } from './components/Home/Home';
 import { NotFound } from './components/NotFound/NotFound';
 import { Register } from './components/Register/Register';
 import { Login } from './components/Login/Login';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
     return (
         <>
-            <Header />
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/register' element={<Register/>} /> 
-                <Route path='/login' element={<Login/>} /> 
-                <Route path='*' element={<NotFound />} />
-            </Routes>
-            <Footer />
+            <AuthProvider>
+                <Header />
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/register' element={<Register />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+                <Footer />
+            </AuthProvider>
         </>
     );
 }
