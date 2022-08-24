@@ -34,7 +34,7 @@
 
             if (result.Succeeded)
             {
-                return Ok();
+                return Ok("Registered successfully");
             }
 
             return BadRequest(result.Errors);
