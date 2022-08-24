@@ -27,10 +27,12 @@ export const Register = () => {
         if (inputData.password === inputData.rePassword) {
             authService.register(inputData)
                 .then(res => {
+                    console.log(res);
                     //userLogin(res);
                     navigate('/')
                 })
                 .catch(res => {
+                    console.log(res);
                     //setError({active: true, message: res.message})
                 })
         }
