@@ -8,6 +8,7 @@ import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
 import { Home } from './components/Home/Home';
 import { NotFound } from './components/NotFound/NotFound';
+import { Register } from './components/Register/Register';
 
 function App() {
     return (
@@ -15,8 +16,8 @@ function App() {
             <Header />
             <Routes>
                 <Route path='/' element={<Home />} />
-                {/* <Route path='/login' element={} />
-                <Route path='/register' element={} /> */}
+                <Route path='/register' element={<Register/>} /> 
+                {/* <Route path='/login' element={} />*/}
                 <Route path='*' element={<NotFound />} />
             </Routes>
             <Footer />
