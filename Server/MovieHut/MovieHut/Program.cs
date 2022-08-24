@@ -27,7 +27,7 @@ namespace MovieHut
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-            });
+            }).AddEntityFrameworkStores<MovieHutDbContext>();
             builder.Services.AddControllers();
 
             // Application Settings
