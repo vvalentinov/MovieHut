@@ -6,6 +6,7 @@ namespace MovieHut
     using Microsoft.IdentityModel.Tokens;
     using MovieHut.Data;
     using MovieHut.Data.Models;
+    using MovieHut.Infrastructure;
     using System.Text;
 
     public class Program
@@ -19,7 +20,14 @@ namespace MovieHut
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddIdentity<User, IdentityRole>();
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            });
             builder.Services.AddControllers();
 
             // Application Settings
@@ -63,6 +71,8 @@ namespace MovieHut
             {
                 endpoints.MapControllers();
             });
+
+            app.ApplyMigrations();
 
             app.Run();
         }
