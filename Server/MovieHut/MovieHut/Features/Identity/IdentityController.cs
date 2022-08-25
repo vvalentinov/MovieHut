@@ -1,11 +1,10 @@
-﻿namespace MovieHut.Controllers
+﻿namespace MovieHut.Features.Identity
 {
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
     using MovieHut.Data.Models;
-    using MovieHut.Models.Identity;
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;

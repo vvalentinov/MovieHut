@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Models.Identity
+﻿namespace MovieHut.Features.Identity
 {
     using System.ComponentModel.DataAnnotations;
 

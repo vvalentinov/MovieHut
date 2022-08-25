@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Controllers
+﻿namespace MovieHut.Features
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
