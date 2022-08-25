@@ -60,7 +60,7 @@
 
             var encryptedToken = this.identityService.GenerateJwtToken(user.Id, user.UserName, this.appSettings.Secret);
 
-            return new
+            return new LoginResponseModel
             {
                 Token = encryptedToken,
             };
