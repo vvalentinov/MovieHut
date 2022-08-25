@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.IdentityModel.Tokens;
     using MovieHut.Data;
     using MovieHut.Data.Models;
@@ -21,6 +22,13 @@
                    options.Password.RequireUppercase = false;
                }).AddEntityFrameworkStores<MovieHutDbContext>();
 
+            return services;
+        }
+
+        public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<MovieHutDbContext>(options =>
+                options.UseSqlServer(configuration.GetDefaultConnectionString()));
             return services;
         }
 

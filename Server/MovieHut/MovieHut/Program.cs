@@ -1,7 +1,5 @@
 namespace MovieHut
 {
-    using Microsoft.EntityFrameworkCore;
-    using MovieHut.Data;
     using MovieHut.Infrastructure;
 
     public class Program
@@ -12,12 +10,8 @@ namespace MovieHut
 
             var appSettings = builder.Services.GetApplicationSettings(builder.Configuration);
 
-            var connectionString = builder.Configuration.GetDefaultConnectionString();
-            builder.Services.AddDbContext<MovieHutDbContext>(options =>
-                options.UseSqlServer(connectionString));
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
             builder.Services
+                .AddDatabase(builder.Configuration)
                 .AddIdentity()
                 .AddJwtAuthentication(appSettings);
 
