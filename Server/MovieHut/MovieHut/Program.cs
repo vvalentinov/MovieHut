@@ -12,7 +12,7 @@ namespace MovieHut
 
             var appSettings = builder.Services.GetApplicationSettings(builder.Configuration);
 
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration.GetDefaultConnectionString();
             builder.Services.AddDbContext<MovieHutDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
