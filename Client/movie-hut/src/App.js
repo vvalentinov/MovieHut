@@ -11,6 +11,8 @@ import { NotFound } from './components/NotFound/NotFound';
 import { Register } from './components/Register/Register';
 import { Login } from './components/Login/Login';
 import { AuthProvider } from './contexts/AuthContext';
+import { Logout } from './components/Logout/Logout';
+import UserGuard from './components/common/UserGuard';
 
 function App() {
     return (
@@ -19,8 +21,11 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/register' element={<Register />} />
-                    <Route path='/login' element={<Login />} />
+                    <Route path='/logout' element={<Logout />} />
+                    <Route element={<UserGuard />}>
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/register' element={<Register />} />
+                    </Route>
                     <Route path='*' element={<NotFound />} />
                 </Routes>
                 <Footer />
