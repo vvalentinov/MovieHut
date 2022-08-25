@@ -1,11 +1,9 @@
 namespace MovieHut
 {
     using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.IdentityModel.Tokens;
     using MovieHut.Data;
-    using MovieHut.Data.Models;
     using MovieHut.Infrastructure;
     using System.Text;
 
@@ -20,15 +18,7 @@ namespace MovieHut
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddIdentity<User, IdentityRole>(options =>
-            {
-                options.Password.RequiredLength = 6;
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-            }).AddEntityFrameworkStores<MovieHutDbContext>();
-            builder.Services.AddControllers();
+            builder.Services.AddIdentity();
 
             // Application Settings
             var applicationSettingsConfiguration = builder.Configuration.GetSection("ApplicationSettings");
@@ -71,6 +61,7 @@ namespace MovieHut
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             });
+
             app.UseAuthentication();
             app.UseAuthorization();
 
