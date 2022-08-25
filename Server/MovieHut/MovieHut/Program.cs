@@ -1,11 +1,8 @@
 namespace MovieHut
 {
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.IdentityModel.Tokens;
     using MovieHut.Data;
     using MovieHut.Infrastructure;
-    using System.Text;
 
     public class Program
     {
@@ -21,31 +18,9 @@ namespace MovieHut
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services
-                .AddIdentity();
+                .AddIdentity()
+                .AddJwtAuthentication(appSettings);
 
-            // Application Settings
-            var applicationSettingsConfiguration = builder.Configuration.GetSection("ApplicationSettings");
-            builder.Services.Configure<AppSettings>(applicationSettingsConfiguration);
-
-            // Registers authentication with JWT
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-
-            builder.Services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                };
-            });
             builder.Services.AddCors();
 
             var app = builder.Build();

@@ -1,8 +1,11 @@
 ﻿namespace MovieHut.Infrastructure
 {
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.IdentityModel.Tokens;
     using MovieHut.Data;
     using MovieHut.Data.Models;
+    using System.Text;
 
     public static class ServiceCollectionExtensions
     {
@@ -30,6 +33,30 @@
             var appSettings = applicationSettingsConfiguration.Get<AppSettings>();
 
             return appSettings;
+        }
+
+        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, AppSettings appSettings)
+        {
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                };
+            });
+
+            return services;
         }
     }
 }
