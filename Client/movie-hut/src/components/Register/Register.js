@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import image from '../../images/register.jpg'
 import * as authService from '../../services/authService'
-import {AuthContext} from '../../contexts/AuthContext'
+import { AuthContext } from '../../contexts/AuthContext'
 import './Register.css'
 
 export const Register = () => {
@@ -27,16 +27,18 @@ export const Register = () => {
         if (inputData.password === inputData.rePassword) {
             authService.register(inputData)
                 .then(res => {
-                    console.log(res);
-                    //userLogin(res);
-                    navigate('/')
+                    authService.login({username: inputData.username, password: inputData.password})
+                        .then(res => {
+                            userLogin({ accessToken: res.token });
+                            navigate('/')
+                        })
                 })
                 .catch(res => {
-                    setError({active: true, message: res.message})
+                    setError({ active: true, message: res.message })
                 })
         }
-        else{
-            setError({active: true, message: "Password and the re entered password aren't the same."})
+        else {
+            setError({ active: true, message: "Password and the re entered password aren't the same." })
         }
     }
     return (
@@ -65,11 +67,11 @@ export const Register = () => {
                                 <input
                                     type="email"
                                     id="email"
-                                    name= "email"
+                                    name="email"
                                     className="form-control form-control-lg"
                                     placeholder="Enter a valid email address"
-                                    value = {inputData.email}
-                                    onChange = {onChange}
+                                    value={inputData.email}
+                                    onChange={onChange}
                                 />
                                 <label className="form-label" htmlFor="email">
                                     Email address
@@ -80,11 +82,11 @@ export const Register = () => {
                                 <input
                                     type="username"
                                     id="username"
-                                    name= "username"
+                                    name="username"
                                     className="form-control form-control-lg"
                                     placeholder="Enter a valid username"
-                                    value = {inputData.username}
-                                    onChange = {onChange}
+                                    value={inputData.username}
+                                    onChange={onChange}
                                 />
                                 <label className="form-label" htmlFor="username">
                                     Username
@@ -95,11 +97,11 @@ export const Register = () => {
                                 <input
                                     type="password"
                                     id="password"
-                                    name= "password"
+                                    name="password"
                                     className="form-control form-control-lg"
                                     placeholder="Enter password"
-                                    value = {inputData.password}
-                                    onChange = {onChange}
+                                    value={inputData.password}
+                                    onChange={onChange}
                                 />
                                 <label className="form-label" htmlFor="password">
                                     Password
@@ -110,19 +112,19 @@ export const Register = () => {
                                 <input
                                     type="password"
                                     id="rePassword"
-                                    name= "rePassword"
+                                    name="rePassword"
                                     className="form-control form-control-lg"
                                     placeholder="Re Enter Password"
-                                    value = {inputData.rePassword}
-                                    onChange = {onChange}
+                                    value={inputData.rePassword}
+                                    onChange={onChange}
                                 />
                                 <label className="form-label" htmlFor="rePassword">
                                     Re Password
                                 </label>
                             </div>
                             {error.active === true ? <div className="alert alert-danger fade show mt-3">
-                                        <strong>Error!</strong> {error.message}
-                                    </div>: null}
+                                <strong>Error!</strong> {error.message}
+                            </div> : null}
                             <div className="text-center text-lg-start mt-4 pt-2">
                                 <button
                                     type="submit"
