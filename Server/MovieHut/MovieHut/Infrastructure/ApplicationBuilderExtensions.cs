@@ -13,5 +13,18 @@
 
             dbContext.Database.Migrate();
         }
+
+        public static IApplicationBuilder UseSwaggerUI(this IApplicationBuilder app)
+        {
+            app
+              .UseSwagger()
+              .UseSwaggerUI(options =>
+              {
+                  options.SwaggerEndpoint("/swagger/v1/swagger.json", "My MovieHut V1");
+                  options.RoutePrefix = string.Empty;
+              });
+
+            return app;
+        }
     }
 }

@@ -5,8 +5,8 @@
 
     public class HomeController : ApiController
     {
-        [Authorize]
         [HttpGet]
+        [Authorize]
         public ActionResult Get()
         {
             return Ok("It's working!");
