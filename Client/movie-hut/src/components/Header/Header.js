@@ -3,7 +3,12 @@ import logo from '../../images/logo.jpg'
 import {
     Link
 } from "react-router-dom";
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
+
 export const Header = () => {
+    const { isAuthenticated } = useContext(AuthContext);
+
     return (
         <nav className={`navbar navbar-expand-lg ${styles.navbarBackground}`}>
             <div className="container-fluid">
@@ -45,16 +50,94 @@ export const Header = () => {
                         </li>
                     </ul>
                     <ul className="navbar-nav me-auto-reverse mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/register">
-                                Register
-                            </Link >
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">
-                                Login
-                            </Link >
-                        </li>
+                        {isAuthenticated
+                            ?
+                            <>
+                                <li className="nav-item dropdown">
+                                    <a
+                                        className="nav-link dropdown-toggle"
+                                        href="/movie/create"
+                                        style={{ fontWeight: 700, fontSize: "large", paddingRight: 20 }}
+                                        id="navbarDropdown"
+                                        role="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        Create
+                                    </a>
+                                    <ul
+                                        className="dropdown-menu text-light"
+                                        aria-labelledby="navbarDropdown"
+                                    >
+                                        <li>
+                                            <Link className="dropdown-item" to="/lesson/create">
+                                                Movie
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/course/create">
+                                                Actor
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/course/create">
+                                                Tv Show
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li className="nav-item dropdown">
+                                    <a
+                                        className="nav-link dropdown-toggle"
+                                        href="/profile"
+                                        style={{ fontWeight: 700, fontSize: "large", paddingRight: 60 }}
+                                        id="navbarDropdown"
+                                        role="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        Profile
+                                    </a>
+                                    <ul
+                                        className="dropdown-menu text-light"
+                                        aria-labelledby="navbarDropdown"
+                                    >
+                                        <li>
+                                            <Link className="dropdown-item" to="/profile">
+                                                Information
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/movie/yours">
+                                                My Movies
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/tv-shows/yours">
+                                                My Tv Shows
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/logout">
+                                                Logout
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </>
+                            : <ul className="navbar-nav me-auto-reverse mb-2 mb-lg-0">
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/register">
+                                        Register
+                                    </Link >
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/login">
+                                        Login
+                                    </Link >
+                                </li>
+                            </ul>}
                     </ul>
                 </div>
             </div>
