@@ -32,8 +32,7 @@ export const Register = () => {
                     navigate('/')
                 })
                 .catch(res => {
-                    console.log(res);
-                    //setError({active: true, message: res.message})
+                    setError({active: true, message: res.message})
                 })
         }
         else{
