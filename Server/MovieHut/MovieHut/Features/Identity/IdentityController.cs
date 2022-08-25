@@ -21,6 +21,7 @@
             this.appSettings = appSettings.Value;
         }
 
+        [HttpPost]
         [Route("register")]
         public async Task<ActionResult> Register(RegisterUserRequestModel model)
         {
@@ -40,6 +41,7 @@
             return BadRequest(result.Errors);
         }
 
+        [HttpPost]
         [Route("login")]
         public async Task<ActionResult<object>> Login(LoginUserRequestModel model)
         {

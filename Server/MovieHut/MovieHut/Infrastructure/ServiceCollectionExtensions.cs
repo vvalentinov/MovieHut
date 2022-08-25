@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.IdentityModel.Tokens;
+    using Microsoft.OpenApi.Models;
     using MovieHut.Data;
     using MovieHut.Data.Models;
     using MovieHut.Features.Identity;
@@ -71,6 +72,16 @@
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<IIdentityService, IdentityService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My MovieHut", Version = "v1" });
+            });
 
             return services;
         }

@@ -16,6 +16,7 @@ namespace MovieHut
                 .AddJwtAuthentication(appSettings)
                 .AddApplicationServices()
                 .AddCors()
+                .AddSwagger()
                 .AddControllers();
 
             var app = builder.Build();
@@ -26,6 +27,7 @@ namespace MovieHut
             }
 
             app
+                .UseSwaggerUI()
                 .UseRouting()
                 .UseCors(options => options
                    .AllowAnyOrigin()
