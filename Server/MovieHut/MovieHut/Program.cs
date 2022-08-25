@@ -13,9 +13,10 @@ namespace MovieHut
             builder.Services
                 .AddDatabase(builder.Configuration)
                 .AddIdentity()
-                .AddJwtAuthentication(appSettings);
-
-            builder.Services.AddCors();
+                .AddJwtAuthentication(appSettings)
+                .AddApplicationServices()
+                .AddCors()
+                .AddControllers();
 
             var app = builder.Build();
 

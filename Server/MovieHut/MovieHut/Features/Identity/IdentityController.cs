@@ -3,20 +3,21 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
-    using Microsoft.IdentityModel.Tokens;
     using MovieHut.Data.Models;
-    using System.IdentityModel.Tokens.Jwt;
-    using System.Security.Claims;
-    using System.Text;
 
     public class IdentityController : ApiController
     {
         private readonly UserManager<User> userManager;
+        private readonly IIdentityService identityService;
         private readonly AppSettings appSettings;
 
-        public IdentityController(UserManager<User> userManager, IOptions<AppSettings> appSettings)
+        public IdentityController(
+            UserManager<User> userManager,
+            IOptions<AppSettings> appSettings,
+            IIdentityService identityService)
         {
             this.userManager = userManager;
+            this.identityService = identityService;
             this.appSettings = appSettings.Value;
         }
 
@@ -55,20 +56,7 @@
                 return Unauthorized();
             }
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var encryptedToken = tokenHandler.WriteToken(token);
+            var encryptedToken = this.identityService.GenerateJwtToken(user.Id, user.UserName, this.appSettings.Secret);
 
             return new
             {

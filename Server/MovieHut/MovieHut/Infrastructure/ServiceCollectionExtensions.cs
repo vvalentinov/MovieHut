@@ -6,6 +6,7 @@
     using Microsoft.IdentityModel.Tokens;
     using MovieHut.Data;
     using MovieHut.Data.Models;
+    using MovieHut.Features.Identity;
     using System.Text;
 
     public static class ServiceCollectionExtensions
@@ -63,6 +64,13 @@
                     ValidateAudience = false,
                 };
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        {
+            services.AddTransient<IIdentityService, IdentityService>();
 
             return services;
         }
