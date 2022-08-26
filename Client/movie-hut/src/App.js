@@ -13,6 +13,7 @@ import { Login } from './components/Login/Login';
 import { AuthProvider } from './contexts/AuthContext';
 import { Logout } from './components/Logout/Logout';
 import UserGuard from './components/common/UserGuard';
+import { CreateMovie } from './components/CreateMovie/CreateMovie';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/logout' element={<Logout />} />
+                    <Route path='/movies/create' element={<CreateMovie/>}/>
                     <Route element={<UserGuard />}>
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
