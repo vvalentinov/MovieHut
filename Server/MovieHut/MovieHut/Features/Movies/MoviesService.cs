@@ -21,7 +21,6 @@
             string title,
             string plot,
             string posterUrl,
-            int year,
             DateTime released,
             string userId)
         {
@@ -30,7 +29,6 @@
                 Title = title,
                 Plot = plot,
                 PosterUrl = posterUrl,
-                Year = year,
                 Released = released,
                 UserId = userId,
             };
@@ -43,7 +41,6 @@
                 Id = movie.Id,
                 Plot = movie.Plot,
                 PosterUrl = movie.PosterUrl,
-                Year = movie.Year,
                 Released = movie.Released,
                 UserId = userId,
                 Title = movie.Title,
@@ -65,7 +62,6 @@
                     UserId= x.UserId,
                     PosterUrl= x.PosterUrl,
                     Released= x.Released,
-                    Year = x.Year,
                 }).FirstOrDefaultAsync();
 
             return movie;

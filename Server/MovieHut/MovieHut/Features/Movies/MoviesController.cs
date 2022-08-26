@@ -25,7 +25,6 @@
                 model.Title,
                 model.Plot,
                 model.PosterUrl,
-                model.Year,
                 model.Released,
                 userId);
 

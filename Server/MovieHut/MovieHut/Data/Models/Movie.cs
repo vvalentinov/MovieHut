@@ -26,9 +26,6 @@
         public string Plot { get; set; }
 
         [Required]
-        public int Year { get; set; }
-
-        [Required]
         public DateTime Released { get; set; }
 
         [Required]

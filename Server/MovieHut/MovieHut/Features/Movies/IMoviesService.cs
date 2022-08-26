@@ -8,7 +8,6 @@
            string title,
            string plot,
            string posterUrl,
-           int year,
            DateTime released,
            string userId);
 

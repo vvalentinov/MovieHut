@@ -8,8 +8,6 @@
 
         public string Plot { get; set; }
 
-        public int Year { get; set; }
-
         public DateTime Released { get; set; }
 
         public string PosterUrl { get; set; }
