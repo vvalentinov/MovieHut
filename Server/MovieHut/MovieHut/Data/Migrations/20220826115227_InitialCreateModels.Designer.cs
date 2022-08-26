@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieHut.Data;
 
@@ -11,9 +12,10 @@ using MovieHut.Data;
 namespace MovieHut.Data.Migrations
 {
     [DbContext(typeof(MovieHutDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220826115227_InitialCreateModels")]
+    partial class InitialCreateModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,6 +196,12 @@ namespace MovieHut.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int?>("ActorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GenreId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Plot")
                         .IsRequired()
                         .HasMaxLength(2000)
@@ -219,6 +227,10 @@ namespace MovieHut.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ActorId");
+
+                    b.HasIndex("GenreId");
 
                     b.HasIndex("UserId");
 
@@ -391,6 +403,14 @@ namespace MovieHut.Data.Migrations
 
             modelBuilder.Entity("MovieHut.Data.Models.Movie", b =>
                 {
+                    b.HasOne("MovieHut.Data.Models.Actor", null)
+                        .WithMany("Movies")
+                        .HasForeignKey("ActorId");
+
+                    b.HasOne("MovieHut.Data.Models.Genre", null)
+                        .WithMany("Movies")
+                        .HasForeignKey("GenreId");
+
                     b.HasOne("MovieHut.Data.Models.User", "User")
                         .WithMany("Movies")
                         .HasForeignKey("UserId")
@@ -436,6 +456,16 @@ namespace MovieHut.Data.Migrations
                     b.Navigation("Genre");
 
                     b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("MovieHut.Data.Models.Actor", b =>
+                {
+                    b.Navigation("Movies");
+                });
+
+            modelBuilder.Entity("MovieHut.Data.Models.Genre", b =>
+                {
+                    b.Navigation("Movies");
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.User", b =>
