@@ -34,17 +34,17 @@ export const Header = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/movie/all'>
+                            <Link className="nav-link" to='/movies/all'>
                                 Movies
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/tv-show/all'>
+                            <Link className="nav-link" to='/tv-shows/all'>
                                 Tv Shows
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/actor/all">
+                            <Link className="nav-link" to="/actors/all">
                                 Actors
                             </Link>
                         </li>
@@ -70,17 +70,17 @@ export const Header = () => {
                                         aria-labelledby="navbarDropdown"
                                     >
                                         <li>
-                                            <Link className="dropdown-item" to="/lesson/create">
+                                            <Link className="dropdown-item" to="/movies/create">
                                                 Movie
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link className="dropdown-item" to="/course/create">
+                                            <Link className="dropdown-item" to="/actors/create">
                                                 Actor
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link className="dropdown-item" to="/course/create">
+                                            <Link className="dropdown-item" to="/tv-shows/create">
                                                 Tv Show
                                             </Link>
                                         </li>
@@ -109,7 +109,7 @@ export const Header = () => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link className="dropdown-item" to="/movie/yours">
+                                            <Link className="dropdown-item" to="/movies/yours">
                                                 My Movies
                                             </Link>
                                         </li>
