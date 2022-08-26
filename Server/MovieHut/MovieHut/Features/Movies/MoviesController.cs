@@ -31,5 +31,27 @@
 
             return movie;
         }
+
+        [HttpGet]
+        [Authorize]
+        [Route("mine")]
+        public async Task<IEnumerable<MovieListingServiceModel>> GetUserMovies()
+        {
+            var userId = this.User.GetId();
+
+            var movies = await this.moviesService.GetUserMoviesAsync(userId);
+
+            return movies;
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("details")]
+        public async Task<MovieDetailsServiceModel> GetMovieDetails(string movieId)
+        {
+            var movie = await this.moviesService.GetMovieDetailsAsync(movieId);
+
+            return movie;
+        }
     }
 }
