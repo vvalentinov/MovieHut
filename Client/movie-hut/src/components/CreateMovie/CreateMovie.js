@@ -1,13 +1,49 @@
 import './CreateMovie.css';
 import image from '../../images/clipper.jpg'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as movieService from '../../services/movieService'
+import { AuthContext } from '../../contexts/AuthContext';
+
 export const CreateMovie = () => {
+    const {auth} = useContext(AuthContext)
+    const navigate = useNavigate();
+    const [error, setError] = useState({ active: false, message: "" });
+
+    const [inputData, setInputData] = useState({
+        title: "",
+        plot: "",
+        year: 0,
+        released: "",
+        posterUrl: ""
+    });
+
+    const onChange = (e) => {
+        setInputData(state => {
+            if(e.target.name === 'year'){
+                return { ...state, [e.target.name]: Number(e.target.value) }
+            }else{
+                return { ...state, [e.target.name]: e.target.value }
+            }
+        })
+    }
+    const onSubmit = (e) => {
+        e.preventDefault();
+        inputData.userId = auth.id;
+        movieService.create(inputData)
+            .then(res => {
+                console.log(res);
+                navigate('/movies/all')
+            }).catch(err => {
+                setError({active: true, message: err.message})
+            })
+    }
     return (
         <section className="vh-100">
             <div className="container-fluid h-custom">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                        <form>
+                        <form onSubmit= {onSubmit}>
                             <p className='display-4 font-weight-light'>Create Movie</p>
                             {/* Username input */}
                             <div className="form-outline mb-4">
@@ -17,6 +53,8 @@ export const CreateMovie = () => {
                                     name="title"
                                     className="form-control form-control-lg"
                                     placeholder="Enter a valid title"
+                                    value = {inputData.title}
+                                    onChange = {onChange}
                                 />
                                 <label className="form-label" htmlFor="title">
                                     Title
@@ -29,6 +67,8 @@ export const CreateMovie = () => {
                                     name="plot"
                                     className="form-control form-control-lg"
                                     placeholder="Enter a valid plot"
+                                    value = {inputData.plot}
+                                    onChange = {onChange}
                                 />
                                 <label className="form-label" htmlFor="plot">
                                     Plot
@@ -42,6 +82,8 @@ export const CreateMovie = () => {
                                     step="1" 
                                     id="year"
                                     name="year"
+                                    value = {inputData.year}
+                                    onChange = {onChange}
                                     className="form-control form-control-lg"
                                     placeholder="Enter a valid year"
                                 />
@@ -57,6 +99,8 @@ export const CreateMovie = () => {
                                     step="1" 
                                     id="released"
                                     name="released"
+                                    value = {inputData.released}
+                                    onChange = {onChange}
                                     className="form-control form-control-lg"
                                     placeholder="Enter when was released"
                                 />
@@ -69,6 +113,8 @@ export const CreateMovie = () => {
                                     type="text"
                                     id="posterUrl"
                                     name="posterUrl"
+                                    value = {inputData.posterUrl}
+                                    onChange = {onChange}
                                     className="form-control form-control-lg"
                                     placeholder="Enter a valid Poster Url"
                                 />
