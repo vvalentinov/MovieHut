@@ -8,6 +8,7 @@
     using MovieHut.Data;
     using MovieHut.Data.Models;
     using MovieHut.Features.Identity;
+    using MovieHut.Features.Movies;
     using System.Text;
 
     public static class ServiceCollectionExtensions
@@ -72,6 +73,7 @@
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IMoviesService, MoviesService>();
 
             return services;
         }
