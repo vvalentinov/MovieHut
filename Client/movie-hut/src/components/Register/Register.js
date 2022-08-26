@@ -29,7 +29,7 @@ export const Register = () => {
                 .then(res => {
                     authService.login({username: inputData.username, password: inputData.password})
                         .then(res => {
-                            userLogin({ accessToken: res.token });
+                            userLogin({accessToken: res.token, id: res.userId});
                             navigate('/')
                         })
                 })

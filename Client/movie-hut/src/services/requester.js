@@ -10,7 +10,6 @@ const request = async (method, url, data) => {
         if (auth?.accessToken) {
             headers['Authorization'] = 'Bearer ' + auth.accessToken;
         }
-
         let beginningRequest;
         if(method === 'GET'){
             beginningRequest = fetch(url,{ headers })
@@ -20,7 +19,6 @@ const request = async (method, url, data) => {
                 method,
                 headers: {
                     ...headers,
-                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
@@ -33,14 +31,21 @@ const request = async (method, url, data) => {
         }
         else {
             const res = await response.json();
-            throw new Error(res.message);
+            let errorMessages = createErrorMessage(res.errors);
+            throw new Error(errorMessages);
         }
         return result;
     }catch(err){
         throw new Error(err.message);
     }
 }
-
+const createErrorMessage = (errors) => {
+    let result = ''
+    for (const error in errors) {
+        result += errors[error][0] + '\n'
+    }
+    return result;
+}
 export const get = request.bind({}, "GET")
 export const post = request.bind({}, "POST")
 export const put = request.bind({}, "PUT")

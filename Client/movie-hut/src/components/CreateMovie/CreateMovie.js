@@ -13,20 +13,15 @@ export const CreateMovie = () => {
     const [inputData, setInputData] = useState({
         title: "",
         plot: "",
-        year: 0,
         released: "",
         posterUrl: ""
     });
 
     const onChange = (e) => {
-        setInputData(state => {
-            if(e.target.name === 'year'){
-                return { ...state, [e.target.name]: Number(e.target.value) }
-            }else{
-                return { ...state, [e.target.name]: e.target.value }
-            }
-        })
+        setInputData(state => (
+            { ...state, [e.target.name]: e.target.value }))
     }
+
     const onSubmit = (e) => {
         e.preventDefault();
         inputData.userId = auth.id;
@@ -76,23 +71,6 @@ export const CreateMovie = () => {
                             </div>
                             <div className="form-outline mb-4">
                                 <input
-                                    type="number"
-                                    min="1900"
-                                    max="2099"
-                                    step="1" 
-                                    id="year"
-                                    name="year"
-                                    value = {inputData.year}
-                                    onChange = {onChange}
-                                    className="form-control form-control-lg"
-                                    placeholder="Enter a valid year"
-                                />
-                                <label className="form-label" htmlFor="year">
-                                    Year
-                                </label>
-                            </div>
-                            <div className="form-outline mb-4">
-                                <input
                                     type="date"
                                     min="1900"
                                     max="2099"
@@ -122,6 +100,9 @@ export const CreateMovie = () => {
                                     Poster Url
                                 </label>
                             </div>
+                            {error.active === true ? <div className="alert alert-danger fade show mt-3">
+                                        <strong>Error!</strong> {error.message}
+                                    </div>: null}
                             <div className="text-center text-lg-start mt-4 pt-2">
                                 <button
                                     type="submit"

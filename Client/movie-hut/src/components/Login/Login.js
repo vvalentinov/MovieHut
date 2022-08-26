@@ -23,7 +23,7 @@ export const Login = () => {
         e.preventDefault();
         authService.login(inputData)
             .then(res => {
-                userLogin({accessToken: res.token});
+                userLogin({accessToken: res.token, id: res.userId});
                 navigate('/')
             })
             .catch(res => {
