@@ -9,7 +9,10 @@ export const Login = () => {
     const { userLogin } = useContext(AuthContext)
     const navigate = useNavigate();
     const [error, setError] = useState({ active: false, message: "" });
-
+    const [errors, setErrors] = useState({
+        username: false,
+        password: false
+    })
     const [inputData, setInputData] = useState({
         username: "",
         password: ""
@@ -30,6 +33,13 @@ export const Login = () => {
                 setError({active: true, message: res.message})
             })
     }
+    const usernameValidator = (e) => {
+        setErrors(state => ({ ...state, [e.target.name]: inputData.username.length < 3}))
+    }
+    const passwordValidator = (e) => {
+        setErrors(state => ({ ...state, [e.target.name]: !inputData.password }))
+    }
+    const isValidForm = !Object.values(errors).some(x => x);
     return (
         <section className="vh-100">
             <div className="container-fluid h-custom">
@@ -38,7 +48,7 @@ export const Login = () => {
                         <form onSubmit={onSubmit}>
                             <p className='display-4 font-weight-light'>Log In</p>
                             {/* Username input */}
-                            <div className="form-outline mb-4">
+                            <div className="form-outline mb-1">
                                 <input
                                     type="username"
                                     id="username"
@@ -47,13 +57,25 @@ export const Login = () => {
                                     placeholder="Enter a valid username"
                                     value={inputData.email}
                                     onChange = {onChange}
+                                    onBlur = {(e) => usernameValidator(e)}
                                 />
                                 <label className="form-label" htmlFor="username">
                                     Username
                                 </label>
                             </div>
+                            {/* Alert */}
+                            {errors.username &&
+                                        <div
+                                            className="alert alert-danger d-flex align-items-center"
+                                            role="alert"
+                                        >
+                                            <i className="fa-solid fa-triangle-exclamation me-2" />
+                                            <div className="text-center">
+                                                Please provide a valid username.
+                                            </div>
+                                        </div>}
                             {/* Password input */}
-                            <div className="form-outline mb-3">
+                            <div className="form-outline mb-1">
                                 <input
                                     type="password"
                                     id="password"
@@ -62,11 +84,23 @@ export const Login = () => {
                                     placeholder="Enter password"
                                     value={inputData.password}
                                     onChange = {onChange}
+                                    onBlur = {(e) => passwordValidator(e)}
                                 />
                                 <label className="form-label" htmlFor="password">
                                     Password
                                 </label>
                             </div>
+                            {/* Alert */}
+                            {errors.password &&
+                                        <div
+                                            className="alert alert-danger d-flex align-items-center"
+                                            role="alert"
+                                        >
+                                            <i className="fa-solid fa-triangle-exclamation me-2" />
+                                            <div className="text-center">
+                                                Please provide a valid password.
+                                            </div>
+                                        </div>}
                             {error.active === true ? <div className="alert alert-danger fade show mt-3">
                                         <strong>Error!</strong> {error.message}
                                     </div>: null}
@@ -74,6 +108,7 @@ export const Login = () => {
                                 <button
                                     type="submit"
                                     className="btn btn-success btn-lg"
+                                    disabled={!isValidForm || (!inputData.username || !inputData.password)}
                                     style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}
                                 >
                                     Login
