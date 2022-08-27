@@ -15,8 +15,8 @@ export const MovieProvider = ({children}) => {
         setMovies(state => [...state, movie])
     }
     return (
-        <MovieProvider.Provider value={{movies, create}}>
+        <MovieContext.Provider value={{movies, create}}>
             {children}
-        </MovieProvider.Provider>  
+        </MovieContext.Provider>  
     );
 }

@@ -4,12 +4,14 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as movieService from '../../services/movieService'
 import { AuthContext } from '../../contexts/AuthContext';
+import { MovieContext } from '../../contexts/MovieContext';
 
 export const CreateMovie = () => {
     const {auth} = useContext(AuthContext)
     const navigate = useNavigate();
     const [error, setError] = useState({ active: false, message: "" });
-
+    const {create, movies} = useContext(MovieContext);
+    console.log(movies);
     const [inputData, setInputData] = useState({
         title: "",
         plot: "",
@@ -27,7 +29,7 @@ export const CreateMovie = () => {
         inputData.userId = auth.id;
         movieService.create(inputData)
             .then(res => {
-                console.log(res);
+                create(res)
                 navigate('/movies/all')
             }).catch(err => {
                 setError({active: true, message: err.message})

@@ -5,7 +5,8 @@ const create = (data) => {
     return request.post(`${baseUrl}/movies/create`, data)
 }
 const getAll = () => {
-    return [];
+    //TODO fix the route
+    return request.get(`${baseUrl}/movies/mine`);
 }
 export{
     create,
