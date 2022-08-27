@@ -10,8 +10,7 @@ export const CreateMovie = () => {
     const {auth} = useContext(AuthContext)
     const navigate = useNavigate();
     const [error, setError] = useState({ active: false, message: "" });
-    const {create, movies} = useContext(MovieContext);
-    console.log(movies);
+    const {create} = useContext(MovieContext);
     const [inputData, setInputData] = useState({
         title: "",
         plot: "",
