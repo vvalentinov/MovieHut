@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using MovieHut.Data.Models;
+    using MovieHut.Features.Identity.Models;
 
     public class IdentityController : ApiController
     {

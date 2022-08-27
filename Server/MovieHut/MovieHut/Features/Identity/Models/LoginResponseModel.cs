@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Features.Identity
+﻿namespace MovieHut.Features.Identity.Models
 {
     public class LoginResponseModel
     {
