@@ -14,22 +14,25 @@ import { AuthProvider } from './contexts/AuthContext';
 import { Logout } from './components/Logout/Logout';
 import UserGuard from './components/common/UserGuard';
 import { CreateMovie } from './components/CreateMovie/CreateMovie';
+import { MovieProvider } from './contexts/MovieContext';
 
 function App() {
     return (
         <>
             <AuthProvider>
                 <Header />
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/logout' element={<Logout />} />
-                    <Route path='/movies/create' element={<CreateMovie/>}/>
-                    <Route element={<UserGuard />}>
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/register' element={<Register />} />
-                    </Route>
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+                <MovieProvider>
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/logout' element={<Logout />} />
+                        <Route path='/movies/create' element={<CreateMovie />} />
+                        <Route element={<UserGuard />}>
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/register' element={<Register />} />
+                        </Route>
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
+                </MovieProvider>
                 <Footer />
             </AuthProvider>
         </>
