@@ -1,4 +1,6 @@
-﻿namespace MovieHut.Infrastructure
+﻿using MovieHut.Infrastructure.Extensions;
+
+namespace MovieHut.Infrastructure.Extensions
 {
     using Microsoft.EntityFrameworkCore;
     using MovieHut.Data;

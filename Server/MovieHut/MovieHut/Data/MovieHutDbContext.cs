@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using MovieHut.Data.Models;
+    using MovieHut.Infrastructure.InitialSeed;
 
     public class MovieHutDbContext : IdentityDbContext<User>
     {
@@ -28,6 +29,8 @@
                 .WithMany(x => x.Movies)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.ApplyConfiguration(new InitialDataConfiguration<Genre>(@"Infrastructure/InitialSeed/genres.json"));
 
             base.OnModelCreating(builder);
         }

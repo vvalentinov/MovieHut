@@ -1,6 +1,6 @@
 namespace MovieHut
 {
-    using MovieHut.Infrastructure;
+    using MovieHut.Infrastructure.Extensions;
 
     public class Program
     {

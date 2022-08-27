@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Infrastructure
+﻿namespace MovieHut.Infrastructure.Extensions
 {
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Identity;
