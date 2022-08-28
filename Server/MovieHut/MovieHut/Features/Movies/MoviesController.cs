@@ -45,10 +45,10 @@
 
         [HttpGet]
         [Authorize]
-        [Route("details")]
-        public async Task<MovieDetailsServiceModel> GetMovieDetails(string movieId)
+        [Route("{id}")]
+        public async Task<MovieDetailsServiceModel> GetMovieDetails(string id)
         {
-            var movie = await this.moviesService.GetMovieDetailsAsync(movieId);
+            var movie = await this.moviesService.GetMovieDetailsAsync(id);
 
             return movie;
         }
