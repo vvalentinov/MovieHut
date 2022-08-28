@@ -4,14 +4,19 @@
     using Microsoft.AspNetCore.Mvc;
     using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Extensions;
+    using MovieHut.Infrastructure.Services;
 
     public class MoviesController : ApiController
     {
         private readonly IMoviesService moviesService;
+        private readonly ICurrentUserService currentUserService;
 
-        public MoviesController(IMoviesService moviesService)
+        public MoviesController(
+            IMoviesService moviesService,
+            ICurrentUserService currentUserService)
         {
             this.moviesService = moviesService;
+            this.currentUserService = currentUserService;
         }
 
         [HttpPost]
@@ -19,7 +24,7 @@
         [Route("create")]
         public async Task<CreateMovieResponseModel> Create(CreateMovieRequestModel model)
         {
-            var userId = this.User.GetId();
+            var userId = this.currentUserService.GetId();
 
             var movie = await this.moviesService.CreateMovieAsync(
                 model.Title,
@@ -36,7 +41,7 @@
         [Route("mine")]
         public async Task<IEnumerable<MovieListingServiceModel>> GetUserMovies()
         {
-            var userId = this.User.GetId();
+            var userId = this.currentUserService.GetId();
 
             var movies = await this.moviesService.GetUserMoviesAsync(userId);
 
