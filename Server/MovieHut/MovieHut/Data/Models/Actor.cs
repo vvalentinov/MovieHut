@@ -1,8 +1,9 @@
 ﻿namespace MovieHut.Data.Models
 {
+    using MovieHut.Data.Models.Base;
     using System.ComponentModel.DataAnnotations;
 
-    public class Actor
+    public class Actor : DeletableEntity
     {
         [Key]
         [Required]

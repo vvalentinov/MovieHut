@@ -1,8 +1,9 @@
 ﻿namespace MovieHut.Data.Models
 {
     using Microsoft.AspNetCore.Identity;
+    using MovieHut.Data.Models.Base;
 
-    public class User : IdentityUser
+    public class User : IdentityUser, IEntity
     {
         public User()
         {
@@ -10,5 +11,13 @@
         }
 
         public virtual ICollection<Movie> Movies { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public string? CreatedBy { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public string? ModifiedBy { get; set; }
     }
 }

@@ -1,10 +1,11 @@
 ﻿namespace MovieHut.Data.Models
 {
+    using MovieHut.Data.Models.Base;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using static Validation.Movie;
 
-    public class Movie
+    public class Movie : DeletableEntity
     {
         public Movie()
         {
