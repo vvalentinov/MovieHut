@@ -16,5 +16,13 @@
         Task<MovieDetailsServiceModel> GetMovieDetailsAsync(string movieId);
 
         Task<bool> DeleteAsync(string id, string userId);
+
+        Task<bool> UpdateAsync(
+            string id,
+            string title,
+            string plot,
+            DateTime released,
+            string posterUrl,
+            string userId);
     }
 }

@@ -101,5 +101,33 @@
 
             return movies;
         }
+
+        public async Task<bool> UpdateAsync(
+            string id,
+            string title,
+            string plot,
+            DateTime released,
+            string posterUrl,
+            string userId)
+        {
+            var movie = await this.dbContext
+                             .Movies
+                             .Where(x => x.Id == id && x.UserId == userId)
+                             .FirstOrDefaultAsync();
+
+            if (movie == null)
+            {
+                return false;
+            }
+
+            movie.Title = title;
+            movie.Plot = plot;
+            movie.Released = released;
+            movie.PosterUrl = posterUrl;
+
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

@@ -73,5 +73,28 @@
 
             return Ok();
         }
+
+        [HttpPut]
+        [Authorize]
+        [Route("update")]
+        public async Task<ActionResult> Update(UpdateMovieRequestModel model)
+        {
+            var userId = this.currentUserService.GetId();
+
+            var updated = await this.moviesService.UpdateAsync(
+                model.Id,
+                model.Title,
+                model.Plot,
+                model.Released,
+                model.PosterUrl,
+                userId);
+
+            if (updated == false)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }
