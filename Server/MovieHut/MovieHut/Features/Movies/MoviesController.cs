@@ -56,5 +56,22 @@
 
             return movie;
         }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("{id}")]
+        public async Task<ActionResult> Delete(string id)
+        {
+            var userId = this.currentUserService.GetId();
+
+            var deleted = await this.moviesService.DeleteAsync(id, userId);
+
+            if (deleted == false)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }

@@ -49,6 +49,25 @@
             return responseModel;
         }
 
+        public async Task<bool> DeleteAsync(string id, string userId)
+        {
+            var movie = await this.dbContext
+                             .Movies
+                             .Where(x => x.Id == id && x.UserId == userId)
+                             .FirstOrDefaultAsync();
+
+            if (movie == null)
+            {
+                return false;
+            }
+
+            this.dbContext.Movies.Remove(movie);
+
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<MovieDetailsServiceModel> GetMovieDetailsAsync(string movieId)
         {
             var movie = await this.dbContext
@@ -56,12 +75,12 @@
                 .Where(x => x.Id == movieId)
                 .Select(x => new MovieDetailsServiceModel
                 {
-                    Id= x.Id,
-                    Title= x.Title,
-                    Plot= x.Plot,
-                    UserId= x.UserId,
-                    PosterUrl= x.PosterUrl,
-                    Released= x.Released,
+                    Id = x.Id,
+                    Title = x.Title,
+                    Plot = x.Plot,
+                    UserId = x.UserId,
+                    PosterUrl = x.PosterUrl,
+                    Released = x.Released,
                 }).FirstOrDefaultAsync();
 
             return movie;
@@ -75,7 +94,7 @@
                 .Select(x => new MovieListingServiceModel
                 {
                     Id = x.Id,
-                    PosterUrl= x.PosterUrl,
+                    PosterUrl = x.PosterUrl,
                     Title = x.Title,
                 })
                 .ToListAsync();
