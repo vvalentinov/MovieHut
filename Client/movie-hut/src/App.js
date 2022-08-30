@@ -15,6 +15,7 @@ import { Logout } from './components/Logout/Logout';
 import UserGuard from './components/common/UserGuard';
 import { CreateMovie } from './components/CreateMovie/CreateMovie';
 import { MovieProvider } from './contexts/MovieContext';
+import { MyMovies } from './components/MyMovies/MyMovies';
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/movies/create' element={<CreateMovie />} />
+                        <Route path='/movies/mine' element={<MyMovies />} />
                         <Route element={<UserGuard />}>
                             <Route path='/login' element={<Login />} />
                             <Route path='/register' element={<Register />} />
