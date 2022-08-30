@@ -51,10 +51,7 @@
 
         public async Task<bool> DeleteAsync(string id, string userId)
         {
-            var movie = await this.dbContext
-                             .Movies
-                             .Where(x => x.Id == id && x.UserId == userId)
-                             .FirstOrDefaultAsync();
+            var movie = await this.GetMovieByIdAndByUserIdAsync(id, userId);
 
             if (movie == null)
             {
@@ -110,10 +107,7 @@
             string posterUrl,
             string userId)
         {
-            var movie = await this.dbContext
-                             .Movies
-                             .Where(x => x.Id == id && x.UserId == userId)
-                             .FirstOrDefaultAsync();
+            var movie = await this.GetMovieByIdAndByUserIdAsync(id, userId);
 
             if (movie == null)
             {
@@ -128,6 +122,15 @@
             await this.dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        private async Task<Movie> GetMovieByIdAndByUserIdAsync(string movieId, string userId)
+        {
+            var movie = await this.dbContext
+                             .Movies
+                             .FirstOrDefaultAsync(x => x.Id == movieId && x.UserId == userId);
+
+            return movie;
         }
     }
 }
