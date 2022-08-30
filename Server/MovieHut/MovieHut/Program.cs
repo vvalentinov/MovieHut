@@ -17,7 +17,7 @@ namespace MovieHut
                 .AddApplicationServices()
                 .AddCors()
                 .AddSwagger()
-                .AddControllers();
+                .AddApiControllers();
 
             var app = builder.Build();
 

@@ -9,6 +9,7 @@
     using MovieHut.Data.Models;
     using MovieHut.Features.Identity;
     using MovieHut.Features.Movies;
+    using MovieHut.Infrastructure.Filters;
     using MovieHut.Infrastructure.Services;
     using System.Text;
 
@@ -88,6 +89,12 @@
             });
 
             return services;
+        }
+
+        public static void AddApiControllers(this IServiceCollection services)
+        {
+            services.AddControllers(options =>
+                options.Filters.Add<ModelOrNotFoundActionFilter>());
         }
     }
 }
