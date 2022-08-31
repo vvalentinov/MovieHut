@@ -11,7 +11,9 @@
            DateTime released,
            string userId);
 
-        Task<IEnumerable<MovieListingServiceModel>> GetUserMoviesAsync(string userId);
+        Task<IEnumerable<UserMoviesListingServiceModel>> GetUserMoviesAsync(string userId);
+
+        Task<IEnumerable<MovieListingServiceModel>> GetMoviesAsync();
 
         Task<MovieDetailsServiceModel> GetMovieDetailsAsync(string movieId);
 

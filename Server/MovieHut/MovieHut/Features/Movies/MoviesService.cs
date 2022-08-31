@@ -83,12 +83,30 @@
             return movie;
         }
 
-        public async Task<IEnumerable<MovieListingServiceModel>> GetUserMoviesAsync(string userId)
+        public async Task<IEnumerable<MovieListingServiceModel>> GetMoviesAsync()
+        {
+            var movies = await this.dbContext
+                .Movies
+                .Select(x => new MovieListingServiceModel
+                {
+                    Id = x.Id,
+                    Plot = x.Plot,
+                    PosterUrl = x.PosterUrl,
+                    Released = x.Released,
+                    Title = x.Title,
+                    UserName = x.User.UserName,
+                    UserId = x.UserId,
+                }).ToListAsync();
+
+            return movies;
+        }
+
+        public async Task<IEnumerable<UserMoviesListingServiceModel>> GetUserMoviesAsync(string userId)
         {
             var movies = await this.dbContext
                 .Movies
                 .Where(x => x.UserId == userId)
-                .Select(x => new MovieListingServiceModel
+                .Select(x => new UserMoviesListingServiceModel
                 {
                     Id = x.Id,
                     PosterUrl = x.PosterUrl,

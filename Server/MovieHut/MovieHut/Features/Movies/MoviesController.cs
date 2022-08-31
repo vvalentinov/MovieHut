@@ -36,9 +36,18 @@
         }
 
         [HttpGet]
+        [Route("all")]
+        public async Task<IEnumerable<MovieListingServiceModel>> All()
+        {
+            var movies = await this.moviesService.GetMoviesAsync();
+
+            return movies;
+        }
+
+        [HttpGet]
         [Authorize]
         [Route("mine")]
-        public async Task<IEnumerable<MovieListingServiceModel>> GetUserMovies()
+        public async Task<IEnumerable<UserMoviesListingServiceModel>> GetUserMovies()
         {
             var userId = this.currentUserService.GetId();
 
