@@ -1,8 +1,8 @@
 .gradRight {
-    background-image: linear-gradient(135deg, #e3e3e3 , white);
+    background-image: linear-gradient(135deg, #d6d6d6 , white);
 }
 .gradLeft {
-    background-image: linear-gradient(225deg, #e3e3e3 , white);
+    background-image: linear-gradient(250deg, #d6d6d6 , white);
 }
 .list{
     list-style-type: none;

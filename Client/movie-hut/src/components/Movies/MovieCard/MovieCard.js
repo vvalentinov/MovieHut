@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
 export const MovieCard = (props) => {
-    console.log(props);
     return (
         <div className='card my-2'>
             <div className='card-body'>
