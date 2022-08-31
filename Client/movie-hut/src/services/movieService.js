@@ -8,7 +8,6 @@ const getMine = () => {
   return request.get(`${baseUrl}/movies/mine`);
 };
 const getAll = () => {
-  //TODO fix the route
-  return request.get(`${baseUrl}/movies/mine`);
+  return request.get(`${baseUrl}/movies/all`);
 };
 export { create, getAll, getMine };
