@@ -16,6 +16,7 @@ import UserGuard from './components/common/UserGuard';
 import { CreateMovie } from './components/CreateMovie/CreateMovie';
 import { MovieProvider } from './contexts/MovieContext';
 import { MyMovies } from './components/MyMovies/MyMovies';
+import { Movies } from './components/Movies/Movies';
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                     <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/logout' element={<Logout />} />
+                        <Route path='/movies/all' element={<Movies />} />
                         <Route path='/movies/create' element={<CreateMovie />} />
                         <Route path='/movies/mine' element={<MyMovies />} />
                         <Route element={<UserGuard />}>

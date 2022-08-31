@@ -1,0 +1,6 @@
+.grad {
+    background-image: linear-gradient(to right, #e3e3e3 , white);
+}
+.list{
+    list-style-type: none;
+}
