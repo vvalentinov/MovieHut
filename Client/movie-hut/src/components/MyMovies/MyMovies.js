@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Card } from '../Card/Card'
 import * as movieService from '../../services/movieService'
 import './MyMovies.css'
+import { Missing } from '../Missing/Missing'
 
 export const MyMovies = () => {
     const [movies, setMovies] = useState();
@@ -17,10 +18,7 @@ export const MyMovies = () => {
                 <div className="row justify-content-center gy-5">
                     {movies?.length > 0
                         ? movies?.map(x => <Card key={x.id} {...x} />)
-                        : <>
-                            <p className="text-center display-6">You haven't created any movies yet.</p>
-                            <div style={{ height: '100vh' }}>
-                            </div> </>}
+                        : <Missing message= {`You haven't created any movies yet.`}/>}
                 </div>
             </div>
         </>

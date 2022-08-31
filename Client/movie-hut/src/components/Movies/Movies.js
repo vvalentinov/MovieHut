@@ -1,12 +1,13 @@
 import { useContext } from 'react'
 import { MovieContext } from '../../contexts/MovieContext'
+import { Missing } from '../Missing/Missing'
 import { Genres } from './Genres/Genres'
 import { MovieCard } from './MovieCard/MovieCard'
 import styles from './Movies.module.css'
 
 export const Movies = () => {
     const { movies } = useContext(MovieContext);
-    
+
     return (
         <div className="container">
             <div className="row gy-3 my-2">
@@ -17,7 +18,7 @@ export const Movies = () => {
                             <div className='container'>
                                 {movies.length > 0
                                     ? movies?.map(x => <MovieCard key={x.id} {...x} />)
-                                    : null}
+                                    : <Missing message= {`No movies yet.`}/>}
                             </div>
                         </div>
                     </div>
