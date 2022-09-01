@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 
 export const MovieCard = (props) => {
+    console.log(props);
     return (
         <div className='card my-2'>
             <div className='card-body'>
@@ -15,7 +16,7 @@ export const MovieCard = (props) => {
                             <h4>{props.title} ({props.released.slice(0, 4)})</h4>
                         </Link>
                         <p>45 min</p>
-                        <p>Drama, Test, Fantasy</p>
+                        <p>{props.genres.join(',')}</p>
                         <p><i className="fa-solid fa-star"></i> 7,8</p>
                         <div>
                             <p>{props.plot}</p>
