@@ -13,6 +13,8 @@
             CreateMap<Movie, MovieListingServiceModel>();
 
             CreateMap<Movie, UserMoviesListingServiceModel>();
+
+            CreateMap<Movie, CreateMovieResponseModel>();
         }
     }
 }

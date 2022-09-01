@@ -39,15 +39,7 @@
             await this.dbContext.AddAsync(movie);
             await this.dbContext.SaveChangesAsync();
 
-            var responseModel = new CreateMovieResponseModel
-            {
-                Id = movie.Id,
-                Plot = movie.Plot,
-                PosterUrl = movie.PosterUrl,
-                Released = movie.Released,
-                UserId = userId,
-                Title = movie.Title,
-            };
+            var responseModel = this.mapper.Map<CreateMovieResponseModel>(movie);
 
             return responseModel;
         }
