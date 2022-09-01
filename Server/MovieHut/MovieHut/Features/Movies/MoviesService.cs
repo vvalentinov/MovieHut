@@ -74,14 +74,8 @@
         {
             var movie = await this.dbContext.Movies.FindAsync(movieId);
 
-            var movieGenres = await this.dbContext
-                .MoviesGenres
-                .Where(x => x.MovieId == movieId)
-                .Select(x => x.Genre.Name)
-                .ToListAsync();
-
             var movieModel = this.mapper.Map<MovieDetailsServiceModel>(movie);
-            movieModel.Genres = movieGenres;
+            movieModel.Genres = await this.GetMovieGenresByMovieIdAsync(movieId);
 
             return movieModel;
         }
@@ -91,6 +85,11 @@
             var movies = await this.dbContext.Movies.ToListAsync();
 
             var moviesModels = this.mapper.Map<List<MovieListingServiceModel>>(movies);
+
+            foreach (var movieModel in moviesModels)
+            {
+                movieModel.Genres = await this.GetMovieGenresByMovieIdAsync(movieModel.Id);
+            }
 
             return moviesModels;
         }
@@ -136,6 +135,15 @@
                              .FirstOrDefaultAsync(x => x.Id == movieId && x.UserId == userId);
 
             return movie;
+        }
+
+        private async Task<IEnumerable<string>> GetMovieGenresByMovieIdAsync(string movieId)
+        {
+            return await this.dbContext
+                .MoviesGenres
+                .Where(x => x.MovieId == movieId)
+                .Select(x => x.Genre.Name)
+                .ToListAsync();
         }
     }
 }
