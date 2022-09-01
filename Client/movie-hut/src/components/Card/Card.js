@@ -9,7 +9,7 @@ export const Card = (props) => {
                 <h4 className="card-title">{props.title}</h4>
                 {props.isGenre ? 
                 <Link to={`/movies/all/${props.title.toLowerCase()}`} className="custom-btn">
-                    Details
+                    View Movies
                 </Link>:
                 <Link to={`/movies/details/${props.id}`} className="custom-btn">
                     Details
