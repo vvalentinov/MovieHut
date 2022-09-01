@@ -1,5 +1,6 @@
 ﻿namespace MovieHut.Features.Movies
 {
+    using AutoMapper;
     using Microsoft.EntityFrameworkCore;
     using MovieHut.Data;
     using MovieHut.Data.Models;
@@ -11,10 +12,12 @@
     public class MoviesService : IMoviesService
     {
         private readonly MovieHutDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public MoviesService(MovieHutDbContext dbContext)
+        public MoviesService(MovieHutDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         public async Task<CreateMovieResponseModel> CreateMovieAsync(
@@ -67,20 +70,11 @@
 
         public async Task<MovieDetailsServiceModel> GetMovieDetailsAsync(string movieId)
         {
-            var movie = await this.dbContext
-                .Movies
-                .Where(x => x.Id == movieId)
-                .Select(x => new MovieDetailsServiceModel
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    Plot = x.Plot,
-                    UserId = x.UserId,
-                    PosterUrl = x.PosterUrl,
-                    Released = x.Released,
-                }).FirstOrDefaultAsync();
+            var movie = await this.dbContext.Movies.FindAsync(movieId);
 
-            return movie;
+            var movieModel = this.mapper.Map<MovieDetailsServiceModel>(movie);
+
+            return movieModel;
         }
 
         public async Task<IEnumerable<MovieListingServiceModel>> GetMoviesAsync()

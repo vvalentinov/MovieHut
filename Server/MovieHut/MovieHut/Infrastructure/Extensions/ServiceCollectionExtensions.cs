@@ -78,6 +78,8 @@
             services.AddTransient<IMoviesService, MoviesService>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+            services.AddAutoMapper(typeof(Program));
+
             return services;
         }
 
