@@ -88,18 +88,11 @@
 
         public async Task<IEnumerable<UserMoviesListingServiceModel>> GetUserMoviesAsync(string userId)
         {
-            var movies = await this.dbContext
-                .Movies
-                .Where(x => x.UserId == userId)
-                .Select(x => new UserMoviesListingServiceModel
-                {
-                    Id = x.Id,
-                    PosterUrl = x.PosterUrl,
-                    Title = x.Title,
-                })
-                .ToListAsync();
+            var movies = await this.dbContext.Movies.Where(x => x.UserId == userId).ToListAsync();
 
-            return movies;
+            var moviesModels = this.mapper.Map<List<UserMoviesListingServiceModel>>(movies);
+
+            return moviesModels;
         }
 
         public async Task<bool> UpdateAsync(
