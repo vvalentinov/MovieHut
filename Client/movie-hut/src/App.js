@@ -30,6 +30,7 @@ function App() {
                         <Route path='/movies/all' element={<Movies />} />
                         <Route path='/movies/create' element={<CreateMovie />} />
                         <Route path='/movies/mine' element={<MyMovies />} />
+                        <Route path='/genres/all' element={<MyMovies />} />
                         <Route element={<UserGuard />}>
                             <Route path='/login' element={<Login />} />
                             <Route path='/register' element={<Register />} />

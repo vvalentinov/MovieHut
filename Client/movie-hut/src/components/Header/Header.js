@@ -48,6 +48,11 @@ export const Header = () => {
                                 Actors
                             </Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/genres/all">
+                                Genres
+                            </Link>
+                        </li>
                     </ul>
                     <ul className="navbar-nav me-auto-reverse mb-2 mb-lg-0">
                         {isAuthenticated
