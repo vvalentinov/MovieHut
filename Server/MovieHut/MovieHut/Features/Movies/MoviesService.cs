@@ -25,6 +25,7 @@
             string plot,
             string posterUrl,
             DateTime released,
+            IEnumerable<int> genresIds,
             string userId)
         {
             var movie = new Movie
@@ -36,7 +37,16 @@
                 UserId = userId,
             };
 
-            await this.dbContext.AddAsync(movie);
+            foreach (var genreId in genresIds)
+            {
+                await this.dbContext.MoviesGenres.AddAsync(new MovieGenre()
+                {
+                    MovieId = movie.Id,
+                    GenreId = genreId
+                });
+            }
+
+            await this.dbContext.Movies.AddAsync(movie);
             await this.dbContext.SaveChangesAsync();
 
             var responseModel = this.mapper.Map<CreateMovieResponseModel>(movie);

@@ -23,5 +23,7 @@
 
         [Required]
         public string UserId { get; set; }
+
+        public IEnumerable<int> GenresIds { get; set; }
     }
 }

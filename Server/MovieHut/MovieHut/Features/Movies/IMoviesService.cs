@@ -9,6 +9,7 @@
            string plot,
            string posterUrl,
            DateTime released,
+           IEnumerable<int> genresIds,
            string userId);
 
         Task<IEnumerable<UserMoviesListingServiceModel>> GetUserMoviesAsync(string userId);
