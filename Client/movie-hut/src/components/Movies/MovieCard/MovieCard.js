@@ -10,14 +10,16 @@ export const MovieCard = (props) => {
                             <img className='img-fluid w-125 h-125' src={props.posterUrl} alt='movie img' />
                         </Link>
                     </div>
-                    <div className='col-sm'>
+                    <div className='col-sm-9'>
                         <Link to={`/movies/details/${props.id}`} style={{ textDecoration: 'none' }}>
-                            <h4>{props.title} ({props.released.slice(0,4)})</h4>
+                            <h4>{props.title} ({props.released.slice(0, 4)})</h4>
                         </Link>
                         <p>45 min</p>
                         <p>Drama, Test, Fantasy</p>
                         <p><i className="fa-solid fa-star"></i> 7,8</p>
-                        <p>{props.plot}</p>
+                        <div>
+                            <p>{props.plot}</p>
+                        </div>
                         <p>Stars:
                             <Link to="/actors/1" style={{ textDecoration: 'none' }}>
                                 {'Tom Sturridge'}
