@@ -15,7 +15,7 @@ export const Footer = () => {
                 className="text-center p-3"
                 style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
             >
-                {'© 2022 Copyright: '}
+                {`© ${new Date().getFullYear()} Copyright: `}
                     <div>
                         <a className="text-white" href="https://github.com/vvalentinov">
                             Valentin Valentinov
