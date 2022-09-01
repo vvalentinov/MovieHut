@@ -36,6 +36,14 @@ export const CreateMovie = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         inputData.userId = auth.id;
+        let result  = areChecked.map((curr, index) => {
+            if(curr === true){
+                return index;
+            }
+        })
+        inputData.genres = result.filter(function(item){
+            return typeof item === 'number';  
+        });
         movieService.create(inputData)
             .then(res => {
                 create(res)
@@ -66,7 +74,7 @@ export const CreateMovie = () => {
                             </label>
                         </div>
                         <div className="form-outline mb-4">
-                            <input
+                            <textarea
                                 type="text"
                                 id="plot"
                                 name="plot"
@@ -74,6 +82,7 @@ export const CreateMovie = () => {
                                 placeholder="Enter a valid plot"
                                 value={inputData.plot}
                                 onChange={onChange}
+                                style = {{height: '200px'}}
                             />
                             <label className="form-label" htmlFor="plot">
                                 Plot
