@@ -79,20 +79,11 @@
 
         public async Task<IEnumerable<MovieListingServiceModel>> GetMoviesAsync()
         {
-            var movies = await this.dbContext
-                .Movies
-                .Select(x => new MovieListingServiceModel
-                {
-                    Id = x.Id,
-                    Plot = x.Plot,
-                    PosterUrl = x.PosterUrl,
-                    Released = x.Released,
-                    Title = x.Title,
-                    UserName = x.User.UserName,
-                    UserId = x.UserId,
-                }).ToListAsync();
+            var movies = await this.dbContext.Movies.ToListAsync();
 
-            return movies;
+            var moviesModels = this.mapper.Map<List<MovieListingServiceModel>>(movies);
+
+            return moviesModels;
         }
 
         public async Task<IEnumerable<UserMoviesListingServiceModel>> GetUserMoviesAsync(string userId)

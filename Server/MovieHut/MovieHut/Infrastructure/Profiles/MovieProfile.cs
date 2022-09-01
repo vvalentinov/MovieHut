@@ -9,6 +9,8 @@
         public MovieProfile()
         {
             CreateMap<Movie, MovieDetailsServiceModel>();
+
+            CreateMap<Movie, MovieListingServiceModel>();
         }
     }
 }
