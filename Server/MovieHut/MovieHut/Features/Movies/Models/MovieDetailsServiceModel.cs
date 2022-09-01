@@ -15,5 +15,7 @@
         public string UserId { get; set; }
 
         public string CreatedBy { get; set; }
+
+        public IEnumerable<string> Genres { get; set; }
     }
 }

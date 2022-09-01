@@ -74,7 +74,14 @@
         {
             var movie = await this.dbContext.Movies.FindAsync(movieId);
 
+            var movieGenres = await this.dbContext
+                .MoviesGenres
+                .Where(x => x.MovieId == movieId)
+                .Select(x => x.Genre.Name)
+                .ToListAsync();
+
             var movieModel = this.mapper.Map<MovieDetailsServiceModel>(movie);
+            movieModel.Genres = movieGenres;
 
             return movieModel;
         }
