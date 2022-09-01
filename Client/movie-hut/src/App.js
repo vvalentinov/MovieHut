@@ -17,6 +17,7 @@ import { CreateMovie } from './components/CreateMovie/CreateMovie';
 import { MovieProvider } from './contexts/MovieContext';
 import { MyMovies } from './components/MyMovies/MyMovies';
 import { Movies } from './components/Movies/Movies';
+import { Genres } from './components/Genres/Genres';
 
 function App() {
     return (
@@ -30,7 +31,7 @@ function App() {
                         <Route path='/movies/all' element={<Movies />} />
                         <Route path='/movies/create' element={<CreateMovie />} />
                         <Route path='/movies/mine' element={<MyMovies />} />
-                        <Route path='/genres/all' element={<MyMovies />} />
+                        <Route path='/genres/all' element={<Genres />} />
                         <Route element={<UserGuard />}>
                             <Route path='/login' element={<Login />} />
                             <Route path='/register' element={<Register />} />
