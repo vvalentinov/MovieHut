@@ -41,7 +41,7 @@ export const CreateMovie = () => {
                 return index;
             }
         })
-        inputData.genres = result.filter(function(item){
+        inputData.genresIds = result.filter(function(item){
             return typeof item === 'number';  
         });
         movieService.create(inputData)
