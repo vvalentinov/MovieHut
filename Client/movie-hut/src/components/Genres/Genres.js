@@ -20,7 +20,7 @@ export const Genres = () => {
                     <Card key={11} title="Horror" posterUrl="https://m.media-amazon.com/images/M/MV5BZDVkZmI0YzAtNzdjYi00ZjhhLWE1ODEtMWMzMWMzNDA0NmQ4XkEyXkFqcGdeQXVyNzYzODM3Mzg@._V1_.jpg" id="11" isGenre={true} />
                     <Card key={12} title="Indie" posterUrl="https://m.media-amazon.com/images/M/MV5BZTNmOGFiOGEtMDQyZS00NDhmLThiMTAtZDk2YjAxZmExZDJiXkEyXkFqcGdeQXVyOTgxNDIzMTY@._V1_.jpg" id="12" isGenre={true} />
                     <Card key={13} title="Melodrama" posterUrl="https://m.media-amazon.com/images/M/MV5BNGRhZWVkZGUtY2FjMi00NjhlLThhNGYtYTY4ZThhMzdkMjg3XkEyXkFqcGdeQXVyNjc0MzMzNjA@._V1_.jpg" id="13" isGenre={true} />
-                    <Card key={14} title="Musical" posterUrl="https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_FMjpg_UX1000_.jpg" id="14" isGenre={true} />
+                    <Card key={14} title="Musicals" posterUrl="https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_FMjpg_UX1000_.jpg" id="14" isGenre={true} />
                     <Card key={15} title="Mystery" posterUrl="https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" id="15" isGenre={true} />
                     <Card key={16} title="Romance" posterUrl="https://m.media-amazon.com/images/M/MV5BMTk3OTM5Njg5M15BMl5BanBnXkFtZTYwMzA0ODI3._V1_FMjpg_UX1000_.jpg" id="16" isGenre={true} />
                     <Card key={17} title="Sci-Fi" posterUrl="https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg" id="17" isGenre={true} />
@@ -28,7 +28,7 @@ export const Genres = () => {
                     <Card key={19} title="Teen" posterUrl="https://m.media-amazon.com/images/M/MV5BMmVhZjhlZDYtMDAwZi00MDcyLTgzOTItOWNiZjY0YmE0MGE0XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg" id="19" isGenre={true} />
                     <Card key={20} title="Thriller" posterUrl="https://m.media-amazon.com/images/M/MV5BMjY2YmEwNTMtN2RiMy00NGVmLTkwYWMtNGFlY2QwOWQ0MTdjXkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_.jpg" id="20" isGenre={true} />
                     <Card key={21} title="War" posterUrl="https://m.media-amazon.com/images/M/MV5BMjQ1NjM3MTUxNV5BMl5BanBnXkFtZTgwMDc5MTY5OTE@._V1_FMjpg_UX1000_.jpg" id="21" isGenre={true} />
-                    <Card key={22} title="Western" posterUrl="https://m.media-amazon.com/images/M/MV5BNjJlYmNkZGItM2NhYy00MjlmLTk5NmQtNjg1NmM2ODU4OTMwXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX1000_.jpg" id="22" isGenre={true} />
+                    <Card key={22} title="Westerns" posterUrl="https://m.media-amazon.com/images/M/MV5BNjJlYmNkZGItM2NhYy00MjlmLTk5NmQtNjg1NmM2ODU4OTMwXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX1000_.jpg" id="22" isGenre={true} />
                 </div>
             </div>
         </>

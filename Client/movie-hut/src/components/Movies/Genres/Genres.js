@@ -48,7 +48,7 @@ export const Genres = () => {
                     <Link to='/movies/all/comedy' style={{ textDecoration: 'none' }}>
                         Comedy
                     </Link><br />
-                    <Link to='/movies/all/western' style={{ textDecoration: 'none' }}>
+                    <Link to='/movies/all/westerns' style={{ textDecoration: 'none' }}>
                         Westerns
                     </Link><br />
                     <Link to='/movies/all/adventure' style={{ textDecoration: 'none' }}>
