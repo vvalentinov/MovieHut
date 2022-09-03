@@ -7,7 +7,6 @@
     using Microsoft.OpenApi.Models;
     using MovieHut.Data;
     using MovieHut.Data.Models;
-    using MovieHut.Features.Cloudinary;
     using MovieHut.Features.Identity;
     using MovieHut.Features.Movies;
     using MovieHut.Infrastructure.Filters;

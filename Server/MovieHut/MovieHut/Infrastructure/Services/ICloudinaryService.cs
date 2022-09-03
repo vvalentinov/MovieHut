@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Features.Cloudinary
+﻿namespace MovieHut.Infrastructure.Services
 {
     public interface ICloudinaryService
     {

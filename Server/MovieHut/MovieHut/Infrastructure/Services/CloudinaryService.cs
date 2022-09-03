@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Features.Cloudinary
+﻿namespace MovieHut.Infrastructure.Services
 {
     using Microsoft.AspNetCore.Http;
     using System.Threading.Tasks;
@@ -16,7 +16,7 @@
 
         public async Task<string> UploadImageAsync(IFormFile imageFile)
         {
-            string cloudinaryUrl = this.configuration.GetValue<string>("Cloudinary:CloudinaryUrl");
+            string cloudinaryUrl = configuration.GetValue<string>("Cloudinary:CloudinaryUrl");
             Cloudinary cloudinary = new Cloudinary(cloudinaryUrl);
             using Stream stream = imageFile.OpenReadStream();
             ImageUploadParams uploadParams = new()
