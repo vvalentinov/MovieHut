@@ -10,4 +10,7 @@ const getMine = () => {
 const getAll = () => {
   return request.get(`${baseUrl}/movies/all`);
 };
-export { create, getAll, getMine };
+const getOne = (id) => {
+  return request.get(`${baseUrl}/movies/${id}`);
+};
+export { create, getAll, getMine, getOne };

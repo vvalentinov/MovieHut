@@ -20,7 +20,7 @@ export const Movies = () => {
                                 {movies.length > 0
                                     ? movies?.map(x => {
                                         if (params.genre) {
-                                            if (x.genres.some(y => y.toLowerCase() === params.genre)) {
+                                            if (x.genres?.some(y => y.toLowerCase() === params.genre)) {
                                                 return <MovieCard key={x.id} {...x} />
                                             }else{
                                                 return null;
