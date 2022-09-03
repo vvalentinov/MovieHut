@@ -1,6 +1,7 @@
 ﻿namespace MovieHut.Features.Movies
 {
     using MovieHut.Features.Movies.Models;
+    using MovieHut.Infrastructure.Services.Models;
 
     public interface IMoviesService
     {
@@ -18,9 +19,9 @@
 
         Task<MovieDetailsServiceModel> GetMovieDetailsAsync(string movieId);
 
-        Task<bool> DeleteAsync(string id, string userId);
+        Task<Result> DeleteAsync(string id, string userId);
 
-        Task<bool> UpdateAsync(
+        Task<Result> UpdateAsync(
             string id,
             string title,
             string plot,

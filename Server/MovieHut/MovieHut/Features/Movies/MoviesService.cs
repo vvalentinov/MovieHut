@@ -5,6 +5,7 @@
     using MovieHut.Data;
     using MovieHut.Data.Models;
     using MovieHut.Features.Movies.Models;
+    using MovieHut.Infrastructure.Services.Models;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -54,13 +55,13 @@
             return responseModel;
         }
 
-        public async Task<bool> DeleteAsync(string id, string userId)
+        public async Task<Result> DeleteAsync(string id, string userId)
         {
             var movie = await this.GetMovieByIdAndByUserIdAsync(id, userId);
 
             if (movie == null)
             {
-                return false;
+                return "The current user cannot delete this movie!";
             }
 
             this.dbContext.Movies.Remove(movie);
@@ -103,7 +104,7 @@
             return moviesModels;
         }
 
-        public async Task<bool> UpdateAsync(
+        public async Task<Result> UpdateAsync(
             string id,
             string title,
             string plot,
@@ -115,7 +116,7 @@
 
             if (movie == null)
             {
-                return false;
+                return "The current user cannot edit this movie!";
             }
 
             movie.Title = title;

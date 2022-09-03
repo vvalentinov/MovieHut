@@ -74,11 +74,11 @@
         {
             var userId = this.currentUserService.GetId();
 
-            var deleted = await this.moviesService.DeleteAsync(id, userId);
+            var result = await this.moviesService.DeleteAsync(id, userId);
 
-            if (deleted == false)
+            if (result.Failed)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -91,7 +91,7 @@
         {
             var userId = this.currentUserService.GetId();
 
-            var updated = await this.moviesService.UpdateAsync(
+            var result = await this.moviesService.UpdateAsync(
                 model.Id,
                 model.Title,
                 model.Plot,
@@ -99,9 +99,9 @@
                 model.PosterUrl,
                 userId);
 
-            if (updated == false)
+            if (result.Failed)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
