@@ -15,7 +15,7 @@ export const Movies = () => {
                 <div className="col-md-8">
                     <div className={`card ${styles.gradLeft}`}>
                         <div className='card-body'>
-                            <p className='display-6'>Movies</p>
+                            <p className='display-6'>Movies {params.genre ? '/ ' + params.genre[0].toUpperCase() + params.genre.slice(1, params.genre.length) : null}</p>
                             <div className='container'>
                                 {movies.length > 0
                                     ? movies?.map(x => {
