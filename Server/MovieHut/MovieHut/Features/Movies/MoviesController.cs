@@ -60,11 +60,16 @@
         [HttpGet]
         [Authorize]
         [Route("{id}")]
-        public async Task<MovieDetailsServiceModel> GetMovieDetails(string id)
+        public async Task<ActionResult<MovieDetailsServiceModel>> GetMovieDetails(string id)
         {
-            var movie = await this.moviesService.GetMovieDetailsAsync(id);
+            var result = await this.moviesService.GetMovieDetailsAsync(id);
 
-            return movie;
+            if (result.Failed)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return result.MovieDetails;
         }
 
         [HttpDelete]

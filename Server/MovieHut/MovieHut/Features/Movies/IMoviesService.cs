@@ -17,7 +17,7 @@
 
         Task<IEnumerable<MovieListingServiceModel>> GetMoviesAsync();
 
-        Task<MovieDetailsServiceModel> GetMovieDetailsAsync(string movieId);
+        Task<Result> GetMovieDetailsAsync(string movieId);
 
         Task<Result> DeleteAsync(string id, string userId);
 

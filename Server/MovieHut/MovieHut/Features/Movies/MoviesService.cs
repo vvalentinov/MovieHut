@@ -72,9 +72,14 @@
             return true;
         }
 
-        public async Task<MovieDetailsServiceModel> GetMovieDetailsAsync(string movieId)
+        public async Task<Result> GetMovieDetailsAsync(string movieId)
         {
             var movie = await this.dbContext.Movies.FindAsync(movieId);
+
+            if (movie == null)
+            {
+                return MovieDetailsError;
+            }
 
             var movieModel = this.mapper.Map<MovieDetailsServiceModel>(movie);
             movieModel.Genres = await this.GetMovieGenresByMovieIdAsync(movieId);
