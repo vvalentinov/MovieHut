@@ -130,9 +130,7 @@
 
         private async Task<Movie> GetMovieByIdAndByUserIdAsync(string movieId, string userId)
         {
-            return await this.dbContext
-                             .Movies
-                             .FirstOrDefaultAsync(x => x.Id == movieId && x.UserId == userId);
+            return await this.dbContext.Movies.FirstOrDefaultAsync(x => x.Id == movieId && x.UserId == userId);
         }
 
         private async Task<IEnumerable<string>> GetMovieGenresByMovieIdAsync(string movieId)
