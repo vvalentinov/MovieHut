@@ -9,6 +9,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using static ErrorMessages;
 
     public class MoviesService : IMoviesService
     {
@@ -61,7 +62,7 @@
 
             if (movie == null)
             {
-                return "The current user cannot delete this movie!";
+                return DeleteMovieError;
             }
 
             this.dbContext.Movies.Remove(movie);
@@ -116,7 +117,7 @@
 
             if (movie == null)
             {
-                return "The current user cannot edit this movie!";
+                return UpdateMovieError;
             }
 
             movie.Title = title;
