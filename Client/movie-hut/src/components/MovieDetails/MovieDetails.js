@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import * as movieService from "../../services/movieService";
+import { useMovie } from "../../hooks/useMovie";
 
 export const MovieDetails = () => {
     const {movieId} = useParams();
-    const [movie, setMovie] = useState();
-    useEffect(() => {
-        movieService.getOne(movieId)
-            .then(res => setMovie(res))
-            .catch(err => alert(err))
-    },[])
+    const {movie, setMovie} = useMovie(movieId);
     return (
         <>
         <h3>{movie?.title}</h3>
