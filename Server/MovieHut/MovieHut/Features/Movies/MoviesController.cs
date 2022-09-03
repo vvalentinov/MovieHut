@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using MovieHut.Features.Movies.Models;
-    using MovieHut.Infrastructure.Services;
+    using MovieHut.Infrastructure.Services.Contracts;
 
     public class MoviesController : ApiController
     {

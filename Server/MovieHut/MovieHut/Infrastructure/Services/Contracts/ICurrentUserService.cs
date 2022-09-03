@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Infrastructure.Services
+﻿namespace MovieHut.Infrastructure.Services.Contracts
 {
     public interface ICurrentUserService
     {

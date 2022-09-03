@@ -1,6 +1,7 @@
-﻿namespace MovieHut.Infrastructure.Services
+﻿namespace MovieHut.Infrastructure.Services.Models
 {
     using MovieHut.Infrastructure.Extensions;
+    using MovieHut.Infrastructure.Services.Contracts;
     using System.Security.Claims;
 
     public class CurrentUserService : ICurrentUserService
@@ -9,17 +10,17 @@
 
         public CurrentUserService(IHttpContextAccessor contextAccessor)
         {
-            this.user = contextAccessor.HttpContext?.User;
+            user = contextAccessor.HttpContext?.User;
         }
 
         public string GetId()
         {
-            return this.user?.GetId();
+            return user?.GetId();
         }
 
         public string GetUserName()
         {
-            return this.user?.Identity?.Name;
+            return user?.Identity?.Name;
         }
     }
 }

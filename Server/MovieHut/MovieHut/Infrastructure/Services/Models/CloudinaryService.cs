@@ -1,9 +1,10 @@
-﻿namespace MovieHut.Infrastructure.Services
+﻿namespace MovieHut.Infrastructure.Services.Models
 {
     using Microsoft.AspNetCore.Http;
     using System.Threading.Tasks;
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
+    using MovieHut.Infrastructure.Services.Contracts;
 
     public class CloudinaryService : ICloudinaryService
     {
@@ -22,7 +23,7 @@
             ImageUploadParams uploadParams = new()
             {
                 File = new FileDescription(imageFile.FileName, stream),
-                PublicId = imageFile.FileName,
+                //PublicId = imageFile.FileName,
             };
 
             ImageUploadResult uploadResult = await cloudinary.UploadAsync(uploadParams);

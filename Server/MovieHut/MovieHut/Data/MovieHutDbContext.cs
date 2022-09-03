@@ -5,7 +5,7 @@
     using MovieHut.Data.Models;
     using MovieHut.Data.Models.Base;
     using MovieHut.Infrastructure.InitialSeed;
-    using MovieHut.Infrastructure.Services;
+    using MovieHut.Infrastructure.Services.Contracts;
 
     public class MovieHutDbContext : IdentityDbContext<User>
     {
