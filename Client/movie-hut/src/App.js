@@ -29,6 +29,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/movies/all' element={<Movies />} />
+                        <Route path='/movies/all/:genre' element={<Movies />} />
                         <Route path='/movies/create' element={<CreateMovie />} />
                         <Route path='/movies/mine' element={<MyMovies />} />
                         <Route path='/genres/all' element={<Genres />} />
