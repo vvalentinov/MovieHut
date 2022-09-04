@@ -58,7 +58,6 @@
         }
 
         [HttpGet]
-        [Authorize]
         [Route("{id}")]
         public async Task<ActionResult<MovieDetailsServiceModel>> GetMovieDetails(string id)
         {
