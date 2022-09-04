@@ -44,6 +44,8 @@ export const CreateMovie = () => {
         inputData.genresIds = result.filter(function(item){
             return typeof item === 'number';  
         });
+        let formData = new FormData(e.target);
+        inputData.posterUrl = formData.get('poster')
         movieService.create(inputData)
             .then(res => {
                 create(res)
@@ -117,6 +119,12 @@ export const CreateMovie = () => {
                             />
                             <label className="form-label" htmlFor="posterUrl">
                                 Poster Url
+                            </label>
+                        </div>
+                        <div className="mb-4">
+                            <input className="form-control" type="file" id="poster" name="poster" />
+                            <label htmlFor="formFile" className="form-label">
+                                Choose Poster
                             </label>
                         </div>
                         <h5>Genres</h5>
