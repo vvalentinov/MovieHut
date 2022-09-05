@@ -5,6 +5,7 @@
     using MovieHut.Data;
     using MovieHut.Data.Models;
     using MovieHut.Features.Movies.Models;
+    using MovieHut.Infrastructure.Services.Contracts;
     using MovieHut.Infrastructure.Services.Models;
     using System;
     using System.Collections.Generic;
@@ -15,11 +16,16 @@
     {
         private readonly MovieHutDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public MoviesService(MovieHutDbContext dbContext, IMapper mapper)
+        public MoviesService(
+            MovieHutDbContext dbContext,
+            IMapper mapper,
+            ICloudinaryService cloudinaryService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public async Task<CreateMovieResponseModel> CreateMovieAsync(
@@ -30,11 +36,15 @@
             IEnumerable<int> genresIds,
             string userId)
         {
+            var posterFile = Base64ToImage(posterUrl.Split(',')[1], title);
+            posterUrl = await this.cloudinaryService.UploadImageAsync(posterFile);
+
             var movie = new Movie
             {
                 Title = title,
                 Plot = plot,
                 PosterUrl = posterUrl,
+                PosterFile = posterFile,
                 Released = released,
                 UserId = userId,
             };
@@ -147,6 +157,15 @@
                 .Where(x => x.MovieId == movieId)
                 .Select(x => x.Genre.Name)
                 .ToListAsync();
+        }
+
+        private static IFormFile Base64ToImage(string posterUrl, string movieTitle)
+        {
+            byte[] bytes = Convert.FromBase64String(posterUrl);
+            MemoryStream stream = new MemoryStream(bytes);
+            IFormFile file = new FormFile(stream, 0, bytes.Length, movieTitle, movieTitle);
+
+            return file;
         }
     }
 }

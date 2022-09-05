@@ -26,15 +26,13 @@
         {
             var userId = this.currentUserService.GetId();
 
-            Console.WriteLine(model.PosterUrl);
-            CreateMovieResponseModel movie = null;
-            //var movie = await this.moviesService.CreateMovieAsync(
-            //    model.Title,
-            //    model.Plot,
-            //    model.PosterUrl,
-            //    model.Released,
-            //    model.GenresIds,
-            //    userId);
+            var movie = await this.moviesService.CreateMovieAsync(
+                model.Title,
+                model.Plot,
+                model.PosterUrl,
+                model.Released,
+                model.GenresIds,
+                userId);
 
             return movie;
         }
