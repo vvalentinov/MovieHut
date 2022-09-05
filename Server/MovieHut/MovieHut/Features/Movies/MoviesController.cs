@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using MovieHut.Data.Models;
     using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
 
@@ -25,13 +26,15 @@
         {
             var userId = this.currentUserService.GetId();
 
-            var movie = await this.moviesService.CreateMovieAsync(
-                model.Title,
-                model.Plot,
-                model.PosterUrl,
-                model.Released,
-                model.GenresIds,
-                userId);
+            Console.WriteLine(model.PosterUrl);
+            CreateMovieResponseModel movie = null;
+            //var movie = await this.moviesService.CreateMovieAsync(
+            //    model.Title,
+            //    model.Plot,
+            //    model.PosterUrl,
+            //    model.Released,
+            //    model.GenresIds,
+            //    userId);
 
             return movie;
         }

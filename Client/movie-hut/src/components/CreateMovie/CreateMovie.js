@@ -32,20 +32,29 @@ export const CreateMovie = () => {
         setInputData(state => (
             { ...state, [e.target.name]: e.target.value }))
     }
+    const onSelectFile = (e) => {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = (e) => {
+            setInputData(state => (
+                { ...state, 'posterUrl': e.target.result }))
+        }
+    }
 
     const onSubmit = (e) => {
         e.preventDefault();
         inputData.userId = auth.id;
-        let result  = areChecked.map((curr, index) => {
-            if(curr === true){
+        let result = areChecked.map((curr, index) => {
+            if (curr === true) {
                 return index;
             }
         })
-        inputData.genresIds = result.filter(function(item){
-            return typeof item === 'number';  
+        inputData.genresIds = result.filter(function (item) {
+            return typeof item === 'number';
         });
-        let formData = new FormData(e.target);
-        inputData.posterUrl = formData.get('poster')
+        console.log(inputData);
         movieService.create(inputData)
             .then(res => {
                 create(res)
@@ -84,7 +93,7 @@ export const CreateMovie = () => {
                                 placeholder="Enter a valid plot"
                                 value={inputData.plot}
                                 onChange={onChange}
-                                style = {{height: '200px'}}
+                                style={{ height: '200px' }}
                             />
                             <label className="form-label" htmlFor="plot">
                                 Plot
@@ -107,7 +116,7 @@ export const CreateMovie = () => {
                                 Released
                             </label>
                         </div>
-                        <div className="form-outline mb-4">
+                        {/* <div className="form-outline mb-4">
                             <input
                                 type="text"
                                 id="posterUrl"
@@ -120,9 +129,9 @@ export const CreateMovie = () => {
                             <label className="form-label" htmlFor="posterUrl">
                                 Poster Url
                             </label>
-                        </div>
+                        </div> */}
                         <div className="mb-4">
-                            <input className="form-control" type="file" id="poster" name="poster" />
+                            <input className="form-control" type="file" name="poster" onChange={onSelectFile} />
                             <label htmlFor="formFile" className="form-label">
                                 Choose Poster
                             </label>
