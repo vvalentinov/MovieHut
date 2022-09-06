@@ -6,6 +6,7 @@ import styles from './Actors.module.css'
 
 export const Actors = () => {
     const {actors} = useContext(ActorContext);
+    console.log(actors);
     return (
         <div className="container">
             <div className="row gy-3 my-2 justify-content-center">
