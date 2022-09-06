@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import './MovieDetails.css'
 import { useParams } from "react-router-dom";
 import { useMovie } from "../../hooks/useMovie";
 import image from '../../images/background.jpg'
+import { ActorCard } from './ActorCard/Actor';
 
 export const MovieDetails = () => {
     const { movieId } = useParams();
@@ -35,6 +36,16 @@ export const MovieDetails = () => {
                     <div className="row mt-4">
                         <div className="col">
                             <p>{movie?.plot}</p>
+                            <hr />
+                            <p>{movie?.genres.join(', ')}</p>
+                            <hr />
+                            <div className='row gy-3'>
+                                <ActorCard/>
+                                <ActorCard/>
+                                <ActorCard/>
+                                <ActorCard/>
+                                <ActorCard/>
+                            </div>
                         </div>
                     </div>
                 </div>
