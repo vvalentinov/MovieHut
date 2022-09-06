@@ -14,7 +14,8 @@ export const MovieDetails = () => {
                     <div className="row mt-4">
                         <div className="col-10">
                             <p className="display-5">{movie?.title}</p>
-                            <p>{movie?.released.slice(0, 4)}</p>
+                            <p style={{margin: 0}}>{movie?.released.slice(0, 4)}</p>
+                            <p style={{margin: 0}}>{movie?.duration} minutes</p>
                         </div>
                         <div className="col">
                             <h3 className="mb-4">Rating</h3>
@@ -28,7 +29,7 @@ export const MovieDetails = () => {
                         <div className="col-md-8">
                             <iframe
                                 style={{ height: '100%', width: '100%' }}
-                                src="https://www.youtube.com/embed/Nrk8IT9xtkM"
+                                src={movie?.trailerUrl}
                                 allowFullScreen
                             />
                         </div>
