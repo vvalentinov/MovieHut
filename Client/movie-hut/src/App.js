@@ -21,6 +21,7 @@ import { Genres } from './components/Genres/Genres';
 import { MovieDetails } from './components/MovieDetails/MovieDetails';
 import { ActorProvider } from './contexts/ActorsContext';
 import { Actors } from './components/Actors/Actors';
+import { CreateActor } from './components/CreateActor/CreateActor';
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                             <Route path='/movies/mine' element={<MyMovies />} />
                             <Route path='/genres/all' element={<Genres />} />
                             <Route path='/actors/all' element={<Actors />} />
+                            <Route path='/actors/create' element={<CreateActor />} />
                             <Route element={<UserGuard />}>
                                 <Route path='/login' element={<Login />} />
                                 <Route path='/register' element={<Register />} />
