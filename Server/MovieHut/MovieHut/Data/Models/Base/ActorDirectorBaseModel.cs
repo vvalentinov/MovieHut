@@ -16,6 +16,7 @@
         [Required]
         public string ImageUrl { get; set; }
 
+        [NotMapped]
         public virtual IFormFile ImageFile { get; set; }
 
         [Required]
