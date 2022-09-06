@@ -8,6 +8,10 @@
 
         public string Plot { get; set; }
 
+        public int Duration { get; set; }
+
+        public string TrailerUrl { get; set; }
+
         public DateTime Released { get; set; }
 
         public string PosterUrl { get; set; }

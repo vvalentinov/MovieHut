@@ -5,11 +5,9 @@
     using MovieHut.Data;
     using MovieHut.Data.Models;
     using MovieHut.Features.Actors.Models;
-    using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using static MovieHut.Data.Validation;
 
     public class ActorsService : IActorsService
     {
