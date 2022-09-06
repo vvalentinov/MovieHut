@@ -1,6 +1,8 @@
 ﻿namespace MovieHut.Data.Models
 {
-    public class Director
+    using MovieHut.Data.Models.Base;
+
+    public class Director : ActorDirectorBaseModel
     {
     }
 }
