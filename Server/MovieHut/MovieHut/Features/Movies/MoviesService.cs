@@ -42,7 +42,6 @@
             string userId)
         {
             var posterFile = this.base64ToImageService.Base64ToImage(posterUrl.Split(',')[1], title);
-            // var posterFile = Base64ToImage(posterUrl.Split(',')[1], title);
             posterUrl = await this.cloudinaryService.UploadImageAsync(posterFile);
 
             var movie = new Movie
@@ -166,14 +165,5 @@
                 .Select(x => x.Genre.Name)
                 .ToListAsync();
         }
-
-        //private static IFormFile Base64ToImage(string posterUrl, string movieTitle)
-        //{
-        //    byte[] bytes = Convert.FromBase64String(posterUrl);
-        //    MemoryStream stream = new MemoryStream(bytes);
-        //    IFormFile file = new FormFile(stream, 0, bytes.Length, movieTitle, movieTitle);
-
-        //    return file;
-        //}
     }
 }

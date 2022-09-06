@@ -23,9 +23,21 @@
         {
             var userId = this.currentUserService.GetId();
 
-            var actor = await this.actorsService.CreateActorAsync(model.Name, model.ImageUrl, userId);
+            var actor = await this.actorsService.CreateActorAsync(
+                model.Name,
+                model.ImageUrl,
+                userId);
 
             return actor;
+        }
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<IEnumerable<ActorListingServiceModel>> All()
+        {
+            var movies = await this.actorsService.GetActorsAsync();
+
+            return movies;
         }
     }
 }

@@ -1,11 +1,15 @@
 ﻿namespace MovieHut.Features.Actors
 {
     using AutoMapper;
+    using Microsoft.EntityFrameworkCore;
     using MovieHut.Data;
     using MovieHut.Data.Models;
     using MovieHut.Features.Actors.Models;
+    using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using static MovieHut.Data.Validation;
 
     public class ActorsService : IActorsService
     {
@@ -48,6 +52,15 @@
             var actorModel = this.mapper.Map<CreateActorResponseModel>(actor);
 
             return actorModel;
+        }
+
+        public async Task<IEnumerable<ActorListingServiceModel>> GetActorsAsync()
+        {
+            var actors = await this.movieHutDbContext.Actors.ToListAsync();
+
+            var actorsModels = this.mapper.Map<List<ActorListingServiceModel>>(actors);
+
+            return actorsModels;
         }
     }
 }

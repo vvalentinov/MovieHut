@@ -8,5 +8,7 @@
             string name,
             string imageUrl,
             string userId);
+
+        Task<IEnumerable<ActorListingServiceModel>> GetActorsAsync();
     }
 }

@@ -9,6 +9,8 @@
         public ActorProfile()
         {
             CreateMap<Actor, CreateActorResponseModel>();
+
+            CreateMap<Actor, ActorListingServiceModel>();
         }
     }
 }
