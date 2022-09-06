@@ -16,7 +16,9 @@ export const CreateMovie = () => {
         title: "",
         plot: "",
         released: "",
-        posterUrl: ""
+        posterUrl: "",
+        trailerUrl: "",
+        duration: ""
     });
     const [areChecked, setAreChecked] = useState(
         new Array(22).fill(false)
@@ -101,6 +103,21 @@ export const CreateMovie = () => {
                         </div>
                         <div className="form-outline mb-4">
                             <input
+                                type="text"
+                                id="trailerUrl"
+                                name="trailerUrl"
+                                className="form-control form-control-lg"
+                                placeholder="Enter a valid embedded youtube video"
+                                value={inputData.trailerUrl}
+                                onChange={onChange}
+                            />
+                            <label className="form-label" htmlFor="trailerUrl">
+                                Trailer Url
+                            </label>
+                            <a href='https://youtu.be/kiyi-C7NQrQ'>   How to get?</a>
+                        </div>
+                        <div className="form-outline mb-4">
+                            <input
                                 type="date"
                                 min="1900"
                                 max="2099"
@@ -114,6 +131,20 @@ export const CreateMovie = () => {
                             />
                             <label className="form-label" htmlFor="released">
                                 Released
+                            </label>
+                        </div>
+                        <div className="form-outline mb-4">
+                            <input
+                                type="number"
+                                id="duration"
+                                name="duration"
+                                className="form-control form-control-lg"
+                                placeholder="Enter the duration of the movie"
+                                value={inputData.duration}
+                                onChange={onChange}
+                            />
+                            <label className="form-label" htmlFor="duration">
+                                Duration (in minutes)
                             </label>
                         </div>
                         {/* <div className="form-outline mb-4">
