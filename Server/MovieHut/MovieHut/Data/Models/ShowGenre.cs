@@ -7,9 +7,9 @@
     public class ShowGenre : MovieShowGenreBaseModel
     {
         [Required]
-        [ForeignKey(nameof(Movie))]
-        public string MovieId { get; set; }
+        [ForeignKey(nameof(Show))]
+        public string ShowId { get; set; }
 
-        public virtual Movie Movie { get; set; }
+        public virtual Show Show { get; set; }
     }
 }

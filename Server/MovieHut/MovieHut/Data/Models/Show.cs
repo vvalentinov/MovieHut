@@ -4,5 +4,6 @@
 
     public class Show : MovieShowBaseModel
     {
+        public int SeasonsCount { get; set; }
     }
 }

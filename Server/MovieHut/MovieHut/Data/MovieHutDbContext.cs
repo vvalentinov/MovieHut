@@ -19,13 +19,25 @@
 
         public DbSet<Movie> Movies { get; set; }
 
+        public DbSet<Show> Shows { get; set; }
+
+        public DbSet<Director> Directors { get; set; }
+
         public DbSet<Actor> Actors { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
 
         public DbSet<MovieActor> MoviesActors { get; set; }
 
+        public DbSet<MovieDirector> MoviesDirectors { get; set; }
+
         public DbSet<MovieGenre> MoviesGenres { get; set; }
+
+        public DbSet<ShowActor> ShowsActors { get; set; }
+
+        public DbSet<ShowDirector> ShowsDirectors { get; set; }
+
+        public DbSet<ShowGenre> ShowsGenres { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -33,6 +45,27 @@
                 .HasQueryFilter(x => x.IsDeleted == false)
                 .HasOne(x => x.User)
                 .WithMany(x => x.Movies)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Show>()
+                .HasQueryFilter(x => x.IsDeleted == false)
+                .HasOne(x => x.User)
+                .WithMany(x => x.Shows)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Actor>()
+                .HasQueryFilter(x => x.IsDeleted == false)
+                .HasOne(x => x.User)
+                .WithMany(x => x.Actors)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Director>()
+                .HasQueryFilter(x => x.IsDeleted == false)
+                .HasOne(x => x.User)
+                .WithMany(x => x.Directors)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
