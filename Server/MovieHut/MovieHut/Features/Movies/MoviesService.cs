@@ -32,6 +32,8 @@
             string title,
             string plot,
             string posterUrl,
+            string trailerUrl,
+            int duration,
             DateTime released,
             IEnumerable<int> genresIds,
             string userId)
@@ -45,6 +47,8 @@
                 Plot = plot,
                 PosterUrl = posterUrl,
                 PosterFile = posterFile,
+                TrailerUrl = trailerUrl,
+                Duration = duration,
                 Released = released,
                 UserId = userId,
             };

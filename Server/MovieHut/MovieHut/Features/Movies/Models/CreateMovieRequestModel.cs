@@ -15,6 +15,13 @@
         [MaxLength(MaxPlotLength)]
         public string Plot { get; set; }
 
+        [Range(MinDuration, MaxDuration)]
+        public int Duration { get; set; }
+
+        [Required]
+        [Url]
+        public string TrailerUrl { get; set; }
+
         [Required]
         public DateTime Released { get; set; }
 

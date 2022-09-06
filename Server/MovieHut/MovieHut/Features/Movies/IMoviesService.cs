@@ -9,6 +9,8 @@
            string title,
            string plot,
            string posterUrl,
+           string trailerUrl,
+           int duration,
            DateTime released,
            IEnumerable<int> genresIds,
            string userId);

@@ -2,7 +2,6 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using MovieHut.Data.Models;
     using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
 
@@ -30,6 +29,8 @@
                 model.Title,
                 model.Plot,
                 model.PosterUrl,
+                model.TrailerUrl,
+                model.Duration,
                 model.Released,
                 model.GenresIds,
                 userId);
