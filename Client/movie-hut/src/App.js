@@ -20,6 +20,7 @@ import { Movies } from './components/Movies/Movies';
 import { Genres } from './components/Genres/Genres';
 import { MovieDetails } from './components/MovieDetails/MovieDetails';
 import { Actors } from './components/Actors/Actros';
+import { ActorProvider } from './contexts/ActorsContext';
 
 function App() {
     return (
@@ -27,22 +28,24 @@ function App() {
             <AuthProvider>
                 <Header />
                 <MovieProvider>
-                    <Routes>
-                        <Route path='/' element={<Home />} />
-                        <Route path='/logout' element={<Logout />} />
-                        <Route path='/movies/all' element={<Movies />} />
-                        <Route path='/movies/all/:genre' element={<Movies />} />
-                        <Route path='/movies/details/:movieId' element={<MovieDetails />} />
-                        <Route path='/movies/create' element={<CreateMovie />} />
-                        <Route path='/movies/mine' element={<MyMovies />} />
-                        <Route path='/genres/all' element={<Genres />} />
-                        <Route path='/actors/all' element={<Actors />} />
-                        <Route element={<UserGuard />}>
-                            <Route path='/login' element={<Login />} />
-                            <Route path='/register' element={<Register />} />
-                        </Route>
-                        <Route path='*' element={<NotFound />} />
-                    </Routes>
+                    <ActorProvider>
+                        <Routes>
+                            <Route path='/' element={<Home />} />
+                            <Route path='/logout' element={<Logout />} />
+                            <Route path='/movies/all' element={<Movies />} />
+                            <Route path='/movies/all/:genre' element={<Movies />} />
+                            <Route path='/movies/details/:movieId' element={<MovieDetails />} />
+                            <Route path='/movies/create' element={<CreateMovie />} />
+                            <Route path='/movies/mine' element={<MyMovies />} />
+                            <Route path='/genres/all' element={<Genres />} />
+                            <Route path='/actors/all' element={<Actors />} />
+                            <Route element={<UserGuard />}>
+                                <Route path='/login' element={<Login />} />
+                                <Route path='/register' element={<Register />} />
+                            </Route>
+                            <Route path='*' element={<NotFound />} />
+                        </Routes>
+                    </ActorProvider>
                 </MovieProvider>
                 <Footer />
             </AuthProvider>
