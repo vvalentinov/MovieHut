@@ -19,6 +19,7 @@ import { MyMovies } from './components/MyMovies/MyMovies';
 import { Movies } from './components/Movies/Movies';
 import { Genres } from './components/Genres/Genres';
 import { MovieDetails } from './components/MovieDetails/MovieDetails';
+import { Actors } from './components/Actors/Actros';
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                         <Route path='/movies/create' element={<CreateMovie />} />
                         <Route path='/movies/mine' element={<MyMovies />} />
                         <Route path='/genres/all' element={<Genres />} />
+                        <Route path='/actors/all' element={<Actors />} />
                         <Route element={<UserGuard />}>
                             <Route path='/login' element={<Login />} />
                             <Route path='/register' element={<Register />} />
