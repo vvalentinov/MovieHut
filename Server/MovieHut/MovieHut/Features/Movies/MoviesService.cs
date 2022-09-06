@@ -17,15 +17,18 @@
         private readonly MovieHutDbContext dbContext;
         private readonly IMapper mapper;
         private readonly ICloudinaryService cloudinaryService;
+        private readonly IBase64ToImageService base64ToImageService;
 
         public MoviesService(
             MovieHutDbContext dbContext,
             IMapper mapper,
-            ICloudinaryService cloudinaryService)
+            ICloudinaryService cloudinaryService,
+            IBase64ToImageService base64ToImageService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
             this.cloudinaryService = cloudinaryService;
+            this.base64ToImageService = base64ToImageService;
         }
 
         public async Task<CreateMovieResponseModel> CreateMovieAsync(
@@ -38,7 +41,8 @@
             IEnumerable<int> genresIds,
             string userId)
         {
-            var posterFile = Base64ToImage(posterUrl.Split(',')[1], title);
+            var posterFile = this.base64ToImageService.Base64ToImage(posterUrl.Split(',')[1], title);
+            // var posterFile = Base64ToImage(posterUrl.Split(',')[1], title);
             posterUrl = await this.cloudinaryService.UploadImageAsync(posterFile);
 
             var movie = new Movie
@@ -163,13 +167,13 @@
                 .ToListAsync();
         }
 
-        private static IFormFile Base64ToImage(string posterUrl, string movieTitle)
-        {
-            byte[] bytes = Convert.FromBase64String(posterUrl);
-            MemoryStream stream = new MemoryStream(bytes);
-            IFormFile file = new FormFile(stream, 0, bytes.Length, movieTitle, movieTitle);
+        //private static IFormFile Base64ToImage(string posterUrl, string movieTitle)
+        //{
+        //    byte[] bytes = Convert.FromBase64String(posterUrl);
+        //    MemoryStream stream = new MemoryStream(bytes);
+        //    IFormFile file = new FormFile(stream, 0, bytes.Length, movieTitle, movieTitle);
 
-            return file;
-        }
+        //    return file;
+        //}
     }
 }

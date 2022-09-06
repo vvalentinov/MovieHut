@@ -7,6 +7,7 @@
     using Microsoft.OpenApi.Models;
     using MovieHut.Data;
     using MovieHut.Data.Models;
+    using MovieHut.Features.Actors;
     using MovieHut.Features.Identity;
     using MovieHut.Features.Movies;
     using MovieHut.Infrastructure.Filters;
@@ -77,7 +78,9 @@
         {
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IMoviesService, MoviesService>();
+            services.AddTransient<IActorsService, ActorsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddTransient<IBase64ToImageService, Base64ToImageService>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             services.AddAutoMapper(typeof(Program));
