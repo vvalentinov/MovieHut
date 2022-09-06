@@ -9,5 +9,8 @@
 
         [Required]
         public string ImageUrl { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
     }
 }

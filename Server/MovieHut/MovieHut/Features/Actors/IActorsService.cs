@@ -4,6 +4,9 @@
 
     public interface IActorsService
     {
-        Task<CreateActorResponseModel> CreateActorAsync(string name, string imageUrl);
+        Task<CreateActorResponseModel> CreateActorAsync(
+            string name,
+            string imageUrl,
+            string userId);
     }
 }
