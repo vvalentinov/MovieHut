@@ -1,7 +1,7 @@
 ﻿namespace MovieHut.Data.Models
 {
     using Microsoft.AspNetCore.Identity;
-    using MovieHut.Data.Models.Base;
+    using MovieHut.Data.Models.Base.AuditInfo;
 
     public class User : IdentityUser, IEntity
     {

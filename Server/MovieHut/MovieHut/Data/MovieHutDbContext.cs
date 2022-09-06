@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using MovieHut.Data.Models;
-    using MovieHut.Data.Models.Base;
+    using MovieHut.Data.Models.Base.AuditInfo;
     using MovieHut.Infrastructure.InitialSeed;
     using MovieHut.Infrastructure.Services.Contracts;
 

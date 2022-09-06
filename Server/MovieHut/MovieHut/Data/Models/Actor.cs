@@ -1,6 +1,6 @@
 ﻿namespace MovieHut.Data.Models
 {
-    using MovieHut.Data.Models.Base;
+    using MovieHut.Data.Models.Base.AuditInfo;
     using System.ComponentModel.DataAnnotations;
 
     public class Actor : DeletableEntity

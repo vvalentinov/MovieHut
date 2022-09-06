@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Data.Models.Base
+﻿namespace MovieHut.Data.Models.Base.AuditInfo
 {
     public interface IEntity
     {

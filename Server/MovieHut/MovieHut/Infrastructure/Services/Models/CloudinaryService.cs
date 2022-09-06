@@ -23,7 +23,6 @@
             ImageUploadParams uploadParams = new()
             {
                 File = new FileDescription(imageFile.FileName, stream),
-                //PublicId = imageFile.FileName,
             };
 
             ImageUploadResult uploadResult = await cloudinary.UploadAsync(uploadParams);

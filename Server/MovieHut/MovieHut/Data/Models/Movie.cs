@@ -1,6 +1,6 @@
 ﻿namespace MovieHut.Data.Models
 {
-    using MovieHut.Data.Models.Base;
+    using MovieHut.Data.Models.Base.AuditInfo;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using static Validation.Movie;
