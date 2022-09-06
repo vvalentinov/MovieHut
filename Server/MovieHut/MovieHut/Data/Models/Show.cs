@@ -2,8 +2,7 @@
 {
     using MovieHut.Data.Models.Base;
 
-    public class Movie : MovieShowBaseModel
+    public class Show : MovieShowBaseModel
     {
-        public int Duration { get; set; }
     }
 }
