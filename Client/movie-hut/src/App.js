@@ -19,8 +19,8 @@ import { MyMovies } from './components/MyMovies/MyMovies';
 import { Movies } from './components/Movies/Movies';
 import { Genres } from './components/Genres/Genres';
 import { MovieDetails } from './components/MovieDetails/MovieDetails';
-import { Actors } from './components/Actors/Actros';
 import { ActorProvider } from './contexts/ActorsContext';
+import { Actors } from './components/Actors/Actors';
 
 function App() {
     return (

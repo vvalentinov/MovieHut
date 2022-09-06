@@ -15,7 +15,7 @@ export const ActorProvider = ({children}) => {
         setActors(state => [...state, actor])
     }
     return (
-        <ActorContext.Provider value={{actorService, create}}>
+        <ActorContext.Provider value={{actors, create}}>
             {children}
         </ActorContext.Provider>  
     );
