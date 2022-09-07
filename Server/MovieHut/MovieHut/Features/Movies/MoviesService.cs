@@ -42,7 +42,7 @@
             string userId)
         {
             var posterFile = this.base64ToImageService.Base64ToImage(posterUrl.Split(',')[1], title);
-            posterUrl = await this.cloudinaryService.UploadImageAsync(posterFile);
+            posterUrl = await this.cloudinaryService.UploadImageAsync(posterFile, "Movies");
 
             var movie = new Movie
             {

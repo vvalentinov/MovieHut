@@ -15,7 +15,7 @@
             this.configuration = configuration;
         }
 
-        public async Task<string> UploadImageAsync(IFormFile imageFile)
+        public async Task<string> UploadImageAsync(IFormFile imageFile, string folderName)
         {
             string cloudinaryUrl = configuration.GetValue<string>("Cloudinary:CloudinaryUrl");
             Cloudinary cloudinary = new Cloudinary(cloudinaryUrl);
@@ -23,6 +23,7 @@
             ImageUploadParams uploadParams = new()
             {
                 File = new FileDescription(imageFile.FileName, stream),
+                Folder = folderName,
             };
 
             ImageUploadResult uploadResult = await cloudinary.UploadAsync(uploadParams);
