@@ -10,7 +10,8 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using static ErrorMessages;
+    using static ErrorMessages.MoviesServiceErrors;
+    using static ErrorMessages.CreateMovieRequestModelErrors;
     using static DataConstants.CloudinaryFolderNames;
 
     public class MoviesService : IMoviesService
@@ -44,7 +45,7 @@
         {
             if (genresIds.Any() == false)
             {
-                throw new InvalidOperationException(CreateMovieRequestModelErrors.GenresError);
+                throw new InvalidOperationException(GenresError);
             }
 
             var posterFile = this.base64ToImageService.Base64ToImage(posterUrl.Split(',')[1], title);
