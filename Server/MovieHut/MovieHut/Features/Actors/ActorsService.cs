@@ -8,6 +8,7 @@
     using MovieHut.Infrastructure.Services.Contracts;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using static DataConstants.CloudinaryFolderNames;
 
     public class ActorsService : IActorsService
     {
@@ -34,7 +35,7 @@
             string userId)
         {
             var imageFile = this.base64ToImageService.Base64ToImage(imageUrl.Split(',')[1], name);
-            imageUrl = await this.cloudinaryService.UploadImageAsync(imageFile, "Actors");
+            imageUrl = await this.cloudinaryService.UploadImageAsync(imageFile, ActorsFolder);
 
             var actor = new Actor()
             {
