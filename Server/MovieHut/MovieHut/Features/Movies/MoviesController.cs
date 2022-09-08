@@ -21,21 +21,36 @@
         [HttpPost]
         [Authorize]
         [Route("create")]
-        public async Task<CreateMovieResponseModel> Create(CreateMovieRequestModel model)
+        public async Task<ActionResult> Create(CreateMovieRequestModel model)
         {
             var userId = this.currentUserService.GetId();
 
-            var movie = await this.moviesService.CreateMovieAsync(
-                model.Title,
-                model.Plot,
-                model.PosterUrl,
-                model.TrailerUrl,
-                model.Duration,
-                model.Released,
-                model.GenresIds,
-                userId);
+            if (ModelState.IsValid == false)
+            {
+                return BadRequest();
+            }
 
-            return movie;
+            CreateMovieResponseModel movie;
+
+            try
+            {
+                movie = await this.moviesService.CreateMovieAsync(
+                    model.Title,
+                    model.Plot,
+                    model.PosterUrl,
+                    model.TrailerUrl,
+                    model.Duration,
+                    model.Released,
+                    model.GenresIds,
+                    userId);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("errors", ex.Message);
+                return BadRequest(ModelState);
+            }
+
+            return CreatedAtAction(nameof(Create), movie);
         }
 
         [HttpGet]

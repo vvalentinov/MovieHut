@@ -42,6 +42,11 @@
             IEnumerable<int> genresIds,
             string userId)
         {
+            if (genresIds.Any() == false)
+            {
+                throw new InvalidOperationException(CreateMovieRequestModelErrors.GenresError);
+            }
+
             var posterFile = this.base64ToImageService.Base64ToImage(posterUrl.Split(',')[1], title);
             posterUrl = await this.cloudinaryService.UploadImageAsync(posterFile, MoviesFolder);
 
