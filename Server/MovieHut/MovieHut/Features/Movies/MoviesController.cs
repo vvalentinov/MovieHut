@@ -25,30 +25,15 @@
         {
             var userId = this.currentUserService.GetId();
 
-            if (ModelState.IsValid == false)
-            {
-                return BadRequest();
-            }
-
-            CreateMovieResponseModel movie;
-
-            try
-            {
-                movie = await this.moviesService.CreateMovieAsync(
-                    model.Title,
-                    model.Plot,
-                    model.PosterUrl,
-                    model.TrailerUrl,
-                    model.Duration,
-                    model.Released,
-                    model.GenresIds,
-                    userId);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("errors", ex.Message);
-                return BadRequest(ModelState);
-            }
+            var movie = await this.moviesService.CreateMovieAsync(
+                 model.Title,
+                 model.Plot,
+                 model.PosterUrl,
+                 model.TrailerUrl,
+                 model.Duration,
+                 model.Released,
+                 model.GenresIds,
+                 userId);
 
             return CreatedAtAction(nameof(Create), movie);
         }

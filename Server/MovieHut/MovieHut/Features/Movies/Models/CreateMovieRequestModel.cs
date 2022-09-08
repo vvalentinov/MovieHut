@@ -1,5 +1,6 @@
 ﻿namespace MovieHut.Features.Movies.Models
 {
+    using MovieHut.Infrastructure.Attributes;
     using System.ComponentModel.DataAnnotations;
     using static Data.Validation.Movie;
     using static ErrorMessages.CreateMovieRequestModelErrors;
@@ -32,6 +33,7 @@
         [Required(ErrorMessage = RequiredUserIdError)]
         public string UserId { get; set; }
 
+        [NotNullOrEmptyCollectionAttribute(ErrorMessage = GenresError)]
         public IEnumerable<int> GenresIds { get; set; }
     }
 }
