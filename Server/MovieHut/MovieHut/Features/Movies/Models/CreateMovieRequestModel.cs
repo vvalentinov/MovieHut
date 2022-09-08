@@ -33,7 +33,7 @@
         [Required(ErrorMessage = RequiredUserIdError)]
         public string UserId { get; set; }
 
-        [NotNullOrEmptyCollectionAttribute(ErrorMessage = GenresError)]
+        [NotNullOrEmptyIntegerCollection(ErrorMessage = GenresError)]
         public IEnumerable<int> GenresIds { get; set; }
     }
 }
