@@ -153,19 +153,18 @@
 
             return true;
         }
-
-        private async Task<Movie> GetMovieByIdAndByUserIdAsync(string movieId, string userId)
-        {
-            return await this.dbContext.Movies.FirstOrDefaultAsync(x => x.Id == movieId && x.UserId == userId);
-        }
-
-        private async Task<IEnumerable<string>> GetMovieGenresByMovieIdAsync(string movieId)
+        public async Task<IEnumerable<string>> GetMovieGenresByMovieIdAsync(string movieId)
         {
             return await this.dbContext
                 .MoviesGenres
                 .Where(x => x.MovieId == movieId)
                 .Select(x => x.Genre.Name)
                 .ToListAsync();
+        }
+
+        private async Task<Movie> GetMovieByIdAndByUserIdAsync(string movieId, string userId)
+        {
+            return await this.dbContext.Movies.FirstOrDefaultAsync(x => x.Id == movieId && x.UserId == userId);
         }
     }
 }

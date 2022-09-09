@@ -30,5 +30,7 @@
             DateTime released,
             string posterUrl,
             string userId);
+
+        Task<IEnumerable<string>> GetMovieGenresByMovieIdAsync(string movieId);
     }
 }

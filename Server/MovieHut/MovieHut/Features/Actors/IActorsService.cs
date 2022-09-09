@@ -1,6 +1,7 @@
 ﻿namespace MovieHut.Features.Actors
 {
     using MovieHut.Features.Actors.Models;
+    using MovieHut.Infrastructure.Services.Models;
 
     public interface IActorsService
     {
@@ -10,5 +11,7 @@
             string userId);
 
         Task<IEnumerable<ActorListingServiceModel>> GetActorsAsync();
+
+        Task<Result> GetActorDetailsAsync(int id);
     }
 }

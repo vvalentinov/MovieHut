@@ -35,9 +35,23 @@
         [Route("all")]
         public async Task<IEnumerable<ActorListingServiceModel>> All()
         {
-            var movies = await this.actorsService.GetActorsAsync();
+            var actors = await this.actorsService.GetActorsAsync();
 
-            return movies;
+            return actors;
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<ActorDetailsServiceModel>> GetActorDetails(int id)
+        {
+            var result = await this.actorsService.GetActorDetailsAsync(id);
+
+            if (result.Failed)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return result.ActorDetails;
         }
     }
 }

@@ -11,6 +11,8 @@
             CreateMap<Actor, CreateActorResponseModel>();
 
             CreateMap<Actor, ActorListingServiceModel>();
+
+            CreateMap<Actor, ActorDetailsServiceModel>();
         }
     }
 }
