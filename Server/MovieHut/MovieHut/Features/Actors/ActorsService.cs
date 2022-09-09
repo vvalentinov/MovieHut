@@ -12,8 +12,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using static DataConstants.CloudinaryFolderNames;
-    using static ErrorMessages;
-    using static MovieHut.Data.Validation;
+    using static ModelsValidationMessages.ActorsServiceErrors;
 
     public class ActorsService : IActorsService
     {
@@ -67,7 +66,7 @@
 
             if (actor == null)
             {
-                return ActorsServiceErrors.ActorDetailsError;
+                return new ErrorResult() { Messages = new string[] { ActorDetailsError } };
             }
 
             var actorModel = this.mapper.Map<ActorDetailsServiceModel>(actor);

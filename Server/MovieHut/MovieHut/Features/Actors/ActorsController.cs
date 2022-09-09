@@ -48,7 +48,7 @@
 
             if (result.Failed)
             {
-                return BadRequest(result.Error);
+                return BadRequest(result);
             }
 
             return result.ActorDetails;

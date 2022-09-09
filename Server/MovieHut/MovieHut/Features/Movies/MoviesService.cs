@@ -10,8 +10,8 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using static ErrorMessages.MoviesServiceErrors;
-    using static ErrorMessages.MovieErrors;
+    using static ModelsValidationMessages.MoviesServiceErrors;
+    using static ModelsValidationMessages.MovieErrors;
     using static DataConstants.CloudinaryFolderNames;
 
     public class MoviesService : IMoviesService
@@ -89,7 +89,7 @@
 
             if (movie == null)
             {
-                return DeleteMovieError;
+                return new ErrorResult() { Messages = new string[] { DeleteMovieError } };
             }
 
             this.dbContext.Movies.Remove(movie);
@@ -105,7 +105,7 @@
 
             if (movie == null)
             {
-                return MovieDetailsError;
+                return new ErrorResult() { Messages = new string[] { MovieDetailsError } };
             }
 
             var movieModel = this.mapper.Map<MovieDetailsServiceModel>(movie);
@@ -149,7 +149,7 @@
 
             if (movie == null)
             {
-                return UpdateMovieError;
+                return new ErrorResult() { Messages = new string[] { UpdateMovieError } };
             }
 
             movie.Title = title;

@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
+    using MovieHut.Infrastructure.Services.Models;
 
     public class MoviesController : ApiController
     {
@@ -41,7 +42,9 @@
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                var result = new Result();
+                result.Errors = new ErrorResult() { Messages = new string[] { ex.Message } };
+                return BadRequest(result);
             }
 
             return CreatedAtAction(nameof(Create), movie);
@@ -76,7 +79,7 @@
 
             if (result.Failed)
             {
-                return BadRequest(result.Error);
+                return BadRequest(result);
             }
 
             return result.MovieDetails;
@@ -93,7 +96,7 @@
 
             if (result.Failed)
             {
-                return BadRequest(result.Error);
+                return BadRequest(result);
             }
 
             return Ok();
@@ -116,7 +119,7 @@
 
             if (result.Failed)
             {
-                return BadRequest(result.Error);
+                return BadRequest(result);
             }
 
             return Ok();

@@ -9,7 +9,7 @@
 
         public bool Failed { get { return Succeeded == false; } }
 
-        public string Error { get; private set; }
+        public ErrorResult Errors { get; set; }
 
         public MovieDetailsServiceModel MovieDetails { get; private set; }
 
@@ -20,9 +20,9 @@
             return new Result { Succeeded = succeeded };
         }
 
-        public static implicit operator Result(string error)
+        public static implicit operator Result(ErrorResult errors)
         {
-            return new Result { Succeeded = false, Error = error };
+            return new Result { Succeeded = false, Errors = errors };
         }
 
         public static implicit operator Result(MovieDetailsServiceModel movieDetailsModel)
