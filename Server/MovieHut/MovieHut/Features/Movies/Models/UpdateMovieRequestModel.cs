@@ -2,26 +2,27 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static Data.Validation.Movie;
+    using static ErrorMessages.MovieErrors;
 
     public class UpdateMovieRequestModel
     {
-        [Required]
+        [Required(ErrorMessage = RequiredIdError)]
         public string Id { get; set; }
 
-        [Required]
-        [MinLength(MinTitleLength)]
-        [MaxLength(MaxTitleLength)]
+        [Required(ErrorMessage = RequiredTitleError)]
+        [MinLength(MinTitleLength, ErrorMessage = MinTitleLengthError)]
+        [MaxLength(MaxTitleLength, ErrorMessage = MaxTitleLengthError)]
         public string Title { get; set; }
 
-        [Required]
-        [MinLength(MinPlotLength)]
-        [MaxLength(MaxPlotLength)]
+        [Required(ErrorMessage = RequiredPlotError)]
+        [MinLength(MinPlotLength, ErrorMessage = MinPlotLengthError)]
+        [MaxLength(MaxPlotLength, ErrorMessage = MaxPlotLengthError)]
         public string Plot { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredReleasedError)]
         public DateTime Released { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredPosterUrlError)]
         public string PosterUrl { get; set; }
     }
 }

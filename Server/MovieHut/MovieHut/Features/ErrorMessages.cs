@@ -16,8 +16,10 @@
             public const string ActorDetailsError = "The actor was not found!";
         }
 
-        public static class CreateMovieRequestModelErrors
+        public static class MovieErrors
         {
+            public const string RequiredIdError = "The movie id is required!";
+
             public const string RequiredTitleError = "The title field is required!";
             public const string MinTitleLengthError = "The title field has a minimal length of 2!";
             public const string MaxTitleLengthError = "The title field has a maximal length of 100!";

@@ -11,7 +11,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using static ErrorMessages.MoviesServiceErrors;
-    using static ErrorMessages.CreateMovieRequestModelErrors;
     using static DataConstants.CloudinaryFolderNames;
 
     public class MoviesService : IMoviesService

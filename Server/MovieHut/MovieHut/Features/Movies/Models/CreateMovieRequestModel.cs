@@ -3,7 +3,7 @@
     using MovieHut.Infrastructure.Attributes;
     using System.ComponentModel.DataAnnotations;
     using static Data.Validation.Movie;
-    using static ErrorMessages.CreateMovieRequestModelErrors;
+    using static ErrorMessages.MovieErrors;
 
     public class CreateMovieRequestModel
     {
