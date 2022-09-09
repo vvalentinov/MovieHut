@@ -26,14 +26,14 @@ export const ActorDetails = () => {
                                 <h3>Films</h3>
                                 <div className="container my-5">
                                     <div className="row justify-content-center gy-5">
-                                        <ActorDetailsCard posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
+                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
+                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
+                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
+                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
+                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
+                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
+                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
+                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
                                     </div>
                                 </div>
                             </div>

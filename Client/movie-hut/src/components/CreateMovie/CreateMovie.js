@@ -1,11 +1,13 @@
 import './CreateMovie.css';
 import image from '../../images/clipper.jpg'
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as movieService from '../../services/movieService'
 import { AuthContext } from '../../contexts/AuthContext';
 import { MovieContext } from '../../contexts/MovieContext';
 import { Option } from './Option/Option';
+import { ActorContext } from '../../contexts/ActorsContext';
+import { ActorOption } from './ActorOption/ActorOption';
 
 export const CreateMovie = () => {
     const { auth } = useContext(AuthContext)
@@ -21,10 +23,20 @@ export const CreateMovie = () => {
         duration: ""
     });
     const [isLoading, setIsLoading] = useState(false);
+    const { actors } = useContext(ActorContext);
+    const [searchActors, setSearchActors] = useState([]);
     const [areChecked, setAreChecked] = useState(
         new Array(22).fill(false)
     );
 
+    const filterActors = (e) => {
+        const query = e.target.value;
+        if(query === ''){
+            setSearchActors([]);
+        }else{
+            setSearchActors(actors.filter(x => x.name.toLowerCase().includes(query)))
+        }
+    }
     const onCheckboxChange = (e) => {
         const temp = [...areChecked];
         temp[e.target.name] = !temp[e.target.name];
@@ -169,6 +181,24 @@ export const CreateMovie = () => {
                             <label htmlFor="formFile" className="form-label">
                                 Choose Poster
                             </label>
+                        </div>
+                        <div className="form-outline mb-4">
+                            <input
+                                type="text"
+                                id="actors"
+                                name="actors"
+                                className="form-control form-control-lg"
+                                placeholder="Enter a valid name"
+                                onKeyUp={filterActors}
+                            />
+                            <label className="form-label" htmlFor="actors">
+                                Search for actors
+                            </label>
+                            {searchActors.length > 0 ? <div className='card' style={{ position: "absolute" }}>
+                                <div className='card-body'>
+                                    {searchActors.map(x => <ActorOption key={x.id} {...x} />)}
+                                </div>
+                            </div> : null}
                         </div>
                         <h5>Genres</h5>
                         <div className="form-outline mb-4">
