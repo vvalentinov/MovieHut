@@ -11,6 +11,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using static ErrorMessages.MoviesServiceErrors;
+    using static ErrorMessages.MovieErrors;
     using static DataConstants.CloudinaryFolderNames;
 
     public class MoviesService : IMoviesService
@@ -43,6 +44,13 @@
             string userId)
         {
             var posterFile = this.base64ToImageService.Base64ToImage(posterUrl.Split(',')[1], title);
+            var posterExtension = Path.GetExtension(posterFile.FileName);
+
+            if (posterExtension != ".png" && posterExtension != ".jpg" && posterExtension != ".jpeg")
+            {
+                throw new InvalidOperationException(InvalidPosterExtensionError);
+            }
+
             posterUrl = await this.cloudinaryService.UploadImageAsync(posterFile, MoviesFolder);
 
             var movie = new Movie

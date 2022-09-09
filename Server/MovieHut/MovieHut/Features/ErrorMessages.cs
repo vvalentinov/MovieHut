@@ -36,6 +36,7 @@
             public const string RequiredReleasedError = "The released field is required!";
 
             public const string RequiredPosterUrlError = "The poster url is required!";
+            public const string InvalidPosterExtensionError = "The poster has to be an image. Allowed extensions are: JPG, JPEG and PNG!";
 
             public const string RequiredUserIdError = "The Id of the current user is required!";
 
