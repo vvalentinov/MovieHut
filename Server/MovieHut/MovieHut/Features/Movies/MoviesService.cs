@@ -47,7 +47,7 @@
             var extension = parts[0].Split('/')[1].Split(';')[0];
             var posterFile = this.base64ToImageService.Base64ToImage(parts[1], title);
 
-            if (extension != "png") //&& extension != "jpg" && extension != "jpeg")
+            if (extension != "png" && extension != "jpg" && extension != "jpeg")
             {
                 throw new InvalidOperationException(InvalidPosterExtensionError);
             }
