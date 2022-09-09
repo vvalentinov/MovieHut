@@ -43,10 +43,11 @@
             IEnumerable<int> genresIds,
             string userId)
         {
-            var posterFile = this.base64ToImageService.Base64ToImage(posterUrl.Split(',')[1], title);
-            var posterExtension = Path.GetExtension(posterFile.FileName);
+            var parts = posterUrl.Split(',');
+            var extension = parts[0].Split('/')[1].Split(';')[0];
+            var posterFile = this.base64ToImageService.Base64ToImage(parts[1], title);
 
-            if (posterExtension != ".png" && posterExtension != ".jpg" && posterExtension != ".jpeg")
+            if (extension != "png") //&& extension != "jpg" && extension != "jpeg")
             {
                 throw new InvalidOperationException(InvalidPosterExtensionError);
             }
