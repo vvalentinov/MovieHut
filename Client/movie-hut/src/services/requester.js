@@ -30,11 +30,7 @@ const request = async (method, url, data) => {
     } else {
       console.log(response);
       const res = await response.json();
-      console.log(res);
-      let errorMessages = res.errors
-        ? createErrorMessage(res.errors)
-        : res.message;
-      // let errorMessages = createErrorMessage(res.errors);
+      let errorMessages = createErrorMessage(res.errors);
       throw new Error(errorMessages);
     }
     return result;
@@ -45,7 +41,6 @@ const request = async (method, url, data) => {
 const createErrorMessage = (errors) => {
   let result = '';
   for (const error in errors) {
-    console.log(error);
     result += errors[error][0] + '\n';
   }
   return result;
