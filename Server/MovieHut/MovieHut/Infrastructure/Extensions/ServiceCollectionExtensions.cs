@@ -10,7 +10,6 @@
     using MovieHut.Features.Actors;
     using MovieHut.Features.Identity;
     using MovieHut.Features.Movies;
-    using MovieHut.Infrastructure.Filters;
     using MovieHut.Infrastructure.Services.Contracts;
     using MovieHut.Infrastructure.Services.Models;
     using System.Text;
@@ -100,8 +99,7 @@
 
         public static void AddApiControllers(this IServiceCollection services)
         {
-            services.AddControllers(options =>
-                options.Filters.Add<ModelOrNotFoundActionFilter>());
+            services.AddControllers();
         }
     }
 }
