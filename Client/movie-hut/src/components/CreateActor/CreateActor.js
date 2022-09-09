@@ -9,7 +9,7 @@ export const CreateActor = () => {
     const { create } = useContext(ActorContext);
     const navigate = useNavigate();
     const [error, setError] = useState({ active: false, message: "" });
-
+    const [isLoading, setIsLoading] = useState(false);
     const [inputData, setInputData] = useState({
         name: "",
         imageUrl: "",
@@ -34,11 +34,14 @@ export const CreateActor = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         inputData.userId = auth.id;
+        setIsLoading(true);
         actorService.create(inputData)
             .then(res => {
                 create(res)
+                setIsLoading(false);
                 navigate('/actors/all')
             }).catch(err => {
+                setIsLoading(false);
                 setError({ active: true, message: err.message })
             })
     }
@@ -76,14 +79,24 @@ export const CreateActor = () => {
                                     <strong>Error!</strong> {error.message}
                                 </div> : null}
                                 {/* Button */}
-                                <div className="text-center mt-4 pt-2">
-                                    <button
-                                        type="submit"
-                                        className="btn btn-success btn-lg"
-                                        style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}
-                                    >
-                                        Create
-                                    </button>
+                                <div className="row">
+                                    <div className="col-4">
+                                        <div className="text-center pt-2">
+                                            <button
+                                                type="submit"
+                                                className="btn btn-success btn-lg"
+                                                style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}
+                                            >
+                                                Create
+                                            </button>
+                                        </div>
+                                    </div>
+                                    {isLoading && 
+                                    <div className="col">
+                                        <div className="spinner-border mt-3 mx-5" role="status">
+                                            <span className="sr-only">Loading...</span>
+                                        </div>
+                                    </div>}
                                 </div>
                             </form>
                         </div>
