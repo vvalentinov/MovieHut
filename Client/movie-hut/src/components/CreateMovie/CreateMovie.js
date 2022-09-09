@@ -20,6 +20,7 @@ export const CreateMovie = () => {
         trailerUrl: "",
         duration: ""
     });
+    const [isLoading, setIsLoading] = useState(false);
     const [areChecked, setAreChecked] = useState(
         new Array(22).fill(false)
     );
@@ -56,13 +57,15 @@ export const CreateMovie = () => {
         inputData.genresIds = result.filter(function (item) {
             return typeof item === 'number';
         });
-        console.log(inputData);
+        setIsLoading(true);
         movieService.create(inputData)
             .then(res => {
                 create(res)
+                setIsLoading(false);
                 navigate('/movies/all')
             }).catch(err => {
                 setError({ active: true, message: err.message })
+                setIsLoading(false);
             })
     }
     return (
@@ -195,15 +198,28 @@ export const CreateMovie = () => {
                         {error.active === true ? <div className="alert alert-danger fade show mt-3">
                             <strong>Error!</strong> {error.message}
                         </div> : null}
-                        <div className="text-center text-lg-start mt-4 pt-2">
-                            <button
-                                type="submit"
-                                className="btn btn-success btn-lg"
-                                style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}
-                            >
-                                Create
-                            </button>
+                        <div className='row'>
+                            <div className='col-4'>
+                                <div className="text-center text-lg-start mt-2 pt-2">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-success btn-lg"
+                                        style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}
+                                    >
+                                        Create
+                                    </button>
+                                </div>
+                            </div>
+                            {isLoading &&
+                                <div className='col'>
+                                    <div className="spinner-border mt-4" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                </div>}
+
                         </div>
+
+
                     </form>
                 </div>
                 <div className="col-md-9 col-lg-6 col-xl-5">
