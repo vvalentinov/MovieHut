@@ -5,6 +5,7 @@
     using Microsoft.Extensions.Options;
     using MovieHut.Data.Models;
     using MovieHut.Features.Identity.Models;
+    using MovieHut.Infrastructure.Services.Models;
 
     public class IdentityController : ApiController
     {
@@ -26,20 +27,28 @@
         [Route("register")]
         public async Task<ActionResult> Register(RegisterUserRequestModel model)
         {
-            var user = new User()
+            IdentityResult identityResult;
+
+            try
             {
-                UserName = model.UserName,
-                Email = model.Email,
-            };
-
-            var result = await this.userManager.CreateAsync(user, model.Password);
-
-            if (result.Succeeded)
+                identityResult = await this.identityService.RegisterUserAsync(
+                    model.UserName,
+                    model.Email,
+                    model.ImageUrl,
+                    model.Password);
+            }
+            catch (Exception ex)
+            {
+                var result = new Result() {  Errors = new ErrorResult() { Messages = new string[] { ex.Message } } };
+                return BadRequest(result);
+            }
+            
+            if (identityResult.Succeeded)
             {
                 return Ok("Registered successfully");
             }
 
-            return BadRequest(result.Errors);
+            return BadRequest(identityResult.Errors);
         }
 
         [HttpPost]
@@ -53,7 +62,6 @@
             }
 
             var passwordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
-
             if (passwordValid == false)
             {
                 return Unauthorized();

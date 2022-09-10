@@ -21,6 +21,8 @@
 
         public virtual ICollection<Director> Directors { get; set; }
 
+        public string? ImageUrl { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public string? CreatedBy { get; set; }

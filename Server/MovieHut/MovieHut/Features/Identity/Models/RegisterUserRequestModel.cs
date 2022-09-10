@@ -12,6 +12,8 @@
         [EmailAddress(ErrorMessage = ValidEmailAddressError)]
         public string Email { get; set; }
 
+        public string? ImageUrl { get; set; }
+
         [Required(ErrorMessage = RequiredPasswordError)]
         public string Password { get; set; }
     }
