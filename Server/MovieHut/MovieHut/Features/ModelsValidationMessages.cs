@@ -43,5 +43,15 @@
             public const string GenresError = "You must select at least one genre!";
             public const string InvalidGenresError = "You must select valid genres!";
         }
+
+        public static class UsersErrors
+        {
+            public const string RequiredUsernameError = "The username field is required!";
+
+            public const string RequiredEmailError = "The email field is required!";
+            public const string ValidEmailAddressError = "The email address must be valid!";
+
+            public const string RequiredPasswordError = "The password field is required!";
+        }
     }
 }
