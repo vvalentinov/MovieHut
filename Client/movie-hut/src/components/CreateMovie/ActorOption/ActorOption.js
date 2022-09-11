@@ -1,6 +1,6 @@
 export const ActorOption = (props) => {
     return (
-        <div className='row'>
+        <div className='row m-2'>
             <div className='col'>
                 <p>{props.name}</p>
             </div>

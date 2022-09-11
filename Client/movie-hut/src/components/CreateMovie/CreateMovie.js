@@ -31,9 +31,9 @@ export const CreateMovie = () => {
 
     const filterActors = (e) => {
         const query = e.target.value;
-        if(query === ''){
+        if (query === '') {
             setSearchActors([]);
-        }else{
+        } else {
             setSearchActors(actors.filter(x => x.name.toLowerCase().includes(query)))
         }
     }
@@ -194,11 +194,11 @@ export const CreateMovie = () => {
                             <label className="form-label" htmlFor="actors">
                                 Search for actors
                             </label>
-                            {searchActors.length > 0 ? <div className='card' style={{ position: "absolute" }}>
-                                <div className='card-body'>
-                                    {searchActors.map(x => <ActorOption key={x.id} {...x} />)}
+                            {searchActors.length > 0 ?
+                                <div className='overflow-scroll scroll-box'>
+                                            {searchActors.map(x => <ActorOption key={x.id} {...x} />)}
                                 </div>
-                            </div> : null}
+                                : null}
                         </div>
                         <h5>Genres</h5>
                         <div className="form-outline mb-4">
