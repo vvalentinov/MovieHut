@@ -13,6 +13,7 @@
            int duration,
            DateTime released,
            IEnumerable<int> genresIds,
+           IEnumerable<int> actorsIds,
            string userId);
 
         Task<IEnumerable<UserMoviesListingServiceModel>> GetUserMoviesAsync(string userId);

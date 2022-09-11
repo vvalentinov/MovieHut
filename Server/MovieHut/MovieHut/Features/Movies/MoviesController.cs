@@ -38,6 +38,7 @@
                     model.Duration,
                     model.Released,
                     model.GenresIds,
+                    model.ActorsIds,
                     userId);
             }
             catch (Exception ex)

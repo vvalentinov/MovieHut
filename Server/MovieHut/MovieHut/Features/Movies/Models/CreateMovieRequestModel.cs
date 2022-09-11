@@ -35,5 +35,8 @@
 
         [NotNullOrEmptyIntegerCollection(ErrorMessage = GenresError)]
         public IEnumerable<int> GenresIds { get; set; }
+
+        [NotNullOrEmptyIntegerCollection(ErrorMessage = ActorsError)]
+        public IEnumerable<int> ActorsIds { get; set; }
     }
 }

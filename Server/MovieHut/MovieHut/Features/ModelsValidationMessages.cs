@@ -41,7 +41,8 @@
             public const string RequiredUserIdError = "The Id of the current user is required!";
 
             public const string GenresError = "You must select at least one genre!";
-            public const string InvalidGenresError = "You must select valid genres!";
+
+            public const string ActorsError = "You must select at least one actor!";
         }
 
         public static class UsersErrors

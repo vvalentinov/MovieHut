@@ -41,6 +41,7 @@
             int duration,
             DateTime released,
             IEnumerable<int> genresIds,
+            IEnumerable<int> actorsIds,
             string userId)
         {
             var parts = posterUrl.Split(',');
@@ -71,7 +72,16 @@
                 await this.dbContext.MoviesGenres.AddAsync(new MovieGenre()
                 {
                     MovieId = movie.Id,
-                    GenreId = genreId
+                    GenreId = genreId,
+                });
+            }
+
+            foreach (var actorId in actorsIds)
+            {
+                await this.dbContext.MoviesActors.AddAsync(new MovieActor()
+                {
+                    ActorId = actorId,
+                    MovieId = movie.Id,
                 });
             }
 
