@@ -5,10 +5,11 @@ export const ActorOption = (props) => {
                 <p>{props.name}</p>
             </div>
             <div className='col'>
-                <button className="btn btn-success btn-sm"
-                    style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}>
+                <div className="btn btn-success btn-sm"
+                    style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}
+                    onClick = {() => props.addActor(props.id)}>
                     Add
-                </button>
+                </div>
             </div>
         </div>
     )

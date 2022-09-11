@@ -25,9 +25,14 @@ export const CreateMovie = () => {
     const [isLoading, setIsLoading] = useState(false);
     const { actors } = useContext(ActorContext);
     const [searchActors, setSearchActors] = useState([]);
+    const [addedActors, setAddedActors] = useState([]);
     const [areChecked, setAreChecked] = useState(
         new Array(22).fill(false)
     );
+
+    const addActor = (id) => {
+        setAddedActors(state => [...state, id])
+    }
 
     const filterActors = (e) => {
         const query = e.target.value;
@@ -182,6 +187,9 @@ export const CreateMovie = () => {
                                 Choose Poster
                             </label>
                         </div>
+                        <div>
+
+                        </div>
                         <div className="form-outline mb-4">
                             <input
                                 type="text"
@@ -196,7 +204,7 @@ export const CreateMovie = () => {
                             </label>
                             {searchActors.length > 0 ?
                                 <div className='overflow-scroll scroll-box'>
-                                            {searchActors.map(x => <ActorOption key={x.id} {...x} />)}
+                                            {searchActors.map(x => <ActorOption key={x.id} {...x} addActor= {addActor}/>)}
                                 </div>
                                 : null}
                         </div>
