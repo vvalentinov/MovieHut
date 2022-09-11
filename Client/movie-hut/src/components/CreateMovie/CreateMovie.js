@@ -48,7 +48,7 @@ export const CreateMovie = () => {
         if (query === '') {
             setSearchActors([]);
         } else {
-            setSearchActors(actors.filter(x => x.name.toLowerCase().includes(query)))
+            setSearchActors(actors.filter(x => x.name.toLowerCase().includes(query.toLowerCase())))
         }
     }
     const onCheckboxChange = (e) => {
