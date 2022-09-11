@@ -8,6 +8,7 @@ import { MovieContext } from '../../contexts/MovieContext';
 import { Option } from './Option/Option';
 import { ActorContext } from '../../contexts/ActorsContext';
 import { ActorOption } from './ActorOption/ActorOption';
+import { AddedActor } from './AddedActor/AddedActor';
 
 export const CreateMovie = () => {
     const { auth } = useContext(AuthContext)
@@ -31,7 +32,9 @@ export const CreateMovie = () => {
     );
 
     const addActor = (id) => {
-        setAddedActors(state => [...state, id])
+        if(!addedActors.includes(id)){
+            setAddedActors(state => [...state, id])
+        }
     }
 
     const filterActors = (e) => {
@@ -187,8 +190,8 @@ export const CreateMovie = () => {
                                 Choose Poster
                             </label>
                         </div>
-                        <div>
-
+                        <div className='mb-1'>
+                            {addedActors.map(x => <AddedActor key = {x} name = {actors.filter(y => y.id === x)[0].name}/>)}
                         </div>
                         <div className="form-outline mb-4">
                             <input
