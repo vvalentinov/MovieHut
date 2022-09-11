@@ -84,6 +84,7 @@ export const CreateMovie = () => {
         inputData.genresIds = result.filter(function (item) {
             return typeof item === 'number';
         });
+        inputData.actorsIds = addedActors;
         setIsLoading(true);
         movieService.create(inputData)
             .then(res => {
