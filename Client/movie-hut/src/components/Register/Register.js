@@ -17,6 +17,17 @@ export const Register = () => {
         rePassword: ""
     });
 
+    const onSelectFile = (e) => {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = (e) => {
+            setInputData(state => (
+                { ...state, 'imageUrl': e.target.result }))
+        }
+    }
+
     const onChange = (e) => {
         setInputData(state => (
             { ...state, [e.target.name]: e.target.value }))
@@ -25,15 +36,17 @@ export const Register = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         if (inputData.password === inputData.rePassword) {
+            console.log(inputData);
             authService.register(inputData)
                 .then(res => {
-                    authService.login({username: inputData.username, password: inputData.password})
+                    authService.login({ username: inputData.username, password: inputData.password })
                         .then(res => {
-                            userLogin({accessToken: res.token, id: res.userId});
+                            userLogin({ accessToken: res.token, id: res.userId });
                             navigate('/')
                         })
                 })
                 .catch(res => {
+                    console.log(res);
                     setError({ active: true, message: res.message })
                 })
         }
@@ -42,9 +55,8 @@ export const Register = () => {
         }
     }
     return (
-        <section className="vh-100">
-            <div className="container-fluid h-custom">
-                <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="container-fluid h-custom my-3">
+                <div className="row d-flex justify-content-center align-items-center h-100 gy-3">
                     <div className="col-md-9 col-lg-6 col-xl-5">
                         <img
                             src={image}
@@ -90,6 +102,13 @@ export const Register = () => {
                                 />
                                 <label className="form-label" htmlFor="username">
                                     Username
+                                </label>
+                            </div>
+                            {/* Profile pic */}
+                            <div className="mb-4">
+                                <input className="form-control" type="file" name="profilePic" onChange={onSelectFile} />
+                                <label htmlFor="formFile" className="form-label">
+                                    Choose Profile Pic
                                 </label>
                             </div>
                             {/* Password input */}
@@ -144,6 +163,5 @@ export const Register = () => {
                     </div>
                 </div>
             </div>
-        </section>
     )
 }
