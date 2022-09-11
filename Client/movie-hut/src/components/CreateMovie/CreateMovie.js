@@ -37,6 +37,12 @@ export const CreateMovie = () => {
         }
     }
 
+    const removeActor = (id) => {
+        if(addedActors.includes(id)){
+            setAddedActors(state => state.filter(x => x !== id))
+        }
+    }
+
     const filterActors = (e) => {
         const query = e.target.value;
         if (query === '') {
@@ -55,6 +61,7 @@ export const CreateMovie = () => {
         setInputData(state => (
             { ...state, [e.target.name]: e.target.value }))
     }
+
     const onSelectFile = (e) => {
         let file = e.target.files[0];
         let reader = new FileReader();
@@ -191,7 +198,7 @@ export const CreateMovie = () => {
                             </label>
                         </div>
                         <div className='mb-1'>
-                            {addedActors.map(x => <AddedActor key = {x} name = {actors.filter(y => y.id === x)[0].name}/>)}
+                            {addedActors.map(x => <AddedActor key = {x} id = {x} removeActor={removeActor} name={actors.filter(y => y.id === x)[0].name}/>)}
                         </div>
                         <div className="form-outline mb-4">
                             <input
