@@ -2,6 +2,9 @@
 {
     public interface ICloudinaryService
     {
-        Task<string> UploadImageAsync(IFormFile imageFile, string folderName);
+        Task<string> UploadImageAsync(
+            IFormFile imageFile,
+            string folderName,
+            string? publicId = null);
     }
 }

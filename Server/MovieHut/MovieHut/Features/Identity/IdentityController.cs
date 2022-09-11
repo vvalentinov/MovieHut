@@ -25,7 +25,7 @@
 
         [HttpPost]
         [Route("register")]
-        public async Task<ActionResult> Register(RegisterUserRequestModel model)
+        public async Task<ActionResult<object>> Register(RegisterUserRequestModel model)
         {
             IdentityResult identityResult;
 
@@ -45,7 +45,7 @@
             
             if (identityResult.Succeeded)
             {
-                return Ok("Registered successfully");
+                return new RegisterResponseModel() { Message = "Registered successfully" };
             }
 
             return BadRequest(identityResult.Errors);
