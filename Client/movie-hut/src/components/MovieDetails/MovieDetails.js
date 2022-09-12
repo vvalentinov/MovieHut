@@ -1,12 +1,24 @@
 import './MovieDetails.css'
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useMovie } from "../../hooks/useMovie";
 import image from '../../images/background.jpg'
 import { ActorCard } from './ActorCard/Actor';
+import * as movieService from '../../services/movieService';
 
 export const MovieDetails = () => {
     const { movieId } = useParams();
-    const { movie, setMovie } = useMovie(movieId);
+    const { movie, deleteMovie } = useMovie(movieId);
+    const navigate = useNavigate();
+
+    const onClickDelete = () => {
+        movieService.del(movieId)
+            .then(res => {
+                deleteMovie(movieId)
+                navigate('/movies/all')
+            }).catch(err => {
+                alert(err)
+            })
+    }
     return (
         <div className="container text-light">
             <div className="card mt-3" style={{ backgroundImage: `url(${image})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
@@ -14,6 +26,14 @@ export const MovieDetails = () => {
                     <div className="row mt-4">
                         <div className="col-10">
                             <p className="display-5">{movie?.title}</p>
+                            <button
+                                className="btn btn-outline-light"
+                                style={{ backgroundColor: "#32CD32" }}
+                                onClick={onClickDelete}
+                                type="button"
+                            >
+                                Delete
+                            </button>
                             <p style={{margin: 0}}>{movie?.released.slice(0, 4)}</p>
                             <p style={{margin: 0}}>{movie?.duration} minutes</p>
                         </div>

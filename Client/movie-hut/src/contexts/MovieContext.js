@@ -14,8 +14,11 @@ export const MovieProvider = ({children}) => {
     const create = (movie) => {
         setMovies(state => [...state, movie])
     }
+    const deleteMovie = (movieId) => {
+        setMovies(state => state.filter(x => x.id !== movieId))
+    }
     return (
-        <MovieContext.Provider value={{movies, create}}>
+        <MovieContext.Provider value={{movies, create, deleteMovie}}>
             {children}
         </MovieContext.Provider>  
     );
