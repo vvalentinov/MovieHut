@@ -4,12 +4,14 @@ import { useMovie } from "../../hooks/useMovie";
 import image from '../../images/background.jpg'
 import { ActorCard } from './ActorCard/Actor';
 import * as movieService from '../../services/movieService';
+import { useOwner } from '../../hooks/useOwner';
 
 export const MovieDetails = () => {
     const { movieId } = useParams();
     const { movie, deleteMovie } = useMovie(movieId);
     const navigate = useNavigate();
-
+    const {isOwner} = useOwner(movieId);
+    
     const onClickDelete = () => {
         movieService.del(movieId)
             .then(res => {
@@ -26,14 +28,14 @@ export const MovieDetails = () => {
                     <div className="row mt-4">
                         <div className="col-10">
                             <p className="display-5">{movie?.title}</p>
-                            <button
+                            {isOwner ? <button
                                 className="btn btn-outline-light"
                                 style={{ backgroundColor: "#32CD32" }}
                                 onClick={onClickDelete}
                                 type="button"
                             >
                                 Delete
-                            </button>
+                            </button>: null}
                             <p style={{margin: 0}}>{movie?.released.slice(0, 4)}</p>
                             <p style={{margin: 0}}>{movie?.duration} minutes</p>
                         </div>
