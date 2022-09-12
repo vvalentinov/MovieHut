@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ActorContext } from "../../contexts/ActorsContext";
+import { ActorContext } from "../../contexts/ActorContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import * as actorService from "../../services/actorService";
 

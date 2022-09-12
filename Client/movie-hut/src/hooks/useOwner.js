@@ -7,7 +7,7 @@ export const useOwner = (id, service) => {
     useEffect(() => {
         if (auth) {
             service.getOne(id)
-                .then(res => setIsOwner(res.userId === auth?.id))
+                .then(res => {setIsOwner(res.userId === auth?.id)})
             }
         }, [])
 

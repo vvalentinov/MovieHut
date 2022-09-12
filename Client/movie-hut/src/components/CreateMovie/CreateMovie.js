@@ -6,7 +6,7 @@ import * as movieService from '../../services/movieService'
 import { AuthContext } from '../../contexts/AuthContext';
 import { MovieContext } from '../../contexts/MovieContext';
 import { Option } from './Option/Option';
-import { ActorContext } from '../../contexts/ActorsContext';
+import { ActorContext } from '../../contexts/ActorContext';
 import { ActorOption } from './ActorOption/ActorOption';
 import { AddedActor } from './AddedActor/AddedActor';
 

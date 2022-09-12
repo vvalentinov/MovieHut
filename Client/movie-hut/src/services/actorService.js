@@ -10,4 +10,7 @@ const getAll = () => {
 const getOne = (id) => {
   return request.get(`${baseUrl}/actors/${id}`);
 };
-export { create, getAll, getOne };
+const del = (id) => {
+  return request.del(`${baseUrl}/actors/${id}`)
+}
+export { create, getAll, getOne,del };

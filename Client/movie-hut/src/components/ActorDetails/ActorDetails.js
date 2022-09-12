@@ -1,11 +1,27 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useActor } from "../../hooks/useActor";
+import { useOwner } from "../../hooks/useOwner";
 import { ActorDetailsCard } from "./ActorDetailsCard/ActorDetailsCard";
+import * as actorService from '../../services/actorService';
+import { useContext } from "react";
+import {ActorContext} from '../../contexts/ActorContext'
 
 export const ActorDetails = () => {
     const { actorId } = useParams();
     const { actor, setActor } = useActor(actorId);
-    console.log(actor);
+    const navigate = useNavigate();
+    const {deleteActor} = useContext(ActorContext)
+    const {isOwner} = useOwner(actorId, actorService);
+    
+    const onClickDelete = () => {
+        actorService.del(actorId)
+            .then(res => {
+                deleteActor(actorId)
+                navigate('/actor/all')
+            }).catch(err => {
+                alert(err)
+            })
+    }
     return (
         <div className="container my-4">
             <div className={'card'}>
@@ -13,6 +29,14 @@ export const ActorDetails = () => {
                     <div className="row">
                         <div className="col-md-2">
                             <img className="img-fluid" src={actor?.imageUrl} alt="photo" />
+                            {isOwner ? <button
+                                className="btn btn-outline-light"
+                                style={{ backgroundColor: "#32CD32" }}
+                                onClick={onClickDelete}
+                                type="button"
+                            >
+                                Delete
+                            </button>: null}
                         </div>
                         <div className="col">
                             <h1>{actor?.name}</h1>

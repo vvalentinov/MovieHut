@@ -19,7 +19,7 @@ import { MyMovies } from './components/MyMovies/MyMovies';
 import { Movies } from './components/Movies/Movies';
 import { Genres } from './components/Genres/Genres';
 import { MovieDetails } from './components/MovieDetails/MovieDetails';
-import { ActorProvider } from './contexts/ActorsContext';
+import { ActorProvider } from './contexts/ActorContext';
 import { Actors } from './components/Actors/Actors';
 import { CreateActor } from './components/CreateActor/CreateActor';
 import { ActorDetails } from './components/ActorDetails/ActorDetails';

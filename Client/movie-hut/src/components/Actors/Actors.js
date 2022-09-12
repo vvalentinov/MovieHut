@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { ActorContext } from '../../contexts/ActorsContext'
+import { ActorContext } from '../../contexts/ActorContext'
 import { Missing } from '../Missing/Missing'
 import { ActorCard } from './ActorCard/ActorCard'
 import styles from './Actors.module.css'

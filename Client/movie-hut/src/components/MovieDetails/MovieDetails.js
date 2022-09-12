@@ -5,10 +5,13 @@ import image from '../../images/background.jpg'
 import { ActorCard } from './ActorCard/Actor';
 import * as movieService from '../../services/movieService';
 import { useOwner } from '../../hooks/useOwner';
+import { useContext } from 'react';
+import {MovieContext} from '../../contexts/MovieContext'
 
 export const MovieDetails = () => {
     const { movieId } = useParams();
-    const { movie, deleteMovie } = useMovie(movieId);
+    const { movie, setMovie } = useMovie(movieId);
+    const {deleteMovie} = useContext(MovieContext)
     const navigate = useNavigate();
     const {isOwner} = useOwner(movieId, movieService);
     
