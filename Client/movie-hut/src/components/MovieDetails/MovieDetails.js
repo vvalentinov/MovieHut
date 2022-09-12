@@ -10,7 +10,7 @@ export const MovieDetails = () => {
     const { movieId } = useParams();
     const { movie, deleteMovie } = useMovie(movieId);
     const navigate = useNavigate();
-    const {isOwner} = useOwner(movieId);
+    const {isOwner} = useOwner(movieId, movieService);
     
     const onClickDelete = () => {
         movieService.del(movieId)

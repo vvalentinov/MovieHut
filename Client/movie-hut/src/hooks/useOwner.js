@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../contexts/AuthContext";
-import * as movieService from "../services/movieService"
 
-export const useOwner = (movieId) => {
+export const useOwner = (id, service) => {
     const [isOwner, setIsOwner] = useState(false);
     const { auth } = useContext(AuthContext);
     useEffect(() => {
         if (auth) {
-            movieService.getOne(movieId)
+            service.getOne(id)
                 .then(res => setIsOwner(res.userId === auth?.id))
             }
         }, [])
