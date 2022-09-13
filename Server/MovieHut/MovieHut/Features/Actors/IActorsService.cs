@@ -13,5 +13,7 @@
         Task<IEnumerable<ActorListingServiceModel>> GetActorsAsync();
 
         Task<Result> GetActorDetailsAsync(int id);
+
+        Task<Result> DeleteAsync(int actorId, string userId);
     }
 }

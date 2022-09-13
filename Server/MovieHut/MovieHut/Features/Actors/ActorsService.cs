@@ -12,7 +12,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using static DataConstants.CloudinaryFolderNames;
-    using static MovieHut.Features.ErrorMessages.ServicesErrors.ActorsServiceErrors;
+    using static ErrorMessages.ServicesErrors.ActorsServiceErrors;
 
     public class ActorsService : IActorsService
     {
@@ -60,6 +60,21 @@
             return actorModel;
         }
 
+        public async Task<Result> DeleteAsync(int actorId, string userId)
+        {
+            var actor = await this.GetActorByIdAndByUserId(actorId, userId);
+
+            if (actor == null)
+            {
+                return new ErrorResult() { Messages = new string[] { DeleteActorError } };
+            }
+
+            this.dbContext.Actors.Remove(actor);
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<Result> GetActorDetailsAsync(int id)
         {
             var actor = await this.dbContext.Actors.FirstOrDefaultAsync(a => a.Id == id);
@@ -82,6 +97,11 @@
             var actorsModels = this.mapper.Map<List<ActorListingServiceModel>>(actors);
 
             return actorsModels;
+        }
+
+        private async Task<Actor> GetActorByIdAndByUserId(int actorId, string userId)
+        {
+            return await this.dbContext.Actors.FirstOrDefaultAsync(x => x.Id == actorId && x.UserId == userId);
         }
 
         private async Task<IEnumerable<MovieListingServiceModel>> GetActorMoviesByIdAsync(int actorId)

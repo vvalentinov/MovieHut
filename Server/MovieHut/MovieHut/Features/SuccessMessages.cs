@@ -7,5 +7,10 @@
             public const string DeleteMovieSuccess = "Movie deleted successfully!";
             public const string UpdateMovieSuccess = "Movie updated successfully!";
         }
+
+        public class ActorsSuccessMessages
+        {
+            public const string DeleteActorSuccess = "Actor deleted successfully!";
+        }
     }
 }

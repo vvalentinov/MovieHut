@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using MovieHut.Features.Actors.Models;
     using MovieHut.Infrastructure.Services.Contracts;
+    using static SuccessMessages.ActorsSuccessMessages;
 
     public class ActorsController : ApiController
     {
@@ -52,6 +53,25 @@
             }
 
             return result.ActorDetails;
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var userId = this.currentUserService.GetId();
+
+            var result = await this.actorsService.DeleteAsync(id, userId);
+
+            if (result.Failed)
+            {
+                return BadRequest(result);
+            }
+
+            result.SuccessMessage = DeleteActorSuccess;
+
+            return Ok(result);
         }
     }
 }
