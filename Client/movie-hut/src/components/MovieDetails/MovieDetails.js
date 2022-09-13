@@ -26,7 +26,7 @@ export const MovieDetails = () => {
     }
     return (
         <div className="container text-light">
-            <div className="card mt-3" style={{ backgroundImage: `url(${image})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+            <div className="card my-3" style={{ backgroundImage: `url(${image})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                 <div className='card-body'>
                     <div className="row mt-4">
                         <div className="col-10">
@@ -47,8 +47,8 @@ export const MovieDetails = () => {
                             <p><i className="fa-solid fa-star"></i> 7,8</p>
                         </div>
                     </div>
-                    <div className="row mt-4">
-                        <div className="col-3">
+                    <div className="row mt-4 gy-2">
+                        <div className="col-md-3">
                             <img className="img-fluid poster" src={movie?.posterUrl} alt="Movie img" />
                         </div>
                         <div className="col-md-8">
