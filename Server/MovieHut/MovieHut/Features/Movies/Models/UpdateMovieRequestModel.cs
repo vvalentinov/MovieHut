@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static Data.Validation.Movie;
-    using static ModelsValidationMessages.MovieErrors;
+    using static ErrorMessages.ModelsValidationErrors.MovieErrors;
 
     public class UpdateMovieRequestModel
     {

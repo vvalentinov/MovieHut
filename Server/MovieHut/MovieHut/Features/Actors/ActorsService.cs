@@ -12,7 +12,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using static DataConstants.CloudinaryFolderNames;
-    using static ModelsValidationMessages.ActorsServiceErrors;
+    using static MovieHut.Features.ErrorMessages.ServicesErrors.ActorsServiceErrors;
 
     public class ActorsService : IActorsService
     {

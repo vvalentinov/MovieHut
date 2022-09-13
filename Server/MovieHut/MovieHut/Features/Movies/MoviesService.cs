@@ -10,8 +10,8 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using static ModelsValidationMessages.MoviesServiceErrors;
-    using static ModelsValidationMessages.MovieErrors;
+    using static ErrorMessages.ServicesErrors.MoviesServiceErrors;
+    using static ErrorMessages.ModelsValidationErrors.MovieErrors;
     using static DataConstants.CloudinaryFolderNames;
 
     public class MoviesService : IMoviesService

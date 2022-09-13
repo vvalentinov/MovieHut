@@ -1,7 +1,7 @@
 ﻿namespace MovieHut.Features.Identity.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using static ModelsValidationMessages.UsersErrors;
+    using static ErrorMessages.ModelsValidationErrors.UserErrors;
 
     public class RegisterUserRequestModel
     {
