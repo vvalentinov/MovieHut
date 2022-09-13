@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useActor } from "../../hooks/useActor";
 import { useOwner } from "../../hooks/useOwner";
 import { ActorDetailsCard } from "./ActorDetailsCard/ActorDetailsCard";
+import { Missing } from "../Missing/Missing";
 import * as actorService from '../../services/actorService';
 import { useContext } from "react";
 import {ActorContext} from '../../contexts/ActorContext'
@@ -12,7 +13,7 @@ export const ActorDetails = () => {
     const navigate = useNavigate();
     const {deleteActor} = useContext(ActorContext)
     const {isOwner} = useOwner(actorId, actorService);
-    
+
     const onClickDelete = () => {
         actorService.del(actorId)
             .then(res => {
@@ -47,17 +48,12 @@ export const ActorDetails = () => {
 
                             </div>
                             <div className="col">
-                                <h3>Films</h3>
+                                <h3>Movies</h3>
                                 <div className="container my-5">
                                     <div className="row justify-content-center gy-5">
-                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
-                                        <ActorDetailsCard title = "Bullet Train" posterUrl = 'https://www.filmibeat.com/img/320x100x392/popcorn/trending_news/brad-pitts-bullet-train-gets-a-release-date-6092-20220602121819.jpg'/>
+                                        {actor?.movies?.length > 0 ? 
+                                            actor?.movies?.map(x => <ActorDetailsCard key = {x.id} {...x}/>)
+                                        : <Missing message= "No movies yet."/>}
                                     </div>
                                 </div>
                             </div>
