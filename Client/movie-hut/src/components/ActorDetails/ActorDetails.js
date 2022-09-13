@@ -17,7 +17,7 @@ export const ActorDetails = () => {
         actorService.del(actorId)
             .then(res => {
                 deleteActor(actorId)
-                navigate('/actor/all')
+                navigate('/actors/all')
             }).catch(err => {
                 alert(err)
             })

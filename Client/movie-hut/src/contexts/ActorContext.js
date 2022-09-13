@@ -15,7 +15,7 @@ export const ActorProvider = ({children}) => {
         setActors(state => [...state, actor])
     }
     const deleteActor = (actorId) => {
-        setActors(state => state.filter(x => x.id !== actorId))
+        setActors(state => state.filter(x => x.id != actorId))
     }
     return (
         <ActorContext.Provider value={{actors, create, deleteActor}}>
