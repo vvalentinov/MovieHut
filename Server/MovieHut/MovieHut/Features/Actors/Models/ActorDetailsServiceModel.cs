@@ -12,6 +12,8 @@
 
         public string CreatedBy { get; set; }
 
+        public string UserId { get; set; }
+
         public IEnumerable<MovieListingServiceModel> Movies { get; set; }
     }
 }
