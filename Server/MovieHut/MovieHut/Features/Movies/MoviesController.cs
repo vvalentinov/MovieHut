@@ -89,7 +89,7 @@
         [HttpDelete]
         [Authorize]
         [Route("{id}")]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult<object>> Delete(string id)
         {
             var userId = this.currentUserService.GetId();
 
@@ -100,7 +100,7 @@
                 return BadRequest(result);
             }
 
-            return Ok();
+            return Ok(new Result() { SuccessMessage = "Movie deleted successfully!" });
         }
 
         [HttpPut]
