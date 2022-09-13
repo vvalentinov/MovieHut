@@ -14,7 +14,7 @@ export const MovieDetails = () => {
     const {deleteMovie} = useContext(MovieContext)
     const navigate = useNavigate();
     const {isOwner} = useOwner(movieId, movieService);
-    
+
     const onClickDelete = () => {
         movieService.del(movieId)
             .then(res => {
@@ -66,11 +66,7 @@ export const MovieDetails = () => {
                             <p>{movie?.genres.join(', ')}</p>
                             <hr />
                             <div className='row gy-3'>
-                                <ActorCard/>
-                                <ActorCard/>
-                                <ActorCard/>
-                                <ActorCard/>
-                                <ActorCard/>
+                                {movie?.actors?.map(x => <ActorCard key = {x.id} {...x}/>)}
                             </div>
                         </div>
                     </div>
