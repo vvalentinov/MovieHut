@@ -17,5 +17,7 @@
         public string CreatedBy { get; set; }
 
         public IEnumerable<string> Genres { get; set; }
+
+        public IEnumerable<string> Actors { get; set; }
     }
 }

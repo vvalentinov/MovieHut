@@ -120,6 +120,10 @@
 
             var movieModel = this.mapper.Map<MovieDetailsServiceModel>(movie);
             movieModel.Genres = await this.GetMovieGenresByMovieIdAsync(movieId);
+            movieModel.Actors = await this.dbContext.MoviesActors
+                    .Where(x => x.MovieId == movieModel.Id)
+                    .Select(x => x.Actor.Name)
+                    .ToListAsync();
 
             return movieModel;
         }
@@ -133,6 +137,10 @@
             foreach (var movieModel in moviesModels)
             {
                 movieModel.Genres = await this.GetMovieGenresByMovieIdAsync(movieModel.Id);
+                movieModel.Actors = await this.dbContext.MoviesActors
+                    .Where(x => x.MovieId == movieModel.Id)
+                    .Select(x => x.Actor.Name)
+                    .ToListAsync();
             }
 
             return moviesModels;
