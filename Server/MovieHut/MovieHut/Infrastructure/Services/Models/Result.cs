@@ -11,6 +11,8 @@
 
         public ErrorResult Errors { get; set; }
 
+        public string SuccessMessage { get; set; }
+
         public MovieDetailsServiceModel MovieDetails { get; private set; }
 
         public ActorDetailsServiceModel ActorDetails { get; private set; }

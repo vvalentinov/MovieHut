@@ -45,7 +45,7 @@
             
             if (identityResult.Succeeded)
             {
-                return new RegisterResponseModel() { Message = "Registered successfully" };
+                return new Result() { SuccessMessage = "Registered successfully" };
             }
 
             return BadRequest(identityResult.Errors);
