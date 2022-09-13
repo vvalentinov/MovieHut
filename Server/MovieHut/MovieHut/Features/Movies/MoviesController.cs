@@ -5,6 +5,7 @@
     using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
     using MovieHut.Infrastructure.Services.Models;
+    using static SuccessMessages.MoviesSuccessMessages;
 
     public class MoviesController : ApiController
     {
@@ -43,8 +44,14 @@
             }
             catch (Exception ex)
             {
-                var result = new Result();
-                result.Errors = new ErrorResult() { Messages = new string[] { ex.Message } };
+                var result = new Result()
+                {
+                    Errors = new ErrorResult()
+                    {
+                        Messages = new string[] { ex.Message }
+                    }
+                };
+
                 return BadRequest(result);
             }
 
@@ -89,7 +96,7 @@
         [HttpDelete]
         [Authorize]
         [Route("{id}")]
-        public async Task<ActionResult<object>> Delete(string id)
+        public async Task<ActionResult> Delete(string id)
         {
             var userId = this.currentUserService.GetId();
 
@@ -100,7 +107,9 @@
                 return BadRequest(result);
             }
 
-            return Ok(new Result() { SuccessMessage = "Movie deleted successfully!" });
+            result.SuccessMessage = DeleteMovieSuccess;
+
+            return Ok(result);
         }
 
         [HttpPut]
@@ -123,7 +132,9 @@
                 return BadRequest(result);
             }
 
-            return Ok();
+            result.SuccessMessage = UpdateMovieSuccess;
+
+            return Ok(result);
         }
     }
 }

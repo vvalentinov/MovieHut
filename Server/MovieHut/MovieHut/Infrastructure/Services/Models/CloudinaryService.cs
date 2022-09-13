@@ -15,6 +15,13 @@
             this.configuration = configuration;
         }
 
+        public string GetPublicId(string url)
+        {
+            var publicId = url[url.LastIndexOf('/')..url.LastIndexOf('.')];
+
+            return publicId;
+        }
+
         public async Task<string> UploadImageAsync(
             IFormFile imageFile,
             string folderName,

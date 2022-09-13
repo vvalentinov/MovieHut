@@ -6,5 +6,7 @@
             IFormFile imageFile,
             string folderName,
             string? publicId = null);
+
+        string GetPublicId(string url);
     }
 }
