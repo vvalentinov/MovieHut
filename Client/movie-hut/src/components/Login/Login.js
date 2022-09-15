@@ -36,6 +36,7 @@ export const Login = () => {
     const usernameValidator = (e) => {
         setErrors(state => ({ ...state, [e.target.name]: inputData.username.length < 3}))
     }
+    //ToDO corect password validation
     const passwordValidator = (e) => {
         setErrors(state => ({ ...state, [e.target.name]: !inputData.password }))
     }

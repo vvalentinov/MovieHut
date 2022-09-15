@@ -11,6 +11,12 @@ export const Register = () => {
     const [error, setError] = useState({ active: false, message: "" });
     const [isLoading, setIsLoading] = useState(false);
 
+    const [errors, setErrors] = useState({
+        email: false,
+        username: false,
+        password: false,
+        rePassword: false
+    })
     const [inputData, setInputData] = useState({
         email: "",
         username: "",
@@ -57,6 +63,22 @@ export const Register = () => {
             setError({ active: true, message: "Password and the re entered password aren't the same." })
         }
     }
+
+    //Validation
+    const usernameValidator = (e) => {
+        setErrors(state => ({ ...state, [e.target.name]: inputData.username.length < 3}))
+    }
+    const emailValidator = (e) => {
+        var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        setErrors(state => ({ ...state, [e.target.name]: !re.test(inputData.email) }))
+    }
+    //ToDO corect password validation
+    const passwordValidator = (e) => {
+        setErrors(state => ({ ...state, [e.target.name]: !inputData.password }))
+    }
+
+    //If it is valid the form can be submitted
+    const isValidForm = !Object.values(errors).some(x => x);
     return (
         <div className="container-fluid h-custom my-3">
             <div className="row d-flex justify-content-center align-items-center h-100 gy-3">
@@ -70,15 +92,8 @@ export const Register = () => {
                 <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form onSubmit={onSubmit}>
                         <p className='display-4 font-weight-light'>Register</p>
-                        {/* Alert */}
-                        {/* <div className="alert alert-danger d-flex align-items-center" role="alert">
-                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
-                                <div className="text-center">
-                                    Please provide a valid email address.
-                                </div>
-                            </div> */}
                         {/* Email input */}
-                        <div className="form-outline mb-4">
+                        <div className="form-outline">
                             <input
                                 type="email"
                                 id="email"
@@ -87,13 +102,23 @@ export const Register = () => {
                                 placeholder="Enter a valid email address"
                                 value={inputData.email}
                                 onChange={onChange}
+                                onBlur = {(e) => emailValidator(e)}
                             />
                             <label className="form-label" htmlFor="email">
                                 Email address
                             </label>
                         </div>
+                        
+                        {/* Alert */}
+                        {errors.email && <div className="alert alert-danger d-flex align-items-center" role="alert">
+                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
+                                <div className="text-center">
+                                    Please provide a valid email address.
+                                </div>
+                            </div>}
+                        
                         {/* Username input */}
-                        <div className="form-outline mb-4">
+                        <div className="form-outline">
                             <input
                                 type="username"
                                 id="username"
@@ -102,20 +127,27 @@ export const Register = () => {
                                 placeholder="Enter a valid username"
                                 value={inputData.username}
                                 onChange={onChange}
+                                onBlur = {(e) => usernameValidator(e)}
                             />
                             <label className="form-label" htmlFor="username">
                                 Username
                             </label>
                         </div>
+                        {errors.username && <div className="alert alert-danger d-flex align-items-center" role="alert">
+                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
+                                <div className="text-center">
+                                    Please provide a valid username.
+                                </div>
+                            </div>}
                         {/* Profile pic */}
-                        <div className="mb-4">
+                        <div>
                             <input className="form-control" type="file" name="profilePic" onChange={onSelectFile} />
                             <label htmlFor="formFile" className="form-label">
                                 Choose Profile Pic
                             </label>
                         </div>
                         {/* Password input */}
-                        <div className="form-outline mb-3">
+                        <div className="form-outline">
                             <input
                                 type="password"
                                 id="password"
@@ -124,13 +156,20 @@ export const Register = () => {
                                 placeholder="Enter password"
                                 value={inputData.password}
                                 onChange={onChange}
+                                onBlur = {(e) => passwordValidator(e)}
                             />
                             <label className="form-label" htmlFor="password">
                                 Password
                             </label>
                         </div>
+                        {errors.password && <div className="alert alert-danger d-flex align-items-center" role="alert">
+                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
+                                <div className="text-center">
+                                    Please provide a password.
+                                </div>
+                            </div>}
                         {/* Re-Password input */}
-                        <div className="form-outline mb-3">
+                        <div className="form-outline">
                             <input
                                 type="password"
                                 id="rePassword"
@@ -139,11 +178,18 @@ export const Register = () => {
                                 placeholder="Re Enter Password"
                                 value={inputData.rePassword}
                                 onChange={onChange}
+                                onBlur = {(e) => passwordValidator(e)}
                             />
                             <label className="form-label" htmlFor="rePassword">
                                 Re Password
                             </label>
                         </div>
+                        {errors.rePassword && <div className="alert alert-danger d-flex align-items-center" role="alert">
+                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
+                                <div className="text-center">
+                                    Please provide a rePassword.
+                                </div>
+                            </div>}
                         {error.active === true ? <div className="alert alert-danger fade show mt-3">
                             <strong>Error!</strong> {error.message}
                         </div> : null}
@@ -154,6 +200,7 @@ export const Register = () => {
                                         type="submit"
                                         className="btn btn-success btn-lg"
                                         style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}
+                                        disabled={!isValidForm || (!inputData.email || !inputData.username || !inputData.password || !inputData.rePassword)}
                                     >
                                         Register
                                     </button>
