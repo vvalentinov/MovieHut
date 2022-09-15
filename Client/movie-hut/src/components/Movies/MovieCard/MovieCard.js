@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 
 export const MovieCard = (props) => {
+    console.log(props);
     return (
         <div className='card my-2'>
             <div className='card-body'>
@@ -21,12 +22,10 @@ export const MovieCard = (props) => {
                             <p>{props.plot}</p>
                         </div>
                         <p>Stars:
-                            <Link to="/actors/1" style={{ textDecoration: 'none' }}>
-                                {'Tom Sturridge'}
-                            </Link>,
-                            <Link to="/actors/1" style={{ textDecoration: 'none' }}>
-                                {'Boyd Holbrook'}
-                            </Link>
+                            {props.actors?.map(x =>
+                                <Link to={`/actors/${x.id}`} style={{ textDecoration: 'none' }}>
+                                    {x}
+                                </Link>)}
                         </p>
                     </div>
                 </div>

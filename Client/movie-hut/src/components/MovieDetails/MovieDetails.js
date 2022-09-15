@@ -14,7 +14,8 @@ export const MovieDetails = () => {
     const {deleteMovie} = useContext(MovieContext)
     const navigate = useNavigate();
     const {isOwner} = useOwner(movieId, movieService);
-
+    console.log(movie);
+    
     const onClickDelete = () => {
         movieService.del(movieId)
             .then(res => {
