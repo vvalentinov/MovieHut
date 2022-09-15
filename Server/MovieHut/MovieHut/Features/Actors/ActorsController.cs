@@ -73,5 +73,28 @@
 
             return Ok(result);
         }
+
+        [HttpPut]
+        [Authorize]
+        [Route("update")]
+        public async Task<ActionResult> Update(UpdateActorRequestModel model)
+        {
+            var userId = this.currentUserService.GetId();
+
+            var result = await this.actorsService.UpdateAsync(
+                model.Id,
+                model.Name,
+                model.ImageUrl,
+                userId);
+
+            if (result.Failed)
+            {
+                return BadRequest(result);
+            }
+
+            result.SuccessMessage = UpdateActorSuccess;
+
+            return Ok(result);
+        }
     }
 }

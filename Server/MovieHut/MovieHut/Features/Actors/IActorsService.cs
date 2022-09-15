@@ -15,5 +15,11 @@
         Task<Result> GetActorDetailsAsync(int id);
 
         Task<Result> DeleteAsync(int actorId, string userId);
+
+        Task<Result> UpdateAsync(
+            int actorId,
+            string name,
+            string imageUrl,
+            string userId);
     }
 }

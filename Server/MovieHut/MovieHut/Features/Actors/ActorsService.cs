@@ -13,6 +13,7 @@
     using System.Threading.Tasks;
     using static DataConstants.CloudinaryFolderNames;
     using static ErrorMessages.ServicesErrors.ActorsServiceErrors;
+    using static ErrorMessages.ModelsValidationErrors.MovieErrors;
 
     public class ActorsService : IActorsService
     {
@@ -97,6 +98,49 @@
             var actorsModels = this.mapper.Map<List<ActorListingServiceModel>>(actors);
 
             return actorsModels;
+        }
+
+        public async Task<Result> UpdateAsync(
+            int actorId,
+            string name,
+            string imageUrl,
+            string userId)
+        {
+            var actor = await this.GetActorByIdAndByUserId(actorId, userId);
+
+            if (actor == null)
+            {
+                return new ErrorResult()
+                {
+                    Messages = new string[]
+                    {
+                        UpdateActorError
+                    }
+                };
+            }
+
+            var parts = imageUrl.Split(',');
+            var extension = parts[0].Split('/')[1].Split(';')[0];
+            var posterFile = this.base64ToImageService.Base64ToImage(parts[1], name);
+
+            if (extension != "png" && extension != "jpg" && extension != "jpeg")
+            {
+                throw new InvalidOperationException(InvalidPosterExtensionError);
+            }
+
+            string publicId = this.cloudinaryService.GetPublicId(actor.ImageUrl);
+
+            imageUrl = await this.cloudinaryService.UploadImageAsync(
+                posterFile,
+                ActorsFolder,
+                publicId);
+
+            actor.Name = name;
+            actor.ImageUrl = imageUrl;
+
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
         }
 
         private async Task<Actor> GetActorByIdAndByUserId(int actorId, string userId)

@@ -11,6 +11,7 @@
         public class ActorsSuccessMessages
         {
             public const string DeleteActorSuccess = "Actor deleted successfully!";
+            public const string UpdateActorSuccess = "Actor updated successfully!";
         }
     }
 }
