@@ -145,7 +145,12 @@
                 movieModel.Genres = await this.GetMovieGenresByMovieIdAsync(movieModel.Id);
                 movieModel.Actors = await this.dbContext.MoviesActors
                     .Where(x => x.MovieId == movieModel.Id)
-                    .Select(x => x.Actor.Name)
+                    .Select(x => new ActorListingServiceModel()
+                    {
+                        Id = x.Actor.Id,
+                        Name = x.Actor.Name,
+                        ImageUrl = x.Actor.ImageUrl,
+                    })
                     .ToListAsync();
             }
 

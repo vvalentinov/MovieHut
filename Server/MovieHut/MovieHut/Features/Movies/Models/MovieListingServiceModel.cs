@@ -1,5 +1,7 @@
 ﻿namespace MovieHut.Features.Movies.Models
 {
+    using MovieHut.Features.Actors.Models;
+
     public class MovieListingServiceModel
     {
         public string Id { get; set; }
@@ -18,6 +20,6 @@
 
         public IEnumerable<string> Genres { get; set; }
 
-        public IEnumerable<string> Actors { get; set; }
+        public IEnumerable<ActorListingServiceModel> Actors { get; set; }
     }
 }
