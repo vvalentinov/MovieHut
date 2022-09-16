@@ -11,6 +11,8 @@
             CreateMap<Director, CreateDirectorResponseModel>();
 
             CreateMap<Director, DirectorsListingServiceModel>();
+
+            CreateMap<Director, DirectorDetailsServiceModel>();
         }
     }
 }

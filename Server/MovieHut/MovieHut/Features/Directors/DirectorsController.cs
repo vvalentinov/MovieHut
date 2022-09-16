@@ -42,5 +42,19 @@
 
             return directors;
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<DirectorDetailsServiceModel>> GetDirectorDetails(int id)
+        {
+            var result = await this.directorsService.GetDirectorDetailsAsync(id);
+
+            if (result.Failed)
+            {
+                return BadRequest(result);
+            }
+
+            return result.DirectorDetails;
+        }
     }
 }

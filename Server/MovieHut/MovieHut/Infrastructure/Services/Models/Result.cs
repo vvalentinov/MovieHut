@@ -1,6 +1,7 @@
 ﻿namespace MovieHut.Infrastructure.Services.Models
 {
     using MovieHut.Features.Actors.Models;
+    using MovieHut.Features.Directors.Models;
     using MovieHut.Features.Movies.Models;
 
     public class Result
@@ -16,6 +17,8 @@
         public MovieDetailsServiceModel MovieDetails { get; private set; }
 
         public ActorDetailsServiceModel ActorDetails { get; private set; }
+
+        public DirectorDetailsServiceModel DirectorDetails { get; set; }
 
         public static implicit operator Result(bool succeeded)
         {
@@ -35,6 +38,11 @@
         public static implicit operator Result(ActorDetailsServiceModel actorDetailsModel)
         {
             return new Result { ActorDetails = actorDetailsModel, Succeeded = true };
+        }
+
+        public static implicit operator Result(DirectorDetailsServiceModel directorDetailsModel)
+        {
+            return new Result { DirectorDetails = directorDetailsModel, Succeeded = true };
         }
     }
 }
