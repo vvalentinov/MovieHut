@@ -13,6 +13,7 @@
     using static ErrorMessages.ServicesErrors.MoviesServiceErrors;
     using static ErrorMessages.ModelsValidationErrors.MovieErrors;
     using static DataConstants.CloudinaryFolderNames;
+    using MovieHut.Features.Actors.Models;
 
     public class MoviesService : IMoviesService
     {
@@ -122,7 +123,12 @@
             movieModel.Genres = await this.GetMovieGenresByMovieIdAsync(movieId);
             movieModel.Actors = await this.dbContext.MoviesActors
                     .Where(x => x.MovieId == movieModel.Id)
-                    .Select(x => x.Actor.Name)
+                    .Select(x => new ActorListingServiceModel()
+                    {
+                        Id = x.Actor.Id,
+                        ImageUrl = x.Actor.ImageUrl,
+                        Name = x.Actor.Name,
+                    })
                     .ToListAsync();
 
             return movieModel;
