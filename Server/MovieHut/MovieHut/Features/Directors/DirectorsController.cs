@@ -5,6 +5,7 @@
     using MovieHut.Features.Base;
     using MovieHut.Features.Directors.Models;
     using MovieHut.Infrastructure.Services.Contracts;
+    using static SuccessMessages.DirectorsSuccessMessages;
 
     public class DirectorsController : ApiController
     {
@@ -55,6 +56,25 @@
             }
 
             return result.DirectorDetails;
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var userId = this.currentUserService.GetId();
+
+            var result = await this.directorsService.DeleteAsync(id, userId);
+
+            if (result.Failed)
+            {
+                return BadRequest(result);
+            }
+
+            result.SuccessMessage = DeleteDirectorSuccess;
+
+            return Ok(result);
         }
     }
 }

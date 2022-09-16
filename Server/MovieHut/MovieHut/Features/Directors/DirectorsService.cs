@@ -60,6 +60,21 @@
             return directorModel;
         }
 
+        public async Task<Result> DeleteAsync(int directorId, string userId)
+        {
+            var director = await this.GetDirectorByIdAndByUserId(directorId, userId);
+
+            if (director == null)
+            {
+                return new ErrorResult() { Messages = new string[] { DeleteDirectorError } };
+            }
+
+            this.dbContext.Directors.Remove(director);
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<Result> GetDirectorDetailsAsync(int id)
         {
             var director = await this.dbContext.Directors.FirstOrDefaultAsync(a => a.Id == id);
@@ -98,6 +113,11 @@
             }
 
             return movies;
+        }
+
+        private async Task<Director> GetDirectorByIdAndByUserId(int directorId, string userId)
+        {
+            return await this.dbContext.Directors.FirstOrDefaultAsync(x => x.Id == directorId && x.UserId == userId);
         }
     }
 }

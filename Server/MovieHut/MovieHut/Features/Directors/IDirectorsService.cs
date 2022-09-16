@@ -13,5 +13,7 @@
         Task<IEnumerable<DirectorsListingServiceModel>> GetDirectorsAsync();
 
         Task<Result> GetDirectorDetailsAsync(int id);
+
+        Task<Result> DeleteAsync(int directorId, string userId);
     }
 }

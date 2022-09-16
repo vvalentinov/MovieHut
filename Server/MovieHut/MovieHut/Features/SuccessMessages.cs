@@ -13,5 +13,11 @@
             public const string DeleteActorSuccess = "Actor deleted successfully!";
             public const string UpdateActorSuccess = "Actor updated successfully!";
         }
+
+        public class DirectorsSuccessMessages
+        {
+            public const string DeleteDirectorSuccess = "Director deleted successfully!";
+            public const string UpdateDirectorSuccess = "Director updated successfully!";
+        }
     }
 }
