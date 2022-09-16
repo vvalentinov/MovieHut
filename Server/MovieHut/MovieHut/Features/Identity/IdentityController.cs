@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using MovieHut.Data.Models;
+    using MovieHut.Features.Base;
     using MovieHut.Features.Identity.Models;
     using MovieHut.Infrastructure.Services.Models;
 

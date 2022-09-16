@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using MovieHut.Features.Base;
 
     public class HomeController : ApiController
     {

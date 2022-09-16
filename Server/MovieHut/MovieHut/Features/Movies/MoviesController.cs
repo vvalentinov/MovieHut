@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using MovieHut.Features.Base;
     using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
     using MovieHut.Infrastructure.Services.Models;

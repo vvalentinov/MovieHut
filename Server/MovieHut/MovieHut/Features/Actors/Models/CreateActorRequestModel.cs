@@ -1,16 +1,8 @@
 ﻿namespace MovieHut.Features.Actors.Models
 {
-    using System.ComponentModel.DataAnnotations;
+    using MovieHut.Features.Base.RequestModels;
 
-    public class CreateActorRequestModel
+    public class CreateActorRequestModel : CreateActorDirectorRequestBaseModel
     {
-        [Required]
-        public string Name { get; set; }
-
-        [Required]
-        public string ImageUrl { get; set; }
-
-        [Required]
-        public string UserId { get; set; }
     }
 }

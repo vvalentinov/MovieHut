@@ -27,6 +27,10 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Features\Base\ServiceModels\" />
+	</ItemGroup>
+
 	<ProjectExtensions>
 		<VisualStudio>
 			<UserProperties />

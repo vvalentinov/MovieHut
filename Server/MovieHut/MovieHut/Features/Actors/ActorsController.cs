@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using MovieHut.Features.Actors.Models;
+    using MovieHut.Features.Base;
     using MovieHut.Infrastructure.Services.Contracts;
     using static SuccessMessages.ActorsSuccessMessages;
 

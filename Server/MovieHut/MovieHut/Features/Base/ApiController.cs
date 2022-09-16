@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Features
+﻿namespace MovieHut.Features.Base
 {
     using Microsoft.AspNetCore.Mvc;
 
