@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Features.ErrorMessages.ServicesErrors
+﻿namespace MovieHut.Infrastructure.ErrorMessages.ServicesErrors
 {
     public static class MoviesServiceErrors
     {

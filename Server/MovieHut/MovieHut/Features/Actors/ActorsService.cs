@@ -12,8 +12,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using static DataConstants.CloudinaryFolderNames;
-    using static ErrorMessages.ServicesErrors.ActorsServiceErrors;
-    using static ErrorMessages.ModelsValidationErrors.MovieErrors;
+    using static Infrastructure.ErrorMessages.ServicesErrors.ActorsServiceErrors;
+    using static Infrastructure.ErrorMessages.ModelsValidationErrors.MovieErrors;
 
     public class ActorsService : IActorsService
     {

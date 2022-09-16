@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Features.ErrorMessages.ModelsValidationErrors
+﻿namespace MovieHut.Infrastructure.ErrorMessages.ModelsValidationErrors
 {
     public static class MovieErrors
     {

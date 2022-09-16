@@ -7,7 +7,7 @@
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;
-    using static ErrorMessages.ModelsValidationErrors.UserErrors;
+    using static Infrastructure.ErrorMessages.ModelsValidationErrors.UserErrors;
     using static DataConstants.CloudinaryFolderNames;
 
     public class IdentityService : IIdentityService

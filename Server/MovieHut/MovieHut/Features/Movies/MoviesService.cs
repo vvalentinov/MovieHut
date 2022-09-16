@@ -10,8 +10,8 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using static ErrorMessages.ServicesErrors.MoviesServiceErrors;
-    using static ErrorMessages.ModelsValidationErrors.MovieErrors;
+    using static Infrastructure.ErrorMessages.ServicesErrors.MoviesServiceErrors;
+    using static Infrastructure.ErrorMessages.ModelsValidationErrors.MovieErrors;
     using static DataConstants.CloudinaryFolderNames;
     using MovieHut.Features.Actors.Models;
 
