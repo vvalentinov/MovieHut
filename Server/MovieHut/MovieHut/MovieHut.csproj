@@ -29,7 +29,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Features\Base\ServiceModels\" />
-	  <Folder Include="Features\Directors\Models\" />
 	</ItemGroup>
 
 	<ProjectExtensions>

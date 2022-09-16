@@ -24,13 +24,13 @@
         private readonly IMapper mapper;
 
         public ActorsService(
-            MovieHutDbContext movieHutDbContext,
+            MovieHutDbContext dbContext,
             IMoviesService moviesService,
             ICloudinaryService cloudinaryService,
             IBase64ToImageService base64ToImageService,
             IMapper mapper)
         {
-            this.dbContext = movieHutDbContext;
+            this.dbContext = dbContext;
             this.moviesService = moviesService;
             this.cloudinaryService = cloudinaryService;
             this.base64ToImageService = base64ToImageService;
