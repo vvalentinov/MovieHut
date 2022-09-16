@@ -8,6 +8,7 @@
     using MovieHut.Data;
     using MovieHut.Data.Models;
     using MovieHut.Features.Actors;
+    using MovieHut.Features.Directors;
     using MovieHut.Features.Identity;
     using MovieHut.Features.Movies;
     using MovieHut.Infrastructure.Services.Contracts;
@@ -80,6 +81,8 @@
             services.AddTransient<IActorsService, ActorsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
             services.AddTransient<IBase64ToImageService, Base64ToImageService>();
+            services.AddTransient<IDirectorsService, DirectorsService>();
+
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             services.AddAutoMapper(typeof(Program));
