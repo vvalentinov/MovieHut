@@ -1,10 +1,12 @@
 ﻿namespace MovieHut.Features.Directors
 {
     using AutoMapper;
+    using Microsoft.EntityFrameworkCore;
     using MovieHut.Data;
     using MovieHut.Data.Models;
     using MovieHut.Features.Directors.Models;
     using MovieHut.Infrastructure.Services.Contracts;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using static DataConstants.CloudinaryFolderNames;
 
@@ -49,6 +51,15 @@
             var directorModel = this.mapper.Map<CreateDirectorResponseModel>(director);
 
             return directorModel;
+        }
+
+        public async Task<IEnumerable<DirectorsListingServiceModel>> GetDirectorsAsync()
+        {
+            var directors = await this.dbContext.Directors.ToListAsync();
+
+            var directorsModels = this.mapper.Map<List<DirectorsListingServiceModel>>(directors);
+
+            return directorsModels;
         }
     }
 }

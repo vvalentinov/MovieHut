@@ -33,5 +33,14 @@
 
             return director;
         }
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<IEnumerable<DirectorsListingServiceModel>> All()
+        {
+            var directors = await this.directorsService.GetDirectorsAsync();
+
+            return directors;
+        }
     }
 }

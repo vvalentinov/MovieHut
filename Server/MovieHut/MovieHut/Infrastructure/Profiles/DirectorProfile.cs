@@ -9,6 +9,8 @@
         public DirectorProfile()
         {
             CreateMap<Director, CreateDirectorResponseModel>();
+
+            CreateMap<Director, DirectorsListingServiceModel>();
         }
     }
 }

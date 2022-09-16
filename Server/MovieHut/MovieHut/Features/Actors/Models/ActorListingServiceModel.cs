@@ -1,11 +1,8 @@
 ﻿namespace MovieHut.Features.Actors.Models
 {
-    public class ActorListingServiceModel
+    using MovieHut.Features.Base.ServiceModels;
+
+    public class ActorListingServiceModel : ActorDirectorListingServiceBaseModel
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string ImageUrl { get; set; }
     }
 }
