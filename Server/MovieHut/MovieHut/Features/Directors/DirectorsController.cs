@@ -76,5 +76,28 @@
 
             return Ok(result);
         }
+
+        [HttpPut]
+        [Authorize]
+        [Route("update")]
+        public async Task<ActionResult> Update(UpdateDirectorRequestModel model)
+        {
+            var userId = this.currentUserService.GetId();
+
+            var result = await this.directorsService.UpdateAsync(
+                model.Id,
+                model.Name,
+                model.ImageUrl,
+                userId);
+
+            if (result.Failed)
+            {
+                return BadRequest(result);
+            }
+
+            result.SuccessMessage = UpdateDirectorSuccess;
+
+            return Ok(result);
+        }
     }
 }

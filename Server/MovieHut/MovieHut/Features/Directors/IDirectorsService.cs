@@ -15,5 +15,11 @@
         Task<Result> GetDirectorDetailsAsync(int id);
 
         Task<Result> DeleteAsync(int directorId, string userId);
+
+        Task<Result> UpdateAsync(
+            int directorId,
+            string name,
+            string imageUrl,
+            string userId);
     }
 }

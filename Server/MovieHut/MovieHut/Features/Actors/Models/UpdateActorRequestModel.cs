@@ -1,11 +1,8 @@
 ﻿namespace MovieHut.Features.Actors.Models
 {
-    public class UpdateActorRequestModel
+    using MovieHut.Features.Base.RequestModels;
+
+    public class UpdateActorRequestModel : UpdateActorDirectorBaseModel
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string ImageUrl { get; set; }
     }
 }

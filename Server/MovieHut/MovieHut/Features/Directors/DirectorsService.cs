@@ -13,6 +13,7 @@
     using System.Threading.Tasks;
     using static DataConstants.CloudinaryFolderNames;
     using static Infrastructure.ErrorMessages.ServicesErrors.DirectorsServiceErrors;
+    using static Infrastructure.ErrorMessages.ModelsValidationErrors.MovieErrors;
 
     public class DirectorsService : IDirectorsService
     {
@@ -97,6 +98,49 @@
             var directorsModels = this.mapper.Map<List<DirectorsListingServiceModel>>(directors);
 
             return directorsModels;
+        }
+
+        public async Task<Result> UpdateAsync(
+            int directorId,
+            string name,
+            string imageUrl,
+            string userId)
+        {
+            var director = await this.GetDirectorByIdAndByUserId(directorId, userId);
+
+            if (director == null)
+            {
+                return new ErrorResult()
+                {
+                    Messages = new string[]
+                    {
+                        UpdateDirectorError
+                    }
+                };
+            }
+
+            var parts = imageUrl.Split(',');
+            var extension = parts[0].Split('/')[1].Split(';')[0];
+            var posterFile = this.base64ToImageService.Base64ToImage(parts[1], name);
+
+            if (extension != "png" && extension != "jpg" && extension != "jpeg")
+            {
+                throw new InvalidOperationException(InvalidPosterExtensionError);
+            }
+
+            string publicId = this.cloudinaryService.GetPublicId(director.ImageUrl);
+
+            imageUrl = await this.cloudinaryService.UploadImageAsync(
+                posterFile,
+                DirectorsFolder,
+                publicId);
+
+            director.Name = name;
+            director.ImageUrl = imageUrl;
+
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
         }
 
         private async Task<IEnumerable<MovieListingServiceModel>> GetDirectorMoviesByIdAsync(int directorId)
