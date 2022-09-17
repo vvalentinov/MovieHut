@@ -1,7 +1,7 @@
 ﻿namespace MovieHut.Features.Movies
 {
     using MovieHut.Features.Movies.Models;
-    using MovieHut.Infrastructure.Services.Models;
+    using MovieHut.Infrastructure.Objects;
 
     public interface IMoviesService
     {

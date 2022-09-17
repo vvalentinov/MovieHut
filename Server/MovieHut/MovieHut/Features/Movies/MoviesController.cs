@@ -5,7 +5,7 @@
     using MovieHut.Features.Base;
     using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
-    using MovieHut.Infrastructure.Services.Models;
+    using MovieHut.Infrastructure.Objects;
     using static SuccessMessages.MoviesSuccessMessages;
 
     public class MoviesController : ApiController

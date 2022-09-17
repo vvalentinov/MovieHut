@@ -1,7 +1,7 @@
 ﻿namespace MovieHut.Features.Actors
 {
     using MovieHut.Features.Actors.Models;
-    using MovieHut.Infrastructure.Services.Models;
+    using MovieHut.Infrastructure.Objects;
 
     public interface IActorsService
     {

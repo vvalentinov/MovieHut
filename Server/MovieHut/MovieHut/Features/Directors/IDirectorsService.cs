@@ -1,7 +1,7 @@
 ﻿namespace MovieHut.Features.Directors
 {
     using MovieHut.Features.Directors.Models;
-    using MovieHut.Infrastructure.Services.Models;
+    using MovieHut.Infrastructure.Objects;
 
     public interface IDirectorsService
     {

@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Infrastructure.Services.Models
+﻿namespace MovieHut.Infrastructure.Objects
 {
     using MovieHut.Features.Actors.Models;
     using MovieHut.Features.Directors.Models;

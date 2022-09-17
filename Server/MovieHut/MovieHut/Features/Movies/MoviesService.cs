@@ -6,7 +6,6 @@
     using MovieHut.Data.Models;
     using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
-    using MovieHut.Infrastructure.Services.Models;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -14,6 +13,7 @@
     using static Infrastructure.ErrorMessages.ModelsValidationErrors.MovieErrors;
     using static DataConstants.CloudinaryFolderNames;
     using MovieHut.Features.Actors.Models;
+    using MovieHut.Infrastructure.Objects;
 
     public class MoviesService : IMoviesService
     {

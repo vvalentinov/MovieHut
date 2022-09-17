@@ -8,12 +8,12 @@
     using MovieHut.Features.Movies;
     using MovieHut.Features.Movies.Models;
     using MovieHut.Infrastructure.Services.Contracts;
-    using MovieHut.Infrastructure.Services.Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using static DataConstants.CloudinaryFolderNames;
     using static Infrastructure.ErrorMessages.ServicesErrors.DirectorsServiceErrors;
     using static Infrastructure.ErrorMessages.ModelsValidationErrors.MovieErrors;
+    using MovieHut.Infrastructure.Objects;
 
     public class DirectorsService : IDirectorsService
     {

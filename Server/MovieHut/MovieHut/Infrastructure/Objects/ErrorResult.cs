@@ -1,4 +1,4 @@
-﻿namespace MovieHut.Infrastructure.Services.Models
+﻿namespace MovieHut.Infrastructure.Objects
 {
     public class ErrorResult
     {
