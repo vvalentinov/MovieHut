@@ -6,16 +6,15 @@ import { ActorCard } from './ActorCard/Actor';
 import * as movieService from '../../services/movieService';
 import { useOwner } from '../../hooks/useOwner';
 import { useContext } from 'react';
-import {MovieContext} from '../../contexts/MovieContext'
+import { MovieContext } from '../../contexts/MovieContext'
 
 export const MovieDetails = () => {
     const { movieId } = useParams();
     const { movie, setMovie } = useMovie(movieId);
-    const {deleteMovie} = useContext(MovieContext)
+    const { deleteMovie } = useContext(MovieContext)
     const navigate = useNavigate();
-    const {isOwner} = useOwner(movieId, movieService);
-    console.log(movie);
-    
+    const { isOwner } = useOwner(movieId, movieService);
+
     const onClickDelete = () => {
         movieService.del(movieId)
             .then(res => {
@@ -39,9 +38,9 @@ export const MovieDetails = () => {
                                 type="button"
                             >
                                 Delete
-                            </button>: null}
-                            <p style={{margin: 0}}>{movie?.released.slice(0, 4)}</p>
-                            <p style={{margin: 0}}>{movie?.duration} minutes</p>
+                            </button> : null}
+                            <p style={{ margin: 0 }}>{movie?.released.slice(0, 4)}</p>
+                            <p style={{ margin: 0 }}>{movie?.duration} minutes</p>
                         </div>
                         <div className="col">
                             <h3 className="mb-4">Rating</h3>
@@ -67,7 +66,7 @@ export const MovieDetails = () => {
                             <p>{movie?.genres.join(', ')}</p>
                             <hr />
                             <div className='row gy-3'>
-                                {movie?.actors?.map(x => <ActorCard key = {x.id} {...x}/>)}
+                                {movie?.actors?.map(x => <ActorCard key={x.id} {...x} />)}
                             </div>
                         </div>
                     </div>

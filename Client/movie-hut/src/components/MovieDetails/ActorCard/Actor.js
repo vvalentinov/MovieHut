@@ -1,12 +1,20 @@
+import { Link } from "react-router-dom"
+
 export const ActorCard = (props) => {
     return (
         <div className='col-auto'>
-            <div className='row'>
-                <div className='col-3'>
-                    <img className="img-fluid rounded-circle" src={props.imageUrl} alt="Cinque Terre" />
-                </div>
-                <div className='col mt-3'>
-                    <h5>{props.name}</h5>
+            <div className="container" style={{ width: 400 }}>
+                <div className='row'>
+                    <div className='col-4'>
+                        <Link to={`/actors/details/${props.id}`} style={{ textDecoration: 'none' }}>
+                            <img className="img-fluid rounded-circle" src={props.imageUrl} alt="actor img" />
+                        </Link>
+                    </div>
+                    <div className='col mt-3'>
+                        <Link to={`/actors/details/${props.id}`} style={{ textDecoration: 'none' }}>
+                            <h4>{props.name}</h4>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
