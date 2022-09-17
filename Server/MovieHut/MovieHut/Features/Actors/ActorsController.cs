@@ -6,6 +6,7 @@
     using MovieHut.Features.Base;
     using MovieHut.Infrastructure.Services.Contracts;
     using static SuccessMessages.ActorsSuccessMessages;
+    using static MovieHut.Infrastructure.Constants.RouteNames;
 
     public class ActorsController : ApiController
     {
@@ -20,7 +21,7 @@
 
         [HttpPost]
         [Authorize]
-        [Route("create")]
+        [Route(CreateRoute)]
         public async Task<CreateActorResponseModel> Create(CreateActorRequestModel model)
         {
             var userId = this.currentUserService.GetId();
@@ -34,7 +35,7 @@
         }
 
         [HttpGet]
-        [Route("all")]
+        [Route(GetAllRoute)]
         public async Task<IEnumerable<ActorListingServiceModel>> All()
         {
             var actors = await this.actorsService.GetActorsAsync();
@@ -43,7 +44,7 @@
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route(SpecificIdRoute)]
         public async Task<ActionResult<ActorDetailsServiceModel>> GetActorDetails(int id)
         {
             var result = await this.actorsService.GetActorDetailsAsync(id);
@@ -58,7 +59,7 @@
 
         [HttpDelete]
         [Authorize]
-        [Route("{id}")]
+        [Route(SpecificIdRoute)]
         public async Task<ActionResult> Delete(int id)
         {
             var userId = this.currentUserService.GetId();
@@ -77,7 +78,7 @@
 
         [HttpPut]
         [Authorize]
-        [Route("update")]
+        [Route(UpdateRoute)]
         public async Task<ActionResult> Update(UpdateActorRequestModel model)
         {
             var userId = this.currentUserService.GetId();

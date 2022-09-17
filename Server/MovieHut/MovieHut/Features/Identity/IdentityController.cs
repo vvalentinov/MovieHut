@@ -7,6 +7,7 @@
     using MovieHut.Features.Base;
     using MovieHut.Features.Identity.Models;
     using MovieHut.Infrastructure.Objects;
+    using static Infrastructure.Constants.RouteNames;
 
     public class IdentityController : ApiController
     {
@@ -25,7 +26,7 @@
         }
 
         [HttpPost]
-        [Route("register")]
+        [Route(RegisterRoute)]
         public async Task<ActionResult<object>> Register(RegisterUserRequestModel model)
         {
             IdentityResult identityResult;
@@ -40,10 +41,20 @@
             }
             catch (Exception ex)
             {
-                var result = new Result() {  Errors = new ErrorResult() { Messages = new string[] { ex.Message } } };
+                var result = new Result()
+                {
+                    Errors = new ErrorResult()
+                    {
+                        Messages = new string[]
+                        {
+                            ex.Message
+                        }
+                    }
+                };
+
                 return BadRequest(result);
             }
-            
+
             if (identityResult.Succeeded)
             {
                 return new Result() { SuccessMessage = "Registered successfully" };
@@ -53,7 +64,7 @@
         }
 
         [HttpPost]
-        [Route("login")]
+        [Route(LoginRoute)]
         public async Task<ActionResult<object>> Login(LoginUserRequestModel model)
         {
             var user = await this.userManager.FindByNameAsync(model.UserName);

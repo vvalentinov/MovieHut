@@ -6,6 +6,7 @@
     using MovieHut.Features.Directors.Models;
     using MovieHut.Infrastructure.Services.Contracts;
     using static SuccessMessages.DirectorsSuccessMessages;
+    using static Infrastructure.Constants.RouteNames;
 
     public class DirectorsController : ApiController
     {
@@ -22,7 +23,7 @@
 
         [HttpPost]
         [Authorize]
-        [Route("create")]
+        [Route(CreateRoute)]
         public async Task<CreateDirectorResponseModel> Create(CreateDirectorRequestModel model)
         {
             var userId = this.currentUserService.GetId();
@@ -36,7 +37,7 @@
         }
 
         [HttpGet]
-        [Route("all")]
+        [Route(GetAllRoute)]
         public async Task<IEnumerable<DirectorsListingServiceModel>> All()
         {
             var directors = await this.directorsService.GetDirectorsAsync();
@@ -45,7 +46,7 @@
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route(SpecificIdRoute)]
         public async Task<ActionResult<DirectorDetailsServiceModel>> GetDirectorDetails(int id)
         {
             var result = await this.directorsService.GetDirectorDetailsAsync(id);
@@ -60,7 +61,7 @@
 
         [HttpDelete]
         [Authorize]
-        [Route("{id}")]
+        [Route(SpecificIdRoute)]
         public async Task<ActionResult> Delete(int id)
         {
             var userId = this.currentUserService.GetId();
@@ -79,7 +80,7 @@
 
         [HttpPut]
         [Authorize]
-        [Route("update")]
+        [Route(UpdateRoute)]
         public async Task<ActionResult> Update(UpdateDirectorRequestModel model)
         {
             var userId = this.currentUserService.GetId();

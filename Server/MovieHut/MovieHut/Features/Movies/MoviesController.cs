@@ -7,6 +7,7 @@
     using MovieHut.Infrastructure.Services.Contracts;
     using MovieHut.Infrastructure.Objects;
     using static SuccessMessages.MoviesSuccessMessages;
+    using static Infrastructure.Constants.RouteNames;
 
     public class MoviesController : ApiController
     {
@@ -23,7 +24,7 @@
 
         [HttpPost]
         [Authorize]
-        [Route("create")]
+        [Route(CreateRoute)]
         public async Task<ActionResult> Create(CreateMovieRequestModel model)
         {
             var userId = this.currentUserService.GetId();
@@ -60,7 +61,7 @@
         }
 
         [HttpGet]
-        [Route("all")]
+        [Route(GetAllRoute)]
         public async Task<IEnumerable<MovieListingServiceModel>> All()
         {
             var movies = await this.moviesService.GetMoviesAsync();
@@ -70,7 +71,7 @@
 
         [HttpGet]
         [Authorize]
-        [Route("mine")]
+        [Route(GetUserObjectsRoute)]
         public async Task<IEnumerable<UserMoviesListingServiceModel>> GetUserMovies()
         {
             var userId = this.currentUserService.GetId();
@@ -81,7 +82,7 @@
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route(SpecificIdRoute)]
         public async Task<ActionResult<MovieDetailsServiceModel>> GetMovieDetails(string id)
         {
             var result = await this.moviesService.GetMovieDetailsAsync(id);
@@ -96,7 +97,7 @@
 
         [HttpDelete]
         [Authorize]
-        [Route("{id}")]
+        [Route(SpecificIdRoute)]
         public async Task<ActionResult> Delete(string id)
         {
             var userId = this.currentUserService.GetId();
@@ -115,7 +116,7 @@
 
         [HttpPut]
         [Authorize]
-        [Route("update")]
+        [Route(UpdateRoute)]
         public async Task<ActionResult> Update(UpdateMovieRequestModel model)
         {
             var userId = this.currentUserService.GetId();
