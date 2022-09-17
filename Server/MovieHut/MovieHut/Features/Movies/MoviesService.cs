@@ -90,6 +90,7 @@
             await this.dbContext.SaveChangesAsync();
 
             var responseModel = this.mapper.Map<CreateMovieResponseModel>(movie);
+            responseModel.ActorIds = actorsIds;
 
             return responseModel;
         }

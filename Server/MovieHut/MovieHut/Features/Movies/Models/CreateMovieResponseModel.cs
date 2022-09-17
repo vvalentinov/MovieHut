@@ -13,5 +13,7 @@
         public string PosterUrl { get; set; }
 
         public string UserId { get; set; }
+
+        public IEnumerable<int> ActorIds { get; set; }
     }
 }
