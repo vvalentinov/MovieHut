@@ -23,8 +23,8 @@ export const MovieCard = (props) => {
                         </div>
                         <p>Stars:
                             {props.actors?.map(x =>
-                                <Link to={`/actors/${x.id}`} style={{ textDecoration: 'none' }}>
-                                    {x}
+                                <Link key = {x.id} to={`/actors/details/${x.id}`} style={{ textDecoration: 'none' }}>
+                                    {`${x.name}, `}
                                 </Link>)}
                         </p>
                     </div>
