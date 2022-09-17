@@ -23,6 +23,7 @@ import { ActorProvider } from './contexts/ActorContext';
 import { Actors } from './components/Actors/Actors';
 import { CreateActor } from './components/CreateActor/CreateActor';
 import { ActorDetails } from './components/ActorDetails/ActorDetails';
+import { Directors } from './components/Directors/Directors';
 
 function App() {
     return (
@@ -43,6 +44,7 @@ function App() {
                             <Route path='/actors/all' element={<Actors />} />
                             <Route path='/actors/details/:actorId' element={<ActorDetails />} />
                             <Route path='/actors/create' element={<CreateActor />} />
+                            <Route path='/directors/all' element={<Directors />} />
                             <Route element={<UserGuard />}>
                                 <Route path='/login' element={<Login />} />
                                 <Route path='/register' element={<Register />} />

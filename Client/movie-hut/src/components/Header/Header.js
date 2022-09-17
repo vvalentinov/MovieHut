@@ -43,10 +43,33 @@ export const Header = () => {
                                 Tv Shows
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/actors/all">
-                                Actors
-                            </Link>
+                        <li className="nav-item dropdown">
+                            <a
+                                className="nav-link dropdown-toggle"
+                                href="/movie/create"
+                                style={{ fontWeight: 700, fontSize: "large", paddingRight: 20 }}
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                Celebrities
+                            </a>
+                            <ul
+                                className="dropdown-menu text-light"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                <li>
+                                    <Link className="dropdown-item" to="/actors/all">
+                                        Actors
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link className="dropdown-item" to="/directors/all">
+                                        Directors
+                                    </Link>
+                                </li>
+                            </ul>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/genres/all">
