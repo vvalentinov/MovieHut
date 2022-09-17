@@ -11,7 +11,7 @@
     using System.Threading.Tasks;
     using static Infrastructure.ErrorMessages.ServicesErrors.MoviesServiceErrors;
     using static Infrastructure.ErrorMessages.ModelsValidationErrors.MovieErrors;
-    using static DataConstants.CloudinaryFolderNames;
+    using static Infrastructure.Constants.CloudinaryFolderNames;
     using MovieHut.Features.Actors.Models;
     using MovieHut.Infrastructure.Objects;
 

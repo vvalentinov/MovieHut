@@ -10,7 +10,7 @@
     using MovieHut.Infrastructure.Services.Contracts;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using static DataConstants.CloudinaryFolderNames;
+    using static Infrastructure.Constants.CloudinaryFolderNames;
     using static Infrastructure.ErrorMessages.ServicesErrors.ActorsServiceErrors;
     using static Infrastructure.ErrorMessages.ModelsValidationErrors.MovieErrors;
     using MovieHut.Infrastructure.Objects;

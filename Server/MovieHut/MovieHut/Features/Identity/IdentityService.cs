@@ -8,7 +8,7 @@
     using System.Security.Claims;
     using System.Text;
     using static Infrastructure.ErrorMessages.ModelsValidationErrors.UserErrors;
-    using static DataConstants.CloudinaryFolderNames;
+    using static Infrastructure.Constants.CloudinaryFolderNames;
 
     public class IdentityService : IIdentityService
     {
