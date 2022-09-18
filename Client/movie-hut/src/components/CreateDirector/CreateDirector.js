@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { DirectorContext } from "../../contexts/DirectorContext";
 import * as directorService from "../../services/directorService";
+import * as imageService from "../../services/imageService";
 
 export const CreateDirector = () => {
     const { auth } = useContext(AuthContext)
-    const {create} = useContext(DirectorContext);
+    const { create } = useContext(DirectorContext);
     const navigate = useNavigate();
     const [error, setError] = useState({ active: false, message: "" });
     const [isLoading, setIsLoading] = useState(false);
@@ -15,41 +16,51 @@ export const CreateDirector = () => {
         imageUrl: "",
     });
 
+    const [imageData, setImageData] = useState({
+        imageFile: '',
+    });
+
     const onChange = (e) => {
         setInputData(state => (
             { ...state, [e.target.name]: e.target.value }))
     }
 
     const onSelectFile = (e) => {
-        let file = e.target.files[0];
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        reader.onload = (e) => {
-            setInputData(state => (
-                { ...state, 'imageUrl': e.target.result }))
-        }
-    }
-
+        setImageData((state) => ({ ...state, imageFile: e.target.files[0] }));
+    };
+    
     const onSubmit = (e) => {
         e.preventDefault();
         inputData.userId = auth.id;
-
+        const formData = new FormData(e.target);
         //Start spinner
         setIsLoading(true);
-        directorService.create(inputData)
-            .then(res => {
-                //Add to context
-                create(res)
-                //Start spinner
-                setIsLoading(false);
-                navigate('/directors/all')
-            }).catch(err => {
-                //Start spinner
-                setIsLoading(false);
-                setError({ active: true, message: err.message })
+        formData.append('imageFile', imageData.imageFile);
+        imageService
+            .upload(formData, 'Directors')
+            .then((imgRes) => {
+                //Creating new actor
+                directorService
+                    .create({ ...inputData, imageUrl: imgRes.imageUrl })
+                    .then((res) => {
+                        //Add to context
+                        create(res);
+                        //Stop spinner
+                        setIsLoading(false);
+                        navigate('/directors/all');
+                    })
+                    .catch((err) => {
+                        //Stop spinner
+                        setIsLoading(false);
+                        setError({ active: true, message: err.message });
+                    });
             })
-    }
+            .catch((err) => {
+                //Stop spinner
+                setIsLoading(false);
+                setError({ active: true, message: err.message });
+            });
+    };
     return (
         <div className="container">
             <div className="row">
@@ -59,7 +70,10 @@ export const CreateDirector = () => {
                             <h1 className="card-title text-center mb-5">
                                 Create Director
                             </h1>
-                            <form onSubmit={onSubmit}>
+                            <form
+                                encType='multipart/form-data'
+                                onSubmit={onSubmit}
+                                method='post'>
                                 <div className="form-outline mb-4">
                                     <input
                                         type="text"
@@ -96,12 +110,12 @@ export const CreateDirector = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    {isLoading && 
-                                    <div className="col">
-                                        <div className="spinner-border mt-3 mx-5" role="status">
-                                            <span className="sr-only">Loading...</span>
-                                        </div>
-                                    </div>}
+                                    {isLoading &&
+                                        <div className="col">
+                                            <div className="spinner-border mt-3 mx-5" role="status">
+                                                <span className="sr-only">Loading...</span>
+                                            </div>
+                                        </div>}
                                 </div>
                             </form>
                         </div>
