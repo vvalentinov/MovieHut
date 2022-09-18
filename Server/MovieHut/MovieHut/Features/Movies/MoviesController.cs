@@ -42,6 +42,7 @@
                     model.Released,
                     model.GenresIds,
                     model.ActorsIds,
+                    model.DirectorsIds,
                     userId);
             }
             catch (Exception ex)

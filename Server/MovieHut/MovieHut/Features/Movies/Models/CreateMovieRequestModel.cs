@@ -38,5 +38,8 @@
 
         [NotNullOrEmptyIntegerCollection(ErrorMessage = ActorsError)]
         public IEnumerable<int> ActorsIds { get; set; }
+
+        [NotNullOrEmptyIntegerCollection(ErrorMessage = ActorsError)]
+        public IEnumerable<int> DirectorsIds { get; set; }
     }
 }

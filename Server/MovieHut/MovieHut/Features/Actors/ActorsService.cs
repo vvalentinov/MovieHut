@@ -42,14 +42,10 @@
             string imageUrl,
             string userId)
         {
-            var imageFile = this.base64ToImageService.Base64ToImage(imageUrl.Split(',')[1], name);
-            imageUrl = await this.cloudinaryService.UploadImageAsync(imageFile, ActorsFolder);
-
             var actor = new Actor()
             {
                 Name = name,
                 ImageUrl = imageUrl,
-                ImageFile = imageFile,
                 UserId = userId,
             };
 

@@ -47,23 +47,11 @@
             IEnumerable<int> directorsIds,
             string userId)
         {
-            var parts = posterUrl.Split(',');
-            var extension = parts[0].Split('/')[1].Split(';')[0];
-            var posterFile = this.base64ToImageService.Base64ToImage(parts[1], title);
-
-            if (extension != "png" && extension != "jpg" && extension != "jpeg")
-            {
-                throw new InvalidOperationException(InvalidPosterExtensionError);
-            }
-
-            posterUrl = await this.cloudinaryService.UploadImageAsync(posterFile, MoviesFolder);
-
             var movie = new Movie
             {
                 Title = title,
                 Plot = plot,
                 PosterUrl = posterUrl,
-                PosterFile = posterFile,
                 TrailerUrl = trailerUrl,
                 Duration = duration,
                 Released = released,
