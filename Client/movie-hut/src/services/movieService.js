@@ -1,4 +1,4 @@
-import * as request from './requester';
+import * as request from './requesters/requester';
 const baseUrl = 'http://localhost:5400';
 
 const create = (data) => {
