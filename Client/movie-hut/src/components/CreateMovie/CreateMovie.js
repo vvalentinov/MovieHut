@@ -9,6 +9,7 @@ import { Option } from './Option/Option';
 import { ActorContext } from '../../contexts/ActorContext';
 import { ActorOption } from './ActorOption/ActorOption';
 import { AddedActor } from './AddedActor/AddedActor';
+import { DirectorContext } from '../../contexts/DirectorContext';
 
 export const CreateMovie = () => {
     const { auth } = useContext(AuthContext);
@@ -27,10 +28,14 @@ export const CreateMovie = () => {
         imageFile: '',
     });
     const [isLoading, setIsLoading] = useState(false);
+
+    //Genres
+    const [areChecked, setAreChecked] = useState(new Array(22).fill(false));
+
+    //Actors
     const { actors } = useContext(ActorContext);
     const [searchActors, setSearchActors] = useState([]);
     const [addedActors, setAddedActors] = useState([]);
-    const [areChecked, setAreChecked] = useState(new Array(22).fill(false));
 
     const addActor = (id) => {
         if (!addedActors.includes(id)) {
@@ -54,6 +59,35 @@ export const CreateMovie = () => {
             );
         }
     };
+    
+    //Directors
+    const { directors } = useContext(DirectorContext);
+    const [searchDirectors, setSearchDirectors] = useState([]);
+    const [addedDirectors, setAddedDirectors] = useState([]);
+
+    const addDirector = (id) => {
+        if (!addedDirectors.includes(id)) {
+            setAddedDirectors((state) => [...state, id]);
+        }
+    };
+
+    const removeDirector = (id) => {
+        if (addedDirectors.includes(id)) {
+            setAddedDirectors((state) => state.filter((x) => x !== id));
+        }
+    };
+
+    const filterDirectors = (e) => {
+        const query = e.target.value;
+        if (query === '') {
+            setSearchDirectors([]);
+        } else {
+            setSearchDirectors(
+                directors.filter((x) => x.name.toLowerCase().includes(query.toLowerCase()))
+            );
+        }
+    };
+
     const onCheckboxChange = (e) => {
         const temp = [...areChecked];
         temp[e.target.name] = !temp[e.target.name];
