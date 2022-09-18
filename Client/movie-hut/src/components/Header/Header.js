@@ -47,7 +47,7 @@ export const Header = () => {
                             <a
                                 className="nav-link dropdown-toggle"
                                 href="/movie/create"
-                                style={{ fontWeight: 700, fontSize: "large", paddingRight: 20 }}
+                                style={{ fontWeight: 700, fontSize: "large"}}
                                 id="navbarDropdown"
                                 role="button"
                                 data-bs-toggle="dropdown"
