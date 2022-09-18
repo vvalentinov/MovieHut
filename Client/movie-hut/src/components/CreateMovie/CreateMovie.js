@@ -1,6 +1,5 @@
 import './CreateMovie.css';
-import image from '../../images/clipper.jpg';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as movieService from '../../services/movieService';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -97,88 +96,90 @@ export const CreateMovie = () => {
       });
   };
   return (
-    <div className='container-fluid h-custom my-3'>
-      <div className='row d-flex justify-content-center align-items-center h-100 gy-3'>
-        <div className='col-md-8 col-lg-6 col-xl-4 offset-xl-1'>
-          <form onSubmit={onSubmit}>
-            <p className='display-4 font-weight-light'>Create Movie</p>
-            {/* Username input */}
-            <div className='form-outline mb-4'>
-              <input
-                type='text'
-                id='title'
-                name='title'
-                className='form-control form-control-lg'
-                placeholder='Enter a valid title'
-                value={inputData.title}
-                onChange={onChange}
-              />
-              <label className='form-label' htmlFor='title'>
-                Title
-              </label>
-            </div>
-            <div className='form-outline mb-4'>
-              <textarea
-                type='text'
-                id='plot'
-                name='plot'
-                className='form-control form-control-lg'
-                placeholder='Enter a valid plot'
-                value={inputData.plot}
-                onChange={onChange}
-                style={{ height: '200px' }}
-              />
-              <label className='form-label' htmlFor='plot'>
-                Plot
-              </label>
-            </div>
-            <div className='form-outline mb-4'>
-              <input
-                type='text'
-                id='trailerUrl'
-                name='trailerUrl'
-                className='form-control form-control-lg'
-                placeholder='Enter a valid embedded youtube video'
-                value={inputData.trailerUrl}
-                onChange={onChange}
-              />
-              <label className='form-label' htmlFor='trailerUrl'>
-                Trailer Url
-              </label>
-              <a href='https://youtu.be/kiyi-C7NQrQ'> How to get?</a>
-            </div>
-            <div className='form-outline mb-4'>
-              <input
-                type='date'
-                min='1900'
-                max='2099'
-                step='1'
-                id='released'
-                name='released'
-                value={inputData.released}
-                onChange={onChange}
-                className='form-control form-control-lg'
-                placeholder='Enter when was released'
-              />
-              <label className='form-label' htmlFor='released'>
-                Released
-              </label>
-            </div>
-            <div className='form-outline mb-4'>
-              <input
-                type='number'
-                id='duration'
-                name='duration'
-                className='form-control form-control-lg'
-                placeholder='Enter the duration of the movie'
-                value={inputData.duration}
-                onChange={onChange}
-              />
-              <label className='form-label' htmlFor='duration'>
-                Duration (in minutes)
-              </label>
-            </div>
-            {/* <div className="form-outline mb-4">
+    <div className='container'>
+      <div className='row'>
+        <div className='col-sm-9 col-md-7 col-lg-5 mx-auto'>
+          <div className='card border-0 shadow rounded-3 my-5'>
+            <div className='card-body p-4 p-sm-5'>
+              <form onSubmit={onSubmit}>
+                <p className='display-4 font-weight-light'>Create Movie</p>
+                {/* Username input */}
+                <div className='form-outline mb-4'>
+                  <input
+                    type='text'
+                    id='title'
+                    name='title'
+                    className='form-control form-control-lg'
+                    placeholder='Enter a valid title'
+                    value={inputData.title}
+                    onChange={onChange}
+                  />
+                  <label className='form-label' htmlFor='title'>
+                    Title
+                  </label>
+                </div>
+                <div className='form-outline mb-4'>
+                  <textarea
+                    type='text'
+                    id='plot'
+                    name='plot'
+                    className='form-control form-control-lg'
+                    placeholder='Enter a valid plot'
+                    value={inputData.plot}
+                    onChange={onChange}
+                    style={{ height: '200px' }}
+                  />
+                  <label className='form-label' htmlFor='plot'>
+                    Plot
+                  </label>
+                </div>
+                <div className='form-outline mb-4'>
+                  <input
+                    type='text'
+                    id='trailerUrl'
+                    name='trailerUrl'
+                    className='form-control form-control-lg'
+                    placeholder='Enter a valid embedded youtube video'
+                    value={inputData.trailerUrl}
+                    onChange={onChange}
+                  />
+                  <label className='form-label' htmlFor='trailerUrl'>
+                    Trailer Url
+                  </label>
+                  <a href='https://youtu.be/kiyi-C7NQrQ'> How to get?</a>
+                </div>
+                <div className='form-outline mb-4'>
+                  <input
+                    type='date'
+                    min='1900'
+                    max='2099'
+                    step='1'
+                    id='released'
+                    name='released'
+                    value={inputData.released}
+                    onChange={onChange}
+                    className='form-control form-control-lg'
+                    placeholder='Enter when was released'
+                  />
+                  <label className='form-label' htmlFor='released'>
+                    Released
+                  </label>
+                </div>
+                <div className='form-outline mb-4'>
+                  <input
+                    type='number'
+                    id='duration'
+                    name='duration'
+                    className='form-control form-control-lg'
+                    placeholder='Enter the duration of the movie'
+                    value={inputData.duration}
+                    onChange={onChange}
+                  />
+                  <label className='form-label' htmlFor='duration'>
+                    Duration (in minutes)
+                  </label>
+                </div>
+                {/* <div className="form-outline mb-4">
                             <input
                                 type="text"
                                 id="posterUrl"
@@ -192,215 +193,214 @@ export const CreateMovie = () => {
                                 Poster Url
                             </label>
                         </div> */}
-            <div className='mb-4'>
-              <input
-                className='form-control'
-                type='file'
-                name='poster'
-                onChange={onSelectFile}
-              />
-              <label htmlFor='formFile' className='form-label'>
-                Choose Poster
-              </label>
-            </div>
-            <div className='mb-1'>
-              {addedActors.map((x) => (
-                <AddedActor
-                  key={x}
-                  id={x}
-                  removeActor={removeActor}
-                  name={actors.filter((y) => y.id === x)[0].name}
-                />
-              ))}
-            </div>
-            <div className='form-outline mb-4'>
-              <input
-                type='text'
-                id='actors'
-                name='actors'
-                className='form-control form-control-lg'
-                placeholder='Enter a valid name'
-                onKeyUp={filterActors}
-              />
-              <label className='form-label' htmlFor='actors'>
-                Search for actors
-              </label>
-              {searchActors.length > 0 ? (
-                <div className='overflow-scroll scroll-box'>
-                  {searchActors.map((x) => (
-                    <ActorOption key={x.id} {...x} addActor={addActor} />
+                <div className='mb-4'>
+                  <input
+                    className='form-control'
+                    type='file'
+                    name='poster'
+                    onChange={onSelectFile}
+                  />
+                  <label htmlFor='formFile' className='form-label'>
+                    Choose Poster
+                  </label>
+                </div>
+                <div className='mb-1'>
+                  {addedActors.map((x) => (
+                    <AddedActor
+                      key={x}
+                      id={x}
+                      removeActor={removeActor}
+                      name={actors.filter((y) => y.id === x)[0].name}
+                    />
                   ))}
                 </div>
-              ) : null}
-            </div>
-            <h5>Genres</h5>
-            <div className='form-outline mb-4'>
-              <Option
-                name='Action'
-                element='1'
-                value={areChecked[1]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Adventure'
-                element='2'
-                value={areChecked[2]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Animated'
-                element='3'
-                value={areChecked[3]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Biology'
-                element='4'
-                value={areChecked[4]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Comedy'
-                element='5'
-                value={areChecked[5]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Crime'
-                element='6'
-                value={areChecked[6]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Detective'
-                element='7'
-                value={areChecked[7]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Family'
-                element='8'
-                value={areChecked[8]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Fantasy'
-                element='9'
-                value={areChecked[9]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='History'
-                element='10'
-                value={areChecked[10]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Horror'
-                element='11'
-                value={areChecked[11]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Indie'
-                element='12'
-                value={areChecked[12]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Melodrama'
-                element='13'
-                value={areChecked[13]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Musical'
-                element='14'
-                value={areChecked[14]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Mystery'
-                element='15'
-                value={areChecked[15]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Romance'
-                element='16'
-                value={areChecked[16]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Sci-Fi'
-                element='17'
-                value={areChecked[17]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Sports'
-                element='18'
-                value={areChecked[18]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Teen'
-                element='19'
-                value={areChecked[19]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Thriller'
-                element='20'
-                value={areChecked[20]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='War'
-                element='21'
-                value={areChecked[21]}
-                handler={onCheckboxChange}
-              />
-              <Option
-                name='Western'
-                element='22'
-                value={areChecked[22]}
-                handler={onCheckboxChange}
-              />
-            </div>
-            {error.active === true ? (
-              <div className='alert alert-danger fade show mt-3'>
-                <strong>Error!</strong> {error.message}
-              </div>
-            ) : null}
-            <div className='row'>
-              <div className='col-4'>
-                <div className='text-center text-lg-start mt-2 pt-2'>
-                  <button
-                    type='submit'
-                    className='btn btn-success btn-lg'
-                    style={{
-                      paddingLeft: '2.5rem',
-                      paddingRight: '2.5rem',
-                      backgroundColor: '#32CD32',
-                    }}
-                  >
-                    Create
-                  </button>
+                <div className='form-outline mb-4'>
+                  <input
+                    type='text'
+                    id='actors'
+                    name='actors'
+                    className='form-control form-control-lg'
+                    placeholder='Enter a valid name'
+                    onKeyUp={filterActors}
+                  />
+                  <label className='form-label' htmlFor='actors'>
+                    Search for actors
+                  </label>
+                  {searchActors.length > 0 ? (
+                    <div className='overflow-scroll scroll-box'>
+                      {searchActors.map((x) => (
+                        <ActorOption key={x.id} {...x} addActor={addActor} />
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
-              </div>
-              {isLoading && (
-                <div className='col'>
-                  <div className='spinner-border mt-4' role='status'>
-                    <span className='sr-only'>Loading...</span>
+                <h5>Genres</h5>
+                <div className='form-outline mb-4'>
+                  <Option
+                    name='Action'
+                    element='1'
+                    value={areChecked[1]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Adventure'
+                    element='2'
+                    value={areChecked[2]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Animated'
+                    element='3'
+                    value={areChecked[3]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Biology'
+                    element='4'
+                    value={areChecked[4]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Comedy'
+                    element='5'
+                    value={areChecked[5]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Crime'
+                    element='6'
+                    value={areChecked[6]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Detective'
+                    element='7'
+                    value={areChecked[7]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Family'
+                    element='8'
+                    value={areChecked[8]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Fantasy'
+                    element='9'
+                    value={areChecked[9]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='History'
+                    element='10'
+                    value={areChecked[10]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Horror'
+                    element='11'
+                    value={areChecked[11]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Indie'
+                    element='12'
+                    value={areChecked[12]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Melodrama'
+                    element='13'
+                    value={areChecked[13]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Musical'
+                    element='14'
+                    value={areChecked[14]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Mystery'
+                    element='15'
+                    value={areChecked[15]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Romance'
+                    element='16'
+                    value={areChecked[16]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Sci-Fi'
+                    element='17'
+                    value={areChecked[17]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Sports'
+                    element='18'
+                    value={areChecked[18]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Teen'
+                    element='19'
+                    value={areChecked[19]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Thriller'
+                    element='20'
+                    value={areChecked[20]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='War'
+                    element='21'
+                    value={areChecked[21]}
+                    handler={onCheckboxChange}
+                  />
+                  <Option
+                    name='Western'
+                    element='22'
+                    value={areChecked[22]}
+                    handler={onCheckboxChange}
+                  />
+                </div>
+                {error.active === true ? (
+                  <div className='alert alert-danger fade show mt-3'>
+                    <strong>Error!</strong> {error.message}
                   </div>
+                ) : null}
+                <div className='row'>
+                  <div className='col-4'>
+                    <div className='text-center text-lg-start mt-2 pt-2'>
+                      <button
+                        type='submit'
+                        className='btn btn-success btn-lg'
+                        style={{
+                          paddingLeft: '2.5rem',
+                          paddingRight: '2.5rem',
+                          backgroundColor: '#32CD32',
+                        }}
+                      >
+                        Create
+                      </button>
+                    </div>
+                  </div>
+                  {isLoading && (
+                    <div className='col'>
+                      <div className='spinner-border mt-4' role='status'>
+                        <span className='sr-only'>Loading...</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
+              </form>
             </div>
-          </form>
-        </div>
-        <div className='col-md-9 col-lg-6 col-xl-5'>
-          <img src={image} className='img-fluid' alt='Login img' />
+          </div>
         </div>
       </div>
     </div>
