@@ -14,6 +14,7 @@
     using static Infrastructure.Constants.CloudinaryFolderNames;
     using MovieHut.Features.Actors.Models;
     using MovieHut.Infrastructure.Objects;
+    using MovieHut.Features.Directors.Models;
 
     public class MoviesService : IMoviesService
     {
@@ -43,6 +44,7 @@
             DateTime released,
             IEnumerable<int> genresIds,
             IEnumerable<int> actorsIds,
+            IEnumerable<int> directorsIds,
             string userId)
         {
             var parts = posterUrl.Split(',');
@@ -87,7 +89,30 @@
                     MovieId = movie.Id,
                 });
 
-                actors.Add(new ActorListingServiceModel { Id = actorId, ImageUrl = actor.ImageUrl, Name = actor.Name });
+                actors.Add(new ActorListingServiceModel 
+                { 
+                    Id = actorId, 
+                    ImageUrl = actor.ImageUrl, 
+                    Name = actor.Name 
+                });
+            }
+
+            var directors = new List<DirectorsListingServiceModel>();
+            foreach (var directorId in directorsIds)
+            {
+                var director = await this.dbContext.Directors.FindAsync(directorId);
+                await this.dbContext.MoviesDirectors.AddAsync(new MovieDirector()
+                {
+                    DirectorId = directorId,
+                    MovieId = movie.Id,
+                });
+
+                directors.Add(new DirectorsListingServiceModel 
+                { 
+                    Id = directorId,
+                    ImageUrl = director.ImageUrl,
+                    Name = director.Name
+                });
             }
 
             await this.dbContext.Movies.AddAsync(movie);
@@ -95,6 +120,7 @@
 
             var responseModel = this.mapper.Map<CreateMovieResponseModel>(movie);
             responseModel.Actors = actors;
+            responseModel.Directors = directors;
 
             return responseModel;
         }

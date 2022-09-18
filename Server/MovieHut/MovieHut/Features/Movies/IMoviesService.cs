@@ -14,6 +14,7 @@
            DateTime released,
            IEnumerable<int> genresIds,
            IEnumerable<int> actorsIds,
+           IEnumerable<int> directorsIds,
            string userId);
 
         Task<IEnumerable<UserMoviesListingServiceModel>> GetUserMoviesAsync(string userId);
