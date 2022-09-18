@@ -1,5 +1,7 @@
 ﻿namespace MovieHut.Features.Movies.Models
 {
+    using MovieHut.Features.Actors.Models;
+
     public class CreateMovieResponseModel
     {
         public string Id { get; set; }
@@ -14,6 +16,6 @@
 
         public string UserId { get; set; }
 
-        public IEnumerable<int> ActorIds { get; set; }
+        public IEnumerable<ActorListingServiceModel> Actors { get; set; }
     }
 }

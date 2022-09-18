@@ -77,20 +77,24 @@
                 });
             }
 
+            var actors = new List<ActorListingServiceModel>();
             foreach (var actorId in actorsIds)
             {
+                var actor = await this.dbContext.Actors.FindAsync(actorId);
                 await this.dbContext.MoviesActors.AddAsync(new MovieActor()
                 {
                     ActorId = actorId,
                     MovieId = movie.Id,
                 });
+
+                actors.Add(new ActorListingServiceModel { Id = actorId, ImageUrl = actor.ImageUrl, Name = actor.Name });
             }
 
             await this.dbContext.Movies.AddAsync(movie);
             await this.dbContext.SaveChangesAsync();
 
             var responseModel = this.mapper.Map<CreateMovieResponseModel>(movie);
-            responseModel.ActorIds = actorsIds;
+            responseModel.Actors = actors;
 
             return responseModel;
         }
