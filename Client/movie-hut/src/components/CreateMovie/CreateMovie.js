@@ -7,8 +7,8 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { MovieContext } from '../../contexts/MovieContext';
 import { Option } from './Option/Option';
 import { ActorContext } from '../../contexts/ActorContext';
-import { ActorOption } from './ActorOption/ActorOption';
-import { AddedActor } from './AddedActor/AddedActor';
+import { CelebrityOption } from './CelebrityOption/CelebrityOption';
+import { AddedCelebrity } from './AddedCelebrity/AddedCelebrity';
 import { DirectorContext } from '../../contexts/DirectorContext';
 
 export const CreateMovie = () => {
@@ -113,7 +113,9 @@ export const CreateMovie = () => {
         inputData.genresIds = result.filter(function (item) {
             return typeof item === 'number';
         });
+        //Adding actorsIds and directorsIds
         inputData.actorsIds = addedActors;
+        inputData.directorsIds = addedDirectors;
         //Creating formdata for image request
         const formData = new FormData(e.target);
         formData.append('imageFile', imageData.imageFile);
@@ -256,12 +258,13 @@ export const CreateMovie = () => {
                                         Choose Poster
                                     </label>
                                 </div>
+                                {/* Actor search*/}
                                 <div className='mb-1'>
                                     {addedActors.map((x) => (
-                                        <AddedActor
+                                        <AddedCelebrity
                                             key={x}
                                             id={x}
-                                            removeActor={removeActor}
+                                            removeCelebrity={removeActor}
                                             name={actors.filter((y) => y.id === x)[0].name}
                                         />
                                     ))}
@@ -281,7 +284,38 @@ export const CreateMovie = () => {
                                     {searchActors.length > 0 ? (
                                         <div className='overflow-scroll scroll-box'>
                                             {searchActors.map((x) => (
-                                                <ActorOption key={x.id} {...x} addActor={addActor} />
+                                                <CelebrityOption key={x.id} {...x} addCelebrity={addActor} />
+                                            ))}
+                                        </div>
+                                    ) : null}
+                                </div>
+                                {/* Director search*/}
+                                <div className='mb-1'>
+                                    {addedDirectors.map((x) => (
+                                        <AddedCelebrity
+                                            key={x}
+                                            id={x}
+                                            removeCelebrity={removeDirector}
+                                            name={directors.filter((y) => y.id === x)[0].name}
+                                        />
+                                    ))}
+                                </div>
+                                <div className='form-outline mb-4'>
+                                    <input
+                                        type='text'
+                                        id='directors'
+                                        name='directors'
+                                        className='form-control form-control-lg'
+                                        placeholder='Enter a valid name'
+                                        onKeyUp={filterDirectors}
+                                    />
+                                    <label className='form-label' htmlFor='directors'>
+                                        Search for directors
+                                    </label>
+                                    {searchDirectors.length > 0 ? (
+                                        <div className='overflow-scroll scroll-box'>
+                                            {searchDirectors.map((x) => (
+                                                <CelebrityOption key={x.id} {...x} addCelebrity={addDirector} />
                                             ))}
                                         </div>
                                     ) : null}
