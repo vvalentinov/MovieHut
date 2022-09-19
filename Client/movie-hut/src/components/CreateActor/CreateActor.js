@@ -21,8 +21,7 @@ export const CreateActor = () => {
     });
 
     const [errors, setErrors] = useState({
-        name: false,
-        imageFile: false
+        name: false
     })
 
     const onChange = (e) => {

@@ -16,6 +16,10 @@ export const CreateDirector = () => {
         imageUrl: "",
     });
 
+    const [errors, setErrors] = useState({
+        name: false
+    })
+
     const [imageData, setImageData] = useState({
         imageFile: '',
     });
@@ -61,6 +65,12 @@ export const CreateDirector = () => {
                 setError({ active: true, message: err.message });
             });
     };
+    
+    //Validation
+    const nameValidator = (e) => {
+        setErrors(state => ({ ...state, [e.target.name]: inputData.name.length < 3 }))
+    }
+    const isValidForm = !Object.values(errors).some(x => x);
     return (
         <div className="container">
             <div className="row">
@@ -74,7 +84,7 @@ export const CreateDirector = () => {
                                 encType='multipart/form-data'
                                 onSubmit={onSubmit}
                                 method='post'>
-                                <div className="form-outline mb-4">
+                                <div className="form-outline">
                                     <input
                                         type="text"
                                         id="name"
@@ -83,11 +93,23 @@ export const CreateDirector = () => {
                                         placeholder="Enter a valid name"
                                         value={inputData.name}
                                         onChange={onChange}
+                                        onBlur={(e) => nameValidator(e)}
                                     />
                                     <label className="form-label" htmlFor="title">
                                         Name
                                     </label>
                                 </div>
+                                {/* Alert */}
+                                {errors.name &&
+                                    <div
+                                        className="alert alert-danger d-flex align-items-center"
+                                        role="alert"
+                                    >
+                                        <i className="fa-solid fa-triangle-exclamation me-2" />
+                                        <div className="text-center">
+                                            Please provide a valid name.
+                                        </div>
+                                    </div>}
                                 <div className="mb-4">
                                     <input className="form-control" type="file" name="image" onChange={onSelectFile} />
                                     <label htmlFor="formFile" className="form-label">
@@ -105,6 +127,7 @@ export const CreateDirector = () => {
                                                 type="submit"
                                                 className="btn btn-success btn-lg"
                                                 style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem", backgroundColor: "#32CD32" }}
+                                                disabled={!isValidForm || (!inputData.name || !imageData.imageFile)}
                                             >
                                                 Create
                                             </button>
