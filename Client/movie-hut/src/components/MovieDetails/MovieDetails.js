@@ -2,7 +2,7 @@ import './MovieDetails.css'
 import { useNavigate, useParams } from "react-router-dom";
 import { useMovie } from "../../hooks/useMovie";
 import image from '../../images/background.jpg'
-import { ActorCard } from './ActorCard/Actor';
+import { CelebrityCard } from './CelebrityCard/CelebrityCard';
 import * as movieService from '../../services/movieService';
 import { useOwner } from '../../hooks/useOwner';
 import { useContext } from 'react';
@@ -65,8 +65,14 @@ export const MovieDetails = () => {
                             <hr />
                             <p>{movie?.genres.join(', ')}</p>
                             <hr />
+                            <h4>Actors</h4>
                             <div className='row gy-3'>
-                                {movie?.actors?.map(x => <ActorCard key={x.id} {...x} />)}
+                                {movie?.actors?.map(x => <CelebrityCard key={x.id} {...x} route='actors'/>)}
+                            </div>
+                            <hr />
+                            <h4>Directors</h4>
+                            <div className='row gy-3'>
+                                {movie?.directors?.map(x => <CelebrityCard key={x.id} {...x} route='directors'/>)}
                             </div>
                         </div>
                     </div>
