@@ -27,6 +27,7 @@ import { Directors } from './components/Directors/Directors';
 import { CreateDirector } from './components/CreateDirector/CreateDirector';
 import { DirectorProvider } from './contexts/DirectorContext';
 import { DirectorDetails } from './components/DirectorDetails/DirectorDetails';
+import { EditActor } from './components/EditActor/EditActor';
 
 function App() {
     return (
@@ -47,6 +48,7 @@ function App() {
                                 <Route path='/genres/all' element={<Genres />} />
                                 <Route path='/actors/all' element={<Actors />} />
                                 <Route path='/actors/details/:actorId' element={<ActorDetails />} />
+                                <Route path='/actors/edit/:actorId' element={<EditActor />} />
                                 <Route path='/actors/create' element={<CreateActor />} />
                                 <Route path='/directors/all' element={<Directors />} />
                                 <Route path='/directors/details/:directorId' element={<DirectorDetails />} />
