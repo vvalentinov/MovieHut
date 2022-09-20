@@ -11,6 +11,7 @@ export const CreateActor = () => {
     const navigate = useNavigate();
     const [error, setError] = useState({ active: false, message: '' });
     const [isLoading, setIsLoading] = useState(false);
+    const [visualizationImageUrl, setVisualizationImageUrl] = useState('');
     const [inputData, setInputData] = useState({
         name: '',
         imageUrl: '',
@@ -30,6 +31,10 @@ export const CreateActor = () => {
 
     const onSelectFile = (e) => {
         setImageData((state) => ({ ...state, imageFile: e.target.files[0] }));
+        //Creating local image url for visualization
+        if (e.target.files[0]) {
+            setVisualizationImageUrl(URL.createObjectURL(e.target.files[0]));
+        }
     };
 
     const onSubmit = (e) => {
@@ -124,6 +129,11 @@ export const CreateActor = () => {
                                         <strong>Error!</strong> {error.message}
                                     </div>
                                 ) : null}
+                                {visualizationImageUrl &&
+                                    <>
+                                        <img className='img-fluid' src={visualizationImageUrl} alt='actor img' style={{ height: 300 }} />
+                                    </>
+                                }
                                 {/* Button */}
                                 <div className='row'>
                                     <div className='col-4'>
