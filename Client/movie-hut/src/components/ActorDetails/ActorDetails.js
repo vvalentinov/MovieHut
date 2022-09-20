@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useActor } from "../../hooks/useActor";
 import { useOwner } from "../../hooks/useOwner";
 import { ActorDetailsCard } from "./ActorDetailsCard/ActorDetailsCard";
@@ -38,6 +38,14 @@ export const ActorDetails = () => {
                             >
                                 Delete
                             </button>: null}
+                            {isOwner ? <Link
+                                className="btn btn-outline-light"
+                                style={{ backgroundColor: "#32CD32" }}
+                                to = {`/actors/edit/${actorId}`}
+                                type="button"
+                            >
+                                Edit
+                            </Link>: null}
                         </div>
                         <div className="col">
                             <h1>{actor?.name}</h1>
