@@ -16,6 +16,7 @@ export const CreateMovie = () => {
     const navigate = useNavigate();
     const [error, setError] = useState({ active: false, message: '' });
     const { create } = useContext(MovieContext);
+    const [visualizationImageUrl, setVisualizationImageUrl] = useState('');
     const [inputData, setInputData] = useState({
         title: '',
         plot: '',
@@ -100,6 +101,12 @@ export const CreateMovie = () => {
 
     const onSelectFile = (e) => {
         setImageData((state) => ({ ...state, imageFile: e.target.files[0] }));
+        //Creating local image url for visualization
+        if (e.target.files[0]) {
+            setVisualizationImageUrl(URL.createObjectURL(e.target.files[0]));
+        }else{
+            setVisualizationImageUrl('');
+        }
     };
 
     const onSubmit = (e) => {
@@ -158,7 +165,7 @@ export const CreateMovie = () => {
                                     Create Movie
                                 </h1>
                                 {/* Username input */}
-                                <div className='form-outline mb-4'>
+                                <div className='form-outline'>
                                     <input
                                         type='text'
                                         id='title'
@@ -172,7 +179,7 @@ export const CreateMovie = () => {
                                         Title
                                     </label>
                                 </div>
-                                <div className='form-outline mb-4'>
+                                <div className='form-outline'>
                                     <textarea
                                         type='text'
                                         id='plot'
@@ -187,7 +194,7 @@ export const CreateMovie = () => {
                                         Plot
                                     </label>
                                 </div>
-                                <div className='form-outline mb-4'>
+                                <div className='form-outline'>
                                     <input
                                         type='text'
                                         id='trailerUrl'
@@ -202,7 +209,7 @@ export const CreateMovie = () => {
                                     </label>
                                     <a href='https://youtu.be/kiyi-C7NQrQ'> How to get?</a>
                                 </div>
-                                <div className='form-outline mb-4'>
+                                <div className='form-outline'>
                                     <input
                                         type='date'
                                         min='1900'
@@ -219,7 +226,7 @@ export const CreateMovie = () => {
                                         Released
                                     </label>
                                 </div>
-                                <div className='form-outline mb-4'>
+                                <div className='form-outline'>
                                     <input
                                         type='number'
                                         id='duration'
@@ -247,7 +254,7 @@ export const CreateMovie = () => {
                                 Poster Url
                             </label>
                         </div> */}
-                                <div className='mb-4'>
+                                <div>
                                     <input
                                         className='form-control'
                                         type='file'
@@ -258,6 +265,11 @@ export const CreateMovie = () => {
                                         Choose Poster
                                     </label>
                                 </div>
+                                {visualizationImageUrl &&
+                                    <>
+                                        <img className='img-fluid' src={visualizationImageUrl} alt='actor img' style={{ height: 300 }} />
+                                    </>
+                                }
                                 {/* Actor search*/}
                                 <div className='mb-1'>
                                     {addedActors.map((x) => (
@@ -269,7 +281,7 @@ export const CreateMovie = () => {
                                         />
                                     ))}
                                 </div>
-                                <div className='form-outline mb-4'>
+                                <div className='form-outline'>
                                     <input
                                         type='text'
                                         id='actors'
@@ -300,7 +312,7 @@ export const CreateMovie = () => {
                                         />
                                     ))}
                                 </div>
-                                <div className='form-outline mb-4'>
+                                <div className='form-outline'>
                                     <input
                                         type='text'
                                         id='directors'
