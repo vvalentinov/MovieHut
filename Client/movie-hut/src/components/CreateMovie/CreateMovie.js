@@ -60,7 +60,7 @@ export const CreateMovie = () => {
             );
         }
     };
-    
+
     //Directors
     const { directors } = useContext(DirectorContext);
     const [searchDirectors, setSearchDirectors] = useState([]);
@@ -104,7 +104,7 @@ export const CreateMovie = () => {
         //Creating local image url for visualization
         if (e.target.files[0]) {
             setVisualizationImageUrl(URL.createObjectURL(e.target.files[0]));
-        }else{
+        } else {
             setVisualizationImageUrl('');
         }
     };
@@ -209,6 +209,13 @@ export const CreateMovie = () => {
                                     </label>
                                     <a href='https://youtu.be/kiyi-C7NQrQ'> How to get?</a>
                                 </div>
+                                {inputData.trailerUrl &&
+                                    <iframe
+                                        style={{ height: 200, width: '100%' }}
+                                        src={inputData.trailerUrl}
+                                        allowFullScreen
+                                    />
+                                }
                                 <div className='form-outline'>
                                     <input
                                         type='date'
