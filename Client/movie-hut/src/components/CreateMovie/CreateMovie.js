@@ -138,7 +138,7 @@ export const CreateMovie = () => {
                         create(res);
                         //Stop spinner
                         setIsLoading(false);
-                        navigate('/movies/all');
+                        navigate(`/movies/details/${res.id}`);
                     })
                     .catch((err) => {
                         setError({ active: true, message: err.message });
