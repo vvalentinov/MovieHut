@@ -35,6 +35,8 @@ export const CreateDirector = () => {
         //Creating local image url for visualization
         if (e.target.files[0]) {
             setVisualizationImageUrl(URL.createObjectURL(e.target.files[0]));
+        }else{
+            setVisualizationImageUrl('');
         }
     };
     
@@ -115,7 +117,7 @@ export const CreateDirector = () => {
                                             Please provide a valid name.
                                         </div>
                                     </div>}
-                                <div className="mb-4">
+                                <div>
                                     <input className="form-control" type="file" name="image" onChange={onSelectFile} />
                                     <label htmlFor="formFile" className="form-label">
                                         Choose Image

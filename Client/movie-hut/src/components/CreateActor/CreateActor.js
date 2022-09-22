@@ -34,6 +34,8 @@ export const CreateActor = () => {
         //Creating local image url for visualization
         if (e.target.files[0]) {
             setVisualizationImageUrl(URL.createObjectURL(e.target.files[0]));
+        }else{
+            setVisualizationImageUrl('');
         }
     };
 
