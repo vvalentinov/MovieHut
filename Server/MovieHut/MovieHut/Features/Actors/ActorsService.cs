@@ -7,33 +7,24 @@
     using MovieHut.Features.Actors.Models;
     using MovieHut.Features.Movies;
     using MovieHut.Features.Movies.Models;
-    using MovieHut.Infrastructure.Services.Contracts;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using static Infrastructure.Constants.CloudinaryFolderNames;
     using static Infrastructure.ErrorMessages.ServicesErrors.ActorsServiceErrors;
-    using static Infrastructure.ErrorMessages.ModelsValidationErrors.MovieErrors;
     using MovieHut.Infrastructure.Objects;
 
     public class ActorsService : IActorsService
     {
         private readonly MovieHutDbContext dbContext;
         private readonly IMoviesService moviesService;
-        private readonly ICloudinaryService cloudinaryService;
-        private readonly IBase64ToImageService base64ToImageService;
         private readonly IMapper mapper;
 
         public ActorsService(
             MovieHutDbContext dbContext,
             IMoviesService moviesService,
-            ICloudinaryService cloudinaryService,
-            IBase64ToImageService base64ToImageService,
             IMapper mapper)
         {
             this.dbContext = dbContext;
             this.moviesService = moviesService;
-            this.cloudinaryService = cloudinaryService;
-            this.base64ToImageService = base64ToImageService;
             this.mapper = mapper;
         }
 
@@ -114,22 +105,6 @@
                     }
                 };
             }
-
-            var parts = imageUrl.Split(',');
-            var extension = parts[0].Split('/')[1].Split(';')[0];
-            var posterFile = this.base64ToImageService.Base64ToImage(parts[1], name);
-
-            if (extension != "png" && extension != "jpg" && extension != "jpeg")
-            {
-                throw new InvalidOperationException(InvalidPosterExtensionError);
-            }
-
-            string publicId = this.cloudinaryService.GetPublicId(actor.ImageUrl);
-
-            imageUrl = await this.cloudinaryService.UploadImageAsync(
-                posterFile,
-                ActorsFolder,
-                publicId);
 
             actor.Name = name;
             actor.ImageUrl = imageUrl;

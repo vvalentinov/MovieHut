@@ -17,7 +17,7 @@
 
         public string GetPublicId(string url)
         {
-            var publicId = url[(url.LastIndexOf('/')+1)..url.LastIndexOf('.')];
+            var publicId = url[(url.LastIndexOf('/') + 1)..url.LastIndexOf('.')];
 
             return publicId;
         }
@@ -34,6 +34,7 @@
             {
                 File = new FileDescription(imageFile.FileName, stream),
                 Folder = folderName,
+                // Invalidate = true,
             };
 
             if (publicId != null)

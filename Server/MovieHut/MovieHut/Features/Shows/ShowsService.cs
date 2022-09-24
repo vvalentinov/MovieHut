@@ -13,7 +13,6 @@
     using System.Threading.Tasks;
     using static Infrastructure.ErrorMessages.ServicesErrors.ShowsServiceErrors;
 
-
     public class ShowsService : IShowsService
     {
         private readonly MovieHutDbContext dbContext;

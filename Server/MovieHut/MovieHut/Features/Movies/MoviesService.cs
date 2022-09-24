@@ -5,13 +5,10 @@
     using MovieHut.Data;
     using MovieHut.Data.Models;
     using MovieHut.Features.Movies.Models;
-    using MovieHut.Infrastructure.Services.Contracts;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using static Infrastructure.ErrorMessages.ServicesErrors.MoviesServiceErrors;
-    using static Infrastructure.ErrorMessages.ModelsValidationErrors.MovieErrors;
-    using static Infrastructure.Constants.CloudinaryFolderNames;
     using MovieHut.Features.Actors.Models;
     using MovieHut.Infrastructure.Objects;
     using MovieHut.Features.Directors.Models;
@@ -20,19 +17,12 @@
     {
         private readonly MovieHutDbContext dbContext;
         private readonly IMapper mapper;
-        private readonly ICloudinaryService cloudinaryService;
-        private readonly IBase64ToImageService base64ToImageService;
 
         public MoviesService(
-            MovieHutDbContext dbContext,
-            IMapper mapper,
-            ICloudinaryService cloudinaryService,
-            IBase64ToImageService base64ToImageService)
+            MovieHutDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
-            this.cloudinaryService = cloudinaryService;
-            this.base64ToImageService = base64ToImageService;
         }
 
         public async Task<CreateMovieResponseModel> CreateMovieAsync(
@@ -205,22 +195,6 @@
                     }
                 };
             }
-
-            var parts = posterUrl.Split(',');
-            var extension = parts[0].Split('/')[1].Split(';')[0];
-            var posterFile = this.base64ToImageService.Base64ToImage(parts[1], title);
-
-            if (extension != "png" && extension != "jpg" && extension != "jpeg")
-            {
-                throw new InvalidOperationException(InvalidPosterExtensionError);
-            }
-
-            string publicId = this.cloudinaryService.GetPublicId(movie.PosterUrl);
-
-            posterUrl = await this.cloudinaryService.UploadImageAsync(
-                posterFile,
-                MoviesFolder,
-                publicId);
 
             movie.Title = title;
             movie.Plot = plot;

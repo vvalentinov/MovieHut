@@ -81,7 +81,6 @@
             services.AddTransient<IMoviesService, MoviesService>();
             services.AddTransient<IActorsService, ActorsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
-            services.AddTransient<IBase64ToImageService, Base64ToImageService>();
             services.AddTransient<IDirectorsService, DirectorsService>();
             services.AddTransient<IShowsService, ShowsService>();
 

@@ -18,21 +18,15 @@
     public class DirectorsService : IDirectorsService
     {
         private readonly MovieHutDbContext dbContext;
-        private readonly IBase64ToImageService base64ToImageService;
-        private readonly ICloudinaryService cloudinaryService;
         private readonly IMoviesService moviesService;
         private readonly IMapper mapper;
 
         public DirectorsService(
             MovieHutDbContext dbContext,
-            IBase64ToImageService base64ToImageService,
-            ICloudinaryService cloudinaryService,
             IMoviesService moviesService,
             IMapper mapper)
         {
             this.dbContext = dbContext;
-            this.base64ToImageService = base64ToImageService;
-            this.cloudinaryService = cloudinaryService;
             this.moviesService = moviesService;
             this.mapper = mapper;
         }
@@ -114,22 +108,6 @@
                     }
                 };
             }
-
-            var parts = imageUrl.Split(',');
-            var extension = parts[0].Split('/')[1].Split(';')[0];
-            var posterFile = this.base64ToImageService.Base64ToImage(parts[1], name);
-
-            if (extension != "png" && extension != "jpg" && extension != "jpeg")
-            {
-                throw new InvalidOperationException(InvalidPosterExtensionError);
-            }
-
-            string publicId = this.cloudinaryService.GetPublicId(director.ImageUrl);
-
-            imageUrl = await this.cloudinaryService.UploadImageAsync(
-                posterFile,
-                DirectorsFolder,
-                publicId);
 
             director.Name = name;
             director.ImageUrl = imageUrl;
