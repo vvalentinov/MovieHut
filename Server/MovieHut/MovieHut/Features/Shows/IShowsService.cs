@@ -15,5 +15,7 @@
            IEnumerable<int> actorsIds,
            IEnumerable<int> directorsIds,
            string userId);
+
+        Task<IEnumerable<ShowListingServiceModel>> GetShowsAsync();
     }
 }

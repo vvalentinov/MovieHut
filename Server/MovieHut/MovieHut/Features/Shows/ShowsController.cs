@@ -59,5 +59,14 @@
 
             return CreatedAtAction(nameof(Create), show);
         }
+
+        [HttpGet]
+        [Route(GetAllRoute)]
+        public async Task<IEnumerable<ShowListingServiceModel>> All()
+        {
+            var shows = await this.showsService.GetShowsAsync();
+
+            return shows;
+        }
     }
 }

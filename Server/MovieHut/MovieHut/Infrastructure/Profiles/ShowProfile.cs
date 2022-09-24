@@ -9,6 +9,8 @@
         public ShowProfile()
         {
             CreateMap<Show, CreateShowResponseModel>();
+
+            CreateMap<Show, ShowListingServiceModel>();
         }
     }
 }
