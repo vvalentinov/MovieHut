@@ -56,38 +56,39 @@ export const EditActor = () => {
 
         const formData = new FormData(e.target);
         formData.append('imageFile', imageData.imageFile);
+        formData.append('folderName', 'Actors');
+        formData.append('url', inputData.imageUrl);
         if (imageData.imageFile) {
-            //ToDo update the image
-            // imageService
-            //     .update(formData, 'Actors')
-            //     .then((imgRes) => {
-            //         //Creating new actor
-            //         actorService
-            //             .edit({ ...inputData, id: actorId })
-            //             .then((res) => {
-            //                 //Add to context
-            //                 create(res);
-            //                 //Stop spinner
-            //                 setIsLoading(false);
-            //                 navigate('/actors/all');
-            //             })
-            //             .catch((err) => {
-            //                 //Stop spinner
-            //                 setIsLoading(false);
-            //                 setError({ active: true, message: err.message });
-            //             });
-            //     })
-            //     .catch((err) => {
-            //         //Stop spinner
-            //         setIsLoading(false);
-            //         setError({ active: true, message: err.message });
-            //     });
+            imageService
+                .update(formData)
+                .then((imgRes) => {
+                    //Creating new actor
+                    actorService
+                        .edit({ ...inputData, id: actorId })
+                        .then((res) => {
+                            //Add to context
+                            //create(res);
+                            //Stop spinner
+                            setIsLoading(false);
+                            navigate(`/actors/details/${actorId}`);
+                        })
+                        .catch((err) => {
+                            //Stop spinner
+                            setIsLoading(false);
+                            setError({ active: true, message: err.message });
+                        });
+                })
+                .catch((err) => {
+                    //Stop spinner
+                    setIsLoading(false);
+                    setError({ active: true, message: err.message });
+                });
         } else {
             actorService
                 .edit({ ...inputData, id: actorId })
                 .then((res) => {
                     //Add to context
-                    create(res);
+                    //create(res);
                     //Stop spinner
                     setIsLoading(false);
                     navigate(`/actors/details${actorId}`);

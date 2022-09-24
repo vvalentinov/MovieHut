@@ -17,7 +17,7 @@
 
         public string GetPublicId(string url)
         {
-            var publicId = url[url.LastIndexOf('/')..url.LastIndexOf('.')];
+            var publicId = url[(url.LastIndexOf('/')+1)..url.LastIndexOf('.')];
 
             return publicId;
         }

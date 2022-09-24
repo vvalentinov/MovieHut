@@ -44,3 +44,4 @@ const createErrorMessage = (errors) => {
     return result;
 };
 export const post = imageRequester.bind({}, 'POST');
+export const put = imageRequester.bind({}, 'PUT');
