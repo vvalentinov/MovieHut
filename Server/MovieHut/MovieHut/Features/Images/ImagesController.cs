@@ -17,9 +17,9 @@
         [HttpPost]
         [Authorize]
         [Route("addImage")]
-        public async Task<ImageResponseModel> AddImage(IFormFile imageFile, string folderName)
+        public async Task<ImageResponseModel> AddImage([FromForm]ImageRequestModel model)
         {
-            var url = await this.cloudinaryService.UploadImageAsync(imageFile, folderName);
+            var url = await this.cloudinaryService.UploadImageAsync(model.ImageFile, model.FolderName);
 
             var responseModel = new ImageResponseModel() { ImageUrl = url };
 
