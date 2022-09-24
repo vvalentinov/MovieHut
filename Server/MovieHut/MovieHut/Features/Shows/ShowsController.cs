@@ -7,6 +7,7 @@
     using static Infrastructure.Constants.RouteNames;
     using MovieHut.Infrastructure.Services.Contracts;
     using MovieHut.Features.Shows.Models;
+    using static MovieHut.Features.SuccessMessages.ShowsSuccessMessages;
 
     public class ShowsController : ApiController
     {
@@ -93,6 +94,25 @@
             }
 
             return result.ShowDetails;
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [Route(SpecificIdRoute)]
+        public async Task<ActionResult> Delete(string id)
+        {
+            var userId = this.currentUserService.GetId();
+
+            var result = await this.showsService.DeleteAsync(id, userId);
+
+            if (result.Failed)
+            {
+                return BadRequest(result);
+            }
+
+            result.SuccessMessage = DeleteShowSuccess;
+
+            return Ok(result);
         }
     }
 }

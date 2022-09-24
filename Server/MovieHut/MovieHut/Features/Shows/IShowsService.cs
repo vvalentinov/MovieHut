@@ -22,5 +22,7 @@
         Task<IEnumerable<UserShowsListingServiceModel>> GetUserShowsAsync(string userId);
 
         Task<Result> GetShowDetailsAsync(string showId);
+
+        Task<Result> DeleteAsync(string id, string userId);
     }
 }

@@ -169,5 +169,26 @@
 
             return showModel;
         }
+
+        public async Task<Result> DeleteAsync(string id, string userId)
+        {
+            var show = await this.GetShowByIdAndByUserIdAsync(id, userId);
+
+            if (show == null)
+            {
+                return new ErrorResult() { Messages = new string[] { DeleteShowError } };
+            }
+
+            this.dbContext.Shows.Remove(show);
+
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        private async Task<Show> GetShowByIdAndByUserIdAsync(string showId, string userId)
+        {
+            return await this.dbContext.Shows.FirstOrDefaultAsync(x => x.Id == showId && x.UserId == userId);
+        }
     }
 }
