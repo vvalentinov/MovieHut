@@ -80,5 +80,19 @@
 
             return shows;
         }
+
+        [HttpGet]
+        [Route(SpecificIdRoute)]
+        public async Task<ActionResult<ShowDetailsServiceModel>> GetShowDetails(string id)
+        {
+            var result = await this.showsService.GetShowDetailsAsync(id);
+
+            if (result.Failed)
+            {
+                return BadRequest(result);
+            }
+
+            return result.ShowDetails;
+        }
     }
 }

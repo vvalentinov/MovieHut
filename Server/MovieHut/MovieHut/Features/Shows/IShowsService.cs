@@ -1,6 +1,7 @@
 ﻿namespace MovieHut.Features.Shows
 {
     using MovieHut.Features.Shows.Models;
+    using MovieHut.Infrastructure.Objects;
 
     public interface IShowsService
     {
@@ -19,5 +20,7 @@
         Task<IEnumerable<ShowListingServiceModel>> GetShowsAsync();
 
         Task<IEnumerable<UserShowsListingServiceModel>> GetUserShowsAsync(string userId);
+
+        Task<Result> GetShowDetailsAsync(string showId);
     }
 }

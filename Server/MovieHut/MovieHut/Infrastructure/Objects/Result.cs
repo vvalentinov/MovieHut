@@ -3,6 +3,7 @@
     using MovieHut.Features.Actors.Models;
     using MovieHut.Features.Directors.Models;
     using MovieHut.Features.Movies.Models;
+    using MovieHut.Features.Shows.Models;
 
     public class Result
     {
@@ -15,6 +16,8 @@
         public string SuccessMessage { get; set; }
 
         public MovieDetailsServiceModel MovieDetails { get; private set; }
+
+        public ShowDetailsServiceModel ShowDetails { get; set; }
 
         public ActorDetailsServiceModel ActorDetails { get; private set; }
 
@@ -33,6 +36,11 @@
         public static implicit operator Result(MovieDetailsServiceModel movieDetailsModel)
         {
             return new Result { MovieDetails = movieDetailsModel, Succeeded = true };
+        }
+
+        public static implicit operator Result(ShowDetailsServiceModel showDetailsModel)
+        {
+            return new Result { ShowDetails = showDetailsModel, Succeeded = true };
         }
 
         public static implicit operator Result(ActorDetailsServiceModel actorDetailsModel)

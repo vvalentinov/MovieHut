@@ -13,6 +13,8 @@
             CreateMap<Show, ShowListingServiceModel>();
 
             CreateMap<Show, UserShowsListingServiceModel>();
+
+            CreateMap<Show, ShowDetailsServiceModel>();
         }
     }
 }

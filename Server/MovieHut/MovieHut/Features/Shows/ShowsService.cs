@@ -7,9 +7,12 @@
     using MovieHut.Features.Actors.Models;
     using MovieHut.Features.Directors.Models;
     using MovieHut.Features.Shows.Models;
+    using MovieHut.Infrastructure.Objects;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using static Infrastructure.ErrorMessages.ServicesErrors.ShowsServiceErrors;
+
 
     public class ShowsService : IShowsService
     {
@@ -141,6 +144,30 @@
             var showsModels = this.mapper.Map<List<UserShowsListingServiceModel>>(shows);
 
             return showsModels;
+        }
+
+        public async Task<Result> GetShowDetailsAsync(string showId)
+        {
+            var show = await this.dbContext.Shows.FindAsync(showId);
+
+            if (show == null)
+            {
+                return new ErrorResult() { Messages = new string[] { ShowDetailsError } };
+            }
+
+            var showModel = this.mapper.Map<ShowDetailsServiceModel>(show);
+            showModel.Genres = await this.GetShowGenresByShowIdAsync(showId);
+            showModel.Actors = await this.dbContext.ShowsActors
+                    .Where(x => x.ShowId == showModel.Id)
+                    .Select(x => new ActorListingServiceModel()
+                    {
+                        Id = x.Actor.Id,
+                        ImageUrl = x.Actor.ImageUrl,
+                        Name = x.Actor.Name,
+                    })
+                    .ToListAsync();
+
+            return showModel;
         }
     }
 }
