@@ -27,5 +27,7 @@
         public const string GenresError = "You must select at least one genre!";
 
         public const string ActorsError = "You must select at least one actor!";
+
+        public const string DirectorsError = "You must select at least one director!";
     }
 }

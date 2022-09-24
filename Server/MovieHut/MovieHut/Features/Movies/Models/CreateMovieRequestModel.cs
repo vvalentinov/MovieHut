@@ -39,7 +39,7 @@
         [NotNullOrEmptyIntegerCollection(ErrorMessage = ActorsError)]
         public IEnumerable<int> ActorsIds { get; set; }
 
-        [NotNullOrEmptyIntegerCollection(ErrorMessage = ActorsError)]
+        [NotNullOrEmptyIntegerCollection(ErrorMessage = DirectorsError)]
         public IEnumerable<int> DirectorsIds { get; set; }
     }
 }
