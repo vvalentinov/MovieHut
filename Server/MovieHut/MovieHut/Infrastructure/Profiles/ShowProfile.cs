@@ -11,6 +11,8 @@
             CreateMap<Show, CreateShowResponseModel>();
 
             CreateMap<Show, ShowListingServiceModel>();
+
+            CreateMap<Show, UserShowsListingServiceModel>();
         }
     }
 }

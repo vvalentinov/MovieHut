@@ -68,5 +68,17 @@
 
             return shows;
         }
+
+        [HttpGet]
+        [Authorize]
+        [Route(GetUserObjectsRoute)]
+        public async Task<IEnumerable<UserShowsListingServiceModel>> GetUserShows()
+        {
+            var userId = this.currentUserService.GetId();
+
+            var shows = await this.showsService.GetUserShowsAsync(userId);
+
+            return shows;
+        }
     }
 }

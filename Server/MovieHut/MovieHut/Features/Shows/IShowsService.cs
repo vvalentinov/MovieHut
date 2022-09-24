@@ -17,5 +17,7 @@
            string userId);
 
         Task<IEnumerable<ShowListingServiceModel>> GetShowsAsync();
+
+        Task<IEnumerable<UserShowsListingServiceModel>> GetUserShowsAsync(string userId);
     }
 }

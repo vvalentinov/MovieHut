@@ -133,5 +133,14 @@
                 .Select(x => x.Genre.Name)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<UserShowsListingServiceModel>> GetUserShowsAsync(string userId)
+        {
+            var shows = await this.dbContext.Shows.Where(x => x.UserId == userId).ToListAsync();
+
+            var showsModels = this.mapper.Map<List<UserShowsListingServiceModel>>(shows);
+
+            return showsModels;
+        }
     }
 }
