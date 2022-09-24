@@ -200,7 +200,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Actors");
+                    b.ToTable("Actors", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.Director", b =>
@@ -248,7 +248,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Directors");
+                    b.ToTable("Directors", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.Genre", b =>
@@ -265,7 +265,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
 
                     b.HasData(
                         new
@@ -438,7 +438,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movies", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.MovieActor", b =>
@@ -462,7 +462,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MoviesActors");
+                    b.ToTable("MoviesActors", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.MovieDirector", b =>
@@ -486,7 +486,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MoviesDirectors");
+                    b.ToTable("MoviesDirectors", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.MovieGenre", b =>
@@ -510,7 +510,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MoviesGenres");
+                    b.ToTable("MoviesGenres", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.Show", b =>
@@ -571,7 +571,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Shows");
+                    b.ToTable("Shows", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.ShowActor", b =>
@@ -595,7 +595,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("ShowId");
 
-                    b.ToTable("ShowsActors");
+                    b.ToTable("ShowsActors", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.ShowDirector", b =>
@@ -619,7 +619,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("ShowId");
 
-                    b.ToTable("ShowsDirectors");
+                    b.ToTable("ShowsDirectors", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.ShowGenre", b =>
@@ -643,7 +643,7 @@ namespace MovieHut.Data.Migrations
 
                     b.HasIndex("ShowId");
 
-                    b.ToTable("ShowsGenres");
+                    b.ToTable("ShowsGenres", (string)null);
                 });
 
             modelBuilder.Entity("MovieHut.Data.Models.User", b =>

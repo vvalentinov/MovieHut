@@ -13,5 +13,11 @@
             public const int MinPlotLength = 100;
             public const int MaxPlotLength = 2000;
         }
+
+        public class Show
+        {
+            public const int MinSeasonsCount = 1;
+            public const int MaxSeasonsCount = 40;
+        }
     }
 }
