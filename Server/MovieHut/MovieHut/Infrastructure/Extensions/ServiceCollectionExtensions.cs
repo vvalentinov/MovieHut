@@ -11,6 +11,7 @@
     using MovieHut.Features.Directors;
     using MovieHut.Features.Identity;
     using MovieHut.Features.Movies;
+    using MovieHut.Features.Shows;
     using MovieHut.Infrastructure.Services.Contracts;
     using MovieHut.Infrastructure.Services.Models;
     using System.Text;
@@ -82,6 +83,7 @@
             services.AddTransient<ICloudinaryService, CloudinaryService>();
             services.AddTransient<IBase64ToImageService, Base64ToImageService>();
             services.AddTransient<IDirectorsService, DirectorsService>();
+            services.AddTransient<IShowsService, ShowsService>();
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
