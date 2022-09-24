@@ -25,5 +25,22 @@
 
             return responseModel;
         }
+
+        [HttpPut]
+        [Authorize]
+        [Route("updateImage")]
+        public async Task<ImageResponseModel> Update([FromForm]UpdateImageRequestModel model)
+        {
+            var publicId = this.cloudinaryService.GetPublicId(model.Url);
+
+            var url = await this.cloudinaryService.UploadImageAsync(
+                model.ImageFile,
+                model.FolderName,
+                publicId);
+
+            var responseModel = new ImageResponseModel() { ImageUrl = url };
+
+            return responseModel;
+        }
     }
 }
