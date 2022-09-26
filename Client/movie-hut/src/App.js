@@ -28,6 +28,7 @@ import { CreateDirector } from './components/CreateDirector/CreateDirector';
 import { DirectorProvider } from './contexts/DirectorContext';
 import { DirectorDetails } from './components/DirectorDetails/DirectorDetails';
 import { EditActor } from './components/EditActor/EditActor';
+import { EditDirector } from './components/EditDirector/EditDirector';
 
 function App() {
     return (
@@ -52,6 +53,7 @@ function App() {
                                 <Route path='/actors/create' element={<CreateActor />} />
                                 <Route path='/directors/all' element={<Directors />} />
                                 <Route path='/directors/details/:directorId' element={<DirectorDetails />} />
+                                <Route path='/directors/edit/:directorId' element={<EditDirector />} />
                                 <Route path='/directors/create' element={<CreateDirector />} />
                                 <Route element={<UserGuard />}>
                                     <Route path='/login' element={<Login />} />

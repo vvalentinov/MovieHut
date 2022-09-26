@@ -13,4 +13,7 @@ const getOne = (id) => {
 const del = (id) => {
   return request.del(`${baseUrl}/directors/${id}`)
 }
-export { create, getAll, getOne,del };
+const edit = (data) => {
+  return request.put(`${baseUrl}/directors/update`, data)
+}
+export { create, getAll, getOne,del,edit};
