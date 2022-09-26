@@ -17,8 +17,17 @@ export const DirectorProvider = ({children}) => {
     const deleteDirector = (directorId) => {
         setDirectors(state => state.filter(x => x.id != directorId))
     }
+    const update = (director) => {
+        const newState = directors.map(obj => {
+            if (obj.id === director.id) {
+                return director;
+            }
+            return obj;
+        });
+        setDirectors(newState);
+    }
     return (
-        <DirectorContext.Provider value={{directors, create, deleteDirector}}>
+        <DirectorContext.Provider value={{directors, create, deleteDirector, update}}>
             {children}
         </DirectorContext.Provider>  
     );
