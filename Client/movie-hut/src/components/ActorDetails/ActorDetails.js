@@ -5,14 +5,14 @@ import { ActorDetailsCard } from "./ActorDetailsCard/ActorDetailsCard";
 import { Missing } from "../Missing/Missing";
 import * as actorService from '../../services/actorService';
 import { useContext } from "react";
-import {ActorContext} from '../../contexts/ActorContext'
+import { ActorContext } from '../../contexts/ActorContext'
 
 export const ActorDetails = () => {
     const { actorId } = useParams();
     const { actor, setActor } = useActor(actorId);
     const navigate = useNavigate();
-    const {deleteActor} = useContext(ActorContext)
-    const {isOwner} = useOwner(actorId, actorService);
+    const { deleteActor } = useContext(ActorContext)
+    const { isOwner } = useOwner(actorId, actorService);
 
     const onClickDelete = () => {
         actorService.del(actorId)
@@ -30,22 +30,25 @@ export const ActorDetails = () => {
                     <div className="row">
                         <div className="col-md-2">
                             <img className="img-fluid" src={actor?.imageUrl} alt="photo" />
-                            {isOwner ? <button
-                                className="btn btn-outline-light"
-                                style={{ backgroundColor: "#32CD32" }}
-                                onClick={onClickDelete}
-                                type="button"
-                            >
-                                Delete
-                            </button>: null}
-                            {isOwner ? <Link
-                                className="btn btn-outline-light"
-                                style={{ backgroundColor: "#32CD32" }}
-                                to = {`/actors/edit/${actorId}`}
-                                type="button"
-                            >
-                                Edit
-                            </Link>: null}
+                            {isOwner ?
+                                <>
+                                    <button
+                                        className="btn btn-outline-light"
+                                        style={{ backgroundColor: "#32CD32" }}
+                                        onClick={onClickDelete}
+                                        type="button"
+                                    >
+                                        Delete
+                                    </button>
+                                    <Link
+                                        className="btn btn-outline-light"
+                                        style={{ backgroundColor: "#32CD32" }}
+                                        to={`/actors/edit/${actorId}`}
+                                        type="button"
+                                    >
+                                        Edit
+                                    </Link>
+                                </> : null}
                         </div>
                         <div className="col">
                             <h1>{actor?.name}</h1>
@@ -59,9 +62,9 @@ export const ActorDetails = () => {
                                 <h3>Movies</h3>
                                 <div className="container my-5">
                                     <div className="row justify-content-center gy-5">
-                                        {actor?.movies?.length > 0 ? 
-                                            actor?.movies?.map(x => <ActorDetailsCard key = {x.id} {...x}/>)
-                                        : <Missing message= "No movies yet."/>}
+                                        {actor?.movies?.length > 0 ?
+                                            actor?.movies?.map(x => <ActorDetailsCard key={x.id} {...x} />)
+                                            : <Missing message="No movies yet." />}
                                     </div>
                                 </div>
                             </div>

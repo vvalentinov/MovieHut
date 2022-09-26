@@ -1,18 +1,18 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useOwner } from "../../hooks/useOwner";
 import { DirectorDetailsCard } from "./DirectorDetailsCard/DirectorDetailsCard";
 import { Missing } from "../Missing/Missing";
 import * as directorService from '../../services/directorService';
 import { useContext } from "react";
-import {DirectorContext} from '../../contexts/DirectorContext'
+import { DirectorContext } from '../../contexts/DirectorContext'
 import { useDirector } from "../../hooks/useDirector";
 
 export const DirectorDetails = () => {
     const { directorId } = useParams();
     const { director, setDirector } = useDirector(directorId);
     const navigate = useNavigate();
-    const {deleteDirector} = useContext(DirectorContext)
-    const {isOwner} = useOwner(directorId, directorService);
+    const { deleteDirector } = useContext(DirectorContext)
+    const { isOwner } = useOwner(directorId, directorService);
 
     const onClickDelete = () => {
         directorService.del(directorId)
@@ -30,14 +30,26 @@ export const DirectorDetails = () => {
                     <div className="row">
                         <div className="col-md-2">
                             <img className="img-fluid" src={director?.imageUrl} alt="photo" />
-                            {isOwner ? <button
-                                className="btn btn-outline-light"
-                                style={{ backgroundColor: "#32CD32" }}
-                                onClick={onClickDelete}
-                                type="button"
-                            >
-                                Delete
-                            </button>: null}
+                            {isOwner ?
+                                <>
+                                    <button
+                                        className="btn btn-outline-light"
+                                        style={{ backgroundColor: "#32CD32" }}
+                                        onClick={onClickDelete}
+                                        type="button"
+                                    >
+                                        Delete
+                                    </button>
+                                    <Link
+                                        className="btn btn-outline-light"
+                                        style={{ backgroundColor: "#32CD32" }}
+                                        to={`/directors/edit/${directorId}`}
+                                        type="button"
+                                    >
+                                        Edit
+                                    </Link>
+                                </>
+                                : null}
                         </div>
                         <div className="col">
                             <h1>{director?.name}</h1>
@@ -51,9 +63,9 @@ export const DirectorDetails = () => {
                                 <h3>Movies</h3>
                                 <div className="container my-5">
                                     <div className="row justify-content-center gy-5">
-                                        {director?.movies?.length > 0 ? 
-                                            director?.movies?.map(x => <DirectorDetailsCard key = {x.id} {...x}/>)
-                                        : <Missing message= "No movies yet."/>}
+                                        {director?.movies?.length > 0 ?
+                                            director?.movies?.map(x => <DirectorDetailsCard key={x.id} {...x} />)
+                                            : <Missing message="No movies yet." />}
                                     </div>
                                 </div>
                             </div>
