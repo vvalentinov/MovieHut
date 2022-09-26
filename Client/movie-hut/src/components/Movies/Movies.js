@@ -27,7 +27,7 @@ export const Movies = () => {
                                                 return null;
                                             }
                                         } 
-                                        if(searchParams.get('search')){
+                                        else if(searchParams.get('search')){
                                             let searchQuery = (searchParams.get('search')).toLowerCase();
                                             if (x?.title?.toLowerCase().includes(searchQuery)){
                                                 return <MovieCard key={x.id} {...x} />
