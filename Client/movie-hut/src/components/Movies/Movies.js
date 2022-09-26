@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { MovieContext } from '../../contexts/MovieContext'
 import { Missing } from '../Missing/Missing'
 import { Genres } from './Genres/Genres'
@@ -9,6 +9,7 @@ import styles from './Movies.module.css'
 export const Movies = () => {
     const params = useParams();
     const { movies } = useContext(MovieContext);
+    const [searchParams, setSearchParams] = useSearchParams();
     return (
         <div className="container">
             <div className="row gy-3 my-2">
@@ -25,7 +26,16 @@ export const Movies = () => {
                                             }else{
                                                 return null;
                                             }
-                                        } else {
+                                        } 
+                                        if(searchParams.get('search')){
+                                            let searchQuery = (searchParams.get('search')).toLowerCase();
+                                            if (x?.title?.toLowerCase().includes(searchQuery)){
+                                                return <MovieCard key={x.id} {...x} />
+                                            }else{
+                                                return null;
+                                            }
+                                        }
+                                        else {
                                             return <MovieCard key={x.id} {...x} />
                                         }
 
