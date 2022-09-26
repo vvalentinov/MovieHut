@@ -9,7 +9,7 @@ export const EditActor = () => {
   const navigate = useNavigate();
   const { actorId } = useParams();
   const { auth } = useContext(AuthContext);
-  const { create } = useContext(ActorContext);
+  const { update } = useContext(ActorContext);
   const [error, setError] = useState({ active: false, message: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [visualizationImageUrl, setVisualizationImageUrl] = useState('');
@@ -67,8 +67,8 @@ export const EditActor = () => {
           actorService
             .edit({ ...inputData, id: actorId, imageUrl: imgRes.imageUrl })
             .then((res) => {
-              //Add to context
-              //create(res);
+              //Update state in context
+              update(res);
               //Stop spinner
               setIsLoading(false);
               navigate(`/actors/details/${actorId}`);
@@ -88,10 +88,12 @@ export const EditActor = () => {
       actorService
         .edit({ ...inputData, id: actorId })
         .then((res) => {
-          //Add to context
-          //create(res);
+          //Update state in context
+          update(res);
           //Stop spinner
           setIsLoading(false);
+          
+          console.log(res);
           navigate(`/actors/details/${actorId}`);
         })
         .catch((err) => {
