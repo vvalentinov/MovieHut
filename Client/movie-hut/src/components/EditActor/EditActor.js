@@ -63,7 +63,7 @@ export const EditActor = () => {
       imageService
         .update(formData)
         .then((imgRes) => {
-          //Creating new actor
+          //Edit actor
           actorService
             .edit({ ...inputData, id: actorId, imageUrl: imgRes.imageUrl })
             .then((res) => {
@@ -194,7 +194,7 @@ export const EditActor = () => {
                           !visualizationImageUrl
                         }
                       >
-                        Create
+                        Edit
                       </button>
                     </div>
                   </div>
