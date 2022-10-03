@@ -144,10 +144,11 @@ export const CreateMovie = () => {
         //Creating formdata for image request
         const formData = new FormData(e.target);
         formData.append('imageFile', imageData.imageFile);
+        formData.append('folderName', 'Movies');
         //Start spinner
         setIsLoading(true);
         imageService
-            .upload(formData, 'Movies')
+            .upload(formData)
             .then(imgRes => {
                 movieService
                     .create({ ...inputData, posterUrl: imgRes.imageUrl })
