@@ -27,12 +27,15 @@ export const CreateMovie = () => {
     });
     const [error, setError] = useState({ active: false, message: '' });
     const [errors, setErrors] = useState({
-        title: '',
-        plot: '',
-        released: '',
-        posterUrl: '',
-        trailerUrl: '',
-        duration: '',
+        title: false,
+        plot: false,
+        released: false,
+        posterUrl: false,
+        trailerUrl: false,
+        duration: false,
+        actors: false,
+        directors: false,
+        genres: false
     })
     const [imageData, setImageData] = useState({
         imageFile: '',
@@ -102,6 +105,8 @@ export const CreateMovie = () => {
         const temp = [...areChecked];
         temp[e.target.name] = !temp[e.target.name];
         setAreChecked(temp);
+        //Setting error whenever they array is populated with false only
+        setErrors(state => ({ ...state, genres: !temp.some(x => x === true)}))
     };
 
     const onChange = (e) => {
@@ -113,8 +118,12 @@ export const CreateMovie = () => {
         //Creating local image url for visualization
         if (e.target.files[0]) {
             setVisualizationImageUrl(URL.createObjectURL(e.target.files[0]));
+            //Turn off validation error
+            setErrors(state => ({ ...state, posterUrl: false }))
         } else {
             setVisualizationImageUrl('');
+            //Turn on validation error
+            setErrors(state => ({ ...state, posterUrl: true }))
         }
     };
 
@@ -165,10 +174,23 @@ export const CreateMovie = () => {
     const minMaxValidator = (e, min, max) => {
         setErrors(state => ({ ...state, [e.target.name]: inputData[e.target.name].length < min || inputData[e.target.name].length > max }))
     }
+    const emptyValidator = (e) => {
+        setErrors(state => ({ ...state, [e.target.name]: !inputData[e.target.name] }))
+    }
+    const emptyAddActorsValidator = () => {
+        setErrors(state => ({ ...state, actors: addedActors.length <= 0}))
+    }
+    const emptyAddDirectorsValidator = () => {
+        setErrors(state => ({ ...state, directors: addedDirectors.length <= 0}))
+    }
     const youtubeUrlValidator = (e) => {
         var re = /^(https|http):\/\/(?:www\.)?youtube.com\/embed\/[A-z0-9]+/;
         setErrors(state => ({ ...state, [e.target.name]: !re.test(inputData[e.target.name]) }))
     }
+    const minMaxNumberValidation = (e, min, max) => {
+        setErrors(state => ({ ...state, [e.target.name]: inputData[e.target.name] < min || inputData[e.target.name] > max }))
+    }
+    const isValidForm = !Object.values(errors).some(x => x);
     return (
         <div className='container'>
             <div className='row'>
@@ -252,6 +274,7 @@ export const CreateMovie = () => {
                                 {errors.trailerUrl &&
                                     <Alert message={<p>"Please provide a valid trailer URL. <a href='https://youtu.be/kiyi-C7NQrQ'> How to get?</a>"</p>} />
                                 }
+                                {/*Released input*/}
                                 <div className='form-outline'>
                                     <input
                                         type='date'
@@ -262,6 +285,7 @@ export const CreateMovie = () => {
                                         name='released'
                                         value={inputData.released}
                                         onChange={onChange}
+                                        onBlur={(e) => emptyValidator(e)}
                                         className='form-control form-control-lg'
                                         placeholder='Enter when was released'
                                     />
@@ -269,6 +293,11 @@ export const CreateMovie = () => {
                                         Released
                                     </label>
                                 </div>
+                                {/*Released alert*/}
+                                {errors.released &&
+                                    <Alert message="Please provide a date." />
+                                }
+                                {/*Duration input*/}
                                 <div className='form-outline'>
                                     <input
                                         type='number'
@@ -277,26 +306,18 @@ export const CreateMovie = () => {
                                         className='form-control form-control-lg'
                                         placeholder='Enter the duration of the movie'
                                         value={inputData.duration}
+                                        onBlur={(e) => minMaxNumberValidation(e, 1, 500)}
                                         onChange={onChange}
                                     />
                                     <label className='form-label' htmlFor='duration'>
                                         Duration (in minutes)
                                     </label>
                                 </div>
-                                {/* <div className="form-outline mb-4">
-                            <input
-                                type="text"
-                                id="posterUrl"
-                                name="posterUrl"
-                                value={inputData.posterUrl}
-                                onChange={onChange}
-                                className="form-control form-control-lg"
-                                placeholder="Enter a valid Poster Url"
-                            />
-                            <label className="form-label" htmlFor="posterUrl">
-                                Poster Url
-                            </label>
-                        </div> */}
+                                {/*Duration alert*/}
+                                {errors.duration &&
+                                    <Alert message="The duration must be between 1 and 500 minutes." />
+                                }
+                                {/*Poster input*/}
                                 <div>
                                     <input
                                         className='form-control'
@@ -308,12 +329,17 @@ export const CreateMovie = () => {
                                         Choose Poster
                                     </label>
                                 </div>
+                                {/*Poster alert*/}
+                                {errors.posterUrl &&
+                                    <Alert message="Please provide valid poster." />
+                                }
                                 {visualizationImageUrl &&
                                     <>
                                         <img className='img-fluid' src={visualizationImageUrl} alt='actor img' style={{ height: 300 }} />
                                     </>
                                 }
-                                {/* Actor search*/}
+                                
+                                {/* Actor view*/}
                                 <div className='mb-1'>
                                     {addedActors.map((x) => (
                                         <AddedCelebrity
@@ -324,6 +350,7 @@ export const CreateMovie = () => {
                                         />
                                     ))}
                                 </div>
+                                {/* Actor search*/}
                                 <div className='form-outline'>
                                     <input
                                         type='text'
@@ -332,19 +359,28 @@ export const CreateMovie = () => {
                                         className='form-control form-control-lg'
                                         placeholder='Enter a valid name'
                                         onKeyUp={filterActors}
+                                        onBlur = {emptyAddActorsValidator}
                                     />
                                     <label className='form-label' htmlFor='actors'>
                                         Search for actors
                                     </label>
                                     {searchActors.length > 0 ? (
-                                        <div className='overflow-scroll scroll-box'>
+                                        <div className='overflow-scroll scroll-box' style={{zIndex: 10}}>
                                             {searchActors.map((x) => (
-                                                <CelebrityOption key={x.id} {...x} addCelebrity={addActor} />
+                                                <CelebrityOption 
+                                                key={x.id} 
+                                                {...x} 
+                                                addCelebrity={addActor} />
                                             ))}
                                         </div>
                                     ) : null}
                                 </div>
-                                {/* Director search*/}
+                                {/*Actors alert*/}
+                                {errors.actors &&
+                                    <Alert message="Please add at least one actor."/>
+                                }
+
+                                {/* Director view*/}
                                 <div className='mb-1'>
                                     {addedDirectors.map((x) => (
                                         <AddedCelebrity
@@ -355,6 +391,7 @@ export const CreateMovie = () => {
                                         />
                                     ))}
                                 </div>
+                                {/* Director search*/}
                                 <div className='form-outline'>
                                     <input
                                         type='text'
@@ -363,18 +400,26 @@ export const CreateMovie = () => {
                                         className='form-control form-control-lg'
                                         placeholder='Enter a valid name'
                                         onKeyUp={filterDirectors}
+                                        onBlur = {emptyAddDirectorsValidator}
                                     />
                                     <label className='form-label' htmlFor='directors'>
                                         Search for directors
                                     </label>
                                     {searchDirectors.length > 0 ? (
-                                        <div className='overflow-scroll scroll-box'>
+                                        <div className='overflow-scroll scroll-box' style={{zIndex: 10}}>
                                             {searchDirectors.map((x) => (
-                                                <CelebrityOption key={x.id} {...x} addCelebrity={addDirector} />
+                                                <CelebrityOption 
+                                                key={x.id} 
+                                                {...x} 
+                                                addCelebrity={addDirector} />
                                             ))}
                                         </div>
                                     ) : null}
                                 </div>
+                                {/*Director alert*/}
+                                {errors.directors &&
+                                    <Alert message="Please add at least one director."/>
+                                }
                                 <h5>Genres</h5>
                                 <div className='form-outline mb-4'>
                                     <Option
@@ -510,6 +555,10 @@ export const CreateMovie = () => {
                                         handler={onCheckboxChange}
                                     />
                                 </div>
+                                {/*Genres alert*/}
+                                {errors.genres &&
+                                    <Alert message="Please add at least one genre."/>
+                                }
                                 {error.active === true ? (
                                     <div className='alert alert-danger fade show mt-3'>
                                         <strong>Error!</strong> {error.message}
@@ -521,6 +570,7 @@ export const CreateMovie = () => {
                                             <button
                                                 type='submit'
                                                 className='btn btn-success btn-lg'
+                                                disabled={!isValidForm || (!inputData.title || !inputData.plot || !inputData.released || !inputData.trailerUrl || !inputData.duration || !imageData.imageFile || addedActors.length <= 0 || addedDirectors.length <= 0 || !areChecked.some(x => x === true))}
                                                 style={{
                                                     paddingLeft: '2.5rem',
                                                     paddingRight: '2.5rem',
