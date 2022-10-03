@@ -10,11 +10,11 @@ import { ActorContext } from '../../contexts/ActorContext';
 import { CelebrityOption } from './CelebrityOption/CelebrityOption';
 import { AddedCelebrity } from './AddedCelebrity/AddedCelebrity';
 import { DirectorContext } from '../../contexts/DirectorContext';
+import { Alert } from '../Alert/Alert';
 
 export const CreateMovie = () => {
     const { auth } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [error, setError] = useState({ active: false, message: '' });
     const { create } = useContext(MovieContext);
     const [visualizationImageUrl, setVisualizationImageUrl] = useState('');
     const [inputData, setInputData] = useState({
@@ -25,6 +25,15 @@ export const CreateMovie = () => {
         trailerUrl: '',
         duration: '',
     });
+    const [error, setError] = useState({ active: false, message: '' });
+    const [errors, setErrors] = useState({
+        title: '',
+        plot: '',
+        released: '',
+        posterUrl: '',
+        trailerUrl: '',
+        duration: '',
+    })
     const [imageData, setImageData] = useState({
         imageFile: '',
     });
@@ -152,6 +161,14 @@ export const CreateMovie = () => {
                 setError({ active: true, message: err.message });
             });
     };
+    //Validation
+    const minMaxValidator = (e, min, max) => {
+        setErrors(state => ({ ...state, [e.target.name]: inputData[e.target.name].length < min || inputData[e.target.name].length > max }))
+    }
+    const youtubeUrlValidator = (e) => {
+        var re = /^(https|http):\/\/(?:www\.)?youtube.com\/embed\/[A-z0-9]+/;
+        setErrors(state => ({ ...state, [e.target.name]: !re.test(inputData[e.target.name]) }))
+    }
     return (
         <div className='container'>
             <div className='row'>
@@ -164,7 +181,7 @@ export const CreateMovie = () => {
                                 <h1 className="card-title text-center mb-5">
                                     Create Movie
                                 </h1>
-                                {/* Username input */}
+                                {/* Title input */}
                                 <div className='form-outline'>
                                     <input
                                         type='text'
@@ -174,11 +191,17 @@ export const CreateMovie = () => {
                                         placeholder='Enter a valid title'
                                         value={inputData.title}
                                         onChange={onChange}
+                                        onBlur={(e) => minMaxValidator(e, 2, 100)}
                                     />
                                     <label className='form-label' htmlFor='title'>
                                         Title
                                     </label>
                                 </div>
+                                {/* Title alert */}
+                                {errors.title &&
+                                    <Alert message="The title must be between 2 and 100 characters long." />
+                                }
+                                {/* Plot input */}
                                 <div className='form-outline'>
                                     <textarea
                                         type='text'
@@ -188,12 +211,19 @@ export const CreateMovie = () => {
                                         placeholder='Enter a valid plot'
                                         value={inputData.plot}
                                         onChange={onChange}
+                                        onBlur={(e) => minMaxValidator(e, 100, 2000)}
                                         style={{ height: '200px' }}
                                     />
                                     <label className='form-label' htmlFor='plot'>
                                         Plot
                                     </label>
                                 </div>
+                                {/* Plot alert */}
+                                {errors.plot &&
+                                    <Alert message="The plot must be between 100 and 2000 characters long." />
+                                }
+
+                                {/*Trailer input*/}
                                 <div className='form-outline'>
                                     <input
                                         type='text'
@@ -203,18 +233,24 @@ export const CreateMovie = () => {
                                         placeholder='Enter a valid embedded youtube video'
                                         value={inputData.trailerUrl}
                                         onChange={onChange}
+                                        onBlur={(e) => youtubeUrlValidator(e)}
                                     />
                                     <label className='form-label' htmlFor='trailerUrl'>
                                         Trailer Url
                                     </label>
                                     <a href='https://youtu.be/kiyi-C7NQrQ'> How to get?</a>
                                 </div>
-                                {inputData.trailerUrl &&
+                                {/*Trailer view*/}
+                                {/* {inputData.trailerUrl &&
                                     <iframe
                                         style={{ height: 200, width: '100%' }}
                                         src={inputData.trailerUrl}
                                         allowFullScreen
                                     />
+                                } */}
+                                {/*Trailer alert*/}
+                                {errors.trailerUrl &&
+                                    <Alert message={<p>"Please provide a valid trailer URL. <a href='https://youtu.be/kiyi-C7NQrQ'> How to get?</a>"</p>} />
                                 }
                                 <div className='form-outline'>
                                     <input
