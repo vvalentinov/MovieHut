@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { DirectorContext } from "../../contexts/DirectorContext";
 import * as directorService from "../../services/directorService";
 import * as imageService from "../../services/imageService";
+import { Alert } from "../Alert/Alert";
 
 export const CreateDirector = () => {
     const { auth } = useContext(AuthContext)
@@ -108,15 +109,8 @@ export const CreateDirector = () => {
                                 </div>
                                 {/* Alert */}
                                 {errors.name &&
-                                    <div
-                                        className="alert alert-danger d-flex align-items-center"
-                                        role="alert"
-                                    >
-                                        <i className="fa-solid fa-triangle-exclamation me-2" />
-                                        <div className="text-center">
-                                            Please provide a valid name.
-                                        </div>
-                                    </div>}
+                                    <Alert message= "Please provide a valid name."/>
+                                }
                                 <div>
                                     <input className="form-control" type="file" name="image" onChange={onSelectFile} />
                                     <label htmlFor="formFile" className="form-label">

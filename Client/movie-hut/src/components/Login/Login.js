@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext'
 import image from '../../images/login.jpg'
 import * as authService from '../../services/authService'
+import { Alert } from '../Alert/Alert'
 import './Login.css'
 
 export const Login = () => {
@@ -66,15 +67,8 @@ export const Login = () => {
                             </div>
                             {/* Alert */}
                             {errors.username &&
-                                        <div
-                                            className="alert alert-danger d-flex align-items-center"
-                                            role="alert"
-                                        >
-                                            <i className="fa-solid fa-triangle-exclamation me-2" />
-                                            <div className="text-center">
-                                                Please provide a valid username.
-                                            </div>
-                                        </div>}
+                                <Alert message = "Please provide a valid username."/>
+                            }
                             {/* Password input */}
                             <div className="form-outline mb-1">
                                 <input
@@ -93,15 +87,8 @@ export const Login = () => {
                             </div>
                             {/* Alert */}
                             {errors.password &&
-                                        <div
-                                            className="alert alert-danger d-flex align-items-center"
-                                            role="alert"
-                                        >
-                                            <i className="fa-solid fa-triangle-exclamation me-2" />
-                                            <div className="text-center">
-                                                Please provide a valid password.
-                                            </div>
-                                        </div>}
+                                <Alert message = "Please provide a valid password."/>
+                            }
                             {error.active === true ? <div className="alert alert-danger fade show mt-3">
                                         <strong>Error!</strong> {error.message}
                                     </div>: null}

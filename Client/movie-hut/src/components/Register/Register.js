@@ -4,6 +4,7 @@ import image from '../../images/register.jpg'
 import * as authService from '../../services/authService'
 import { AuthContext } from '../../contexts/AuthContext'
 import './Register.css'
+import { Alert } from '../Alert/Alert';
 
 export const Register = () => {
     const { userLogin } = useContext(AuthContext)
@@ -110,13 +111,9 @@ export const Register = () => {
                         </div>
                         
                         {/* Alert */}
-                        {errors.email && <div className="alert alert-danger d-flex align-items-center" role="alert">
-                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
-                                <div className="text-center">
-                                    Please provide a valid email address.
-                                </div>
-                            </div>}
-                        
+                        {errors.email && 
+                            <Alert message="Please provide a valid email address."/>
+                        }
                         {/* Username input */}
                         <div className="form-outline">
                             <input
@@ -133,12 +130,10 @@ export const Register = () => {
                                 Username
                             </label>
                         </div>
-                        {errors.username && <div className="alert alert-danger d-flex align-items-center" role="alert">
-                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
-                                <div className="text-center">
-                                    Please provide a valid username.
-                                </div>
-                            </div>}
+                        {/* Alert */}
+                        {errors.username && 
+                            <Alert message="Please provide a valid username."/>
+                        }
                         {/* Profile pic */}
                         <div>
                             <input className="form-control" type="file" name="profilePic" onChange={onSelectFile} />
@@ -162,12 +157,10 @@ export const Register = () => {
                                 Password
                             </label>
                         </div>
-                        {errors.password && <div className="alert alert-danger d-flex align-items-center" role="alert">
-                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
-                                <div className="text-center">
-                                    Please provide a password.
-                                </div>
-                            </div>}
+                        {/* Alert */}
+                        {errors.password && 
+                            <Alert message="Please provide a password."/>
+                        }
                         {/* Re-Password input */}
                         <div className="form-outline">
                             <input
@@ -184,12 +177,10 @@ export const Register = () => {
                                 Re Password
                             </label>
                         </div>
-                        {errors.rePassword && <div className="alert alert-danger d-flex align-items-center" role="alert">
-                                <i className="fa-solid fa-triangle-exclamation me-2"></i>
-                                <div className="text-center">
-                                    Please provide a rePassword.
-                                </div>
-                            </div>}
+                        {/* Alert */}
+                        {errors.rePassword && 
+                            <Alert message="Please provide a rePassword."/>
+                        }
                         {error.active === true ? <div className="alert alert-danger fade show mt-3">
                             <strong>Error!</strong> {error.message}
                         </div> : null}
