@@ -29,6 +29,7 @@ import { DirectorProvider } from './contexts/DirectorContext';
 import { DirectorDetails } from './components/DirectorDetails/DirectorDetails';
 import { EditActor } from './components/EditActor/EditActor';
 import { EditDirector } from './components/EditDirector/EditDirector';
+import { EditMovie } from './components/EditMovie/EditMovie';
 
 function App() {
     return (
@@ -44,6 +45,7 @@ function App() {
                                 <Route path='/movies/all' element={<Movies />} />
                                 <Route path='/movies/all/:genre' element={<Movies />} />
                                 <Route path='/movies/details/:movieId' element={<MovieDetails />} />
+                                <Route path='/movies/edit/:movieId' element={<EditMovie />} />
                                 <Route path='/movies/create' element={<CreateMovie />} />
                                 <Route path='/movies/mine' element={<MyMovies />} />
                                 <Route path='/genres/all' element={<Genres />} />

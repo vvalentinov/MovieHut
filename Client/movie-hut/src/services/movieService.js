@@ -16,4 +16,7 @@ const getOne = (id) => {
 const del = (id) => {
     return request.del(`${baseUrl}/movies/${id}`)
 }
-export { create, getAll, getMine, getOne, del };
+const edit = (data) => {
+    return request.put(`${baseUrl}/movies/update`, data)
+}
+export { create, getAll, getMine, getOne, del, edit};
