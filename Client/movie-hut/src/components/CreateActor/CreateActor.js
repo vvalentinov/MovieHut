@@ -49,35 +49,30 @@ export const CreateActor = () => {
         formData.append('imageFile', imageData.imageFile);
         formData.append('folderName', 'Actors');
 
-        fetch('http://localhost:5400/Images/addImage', {
-            method: 'POST',
-            body: formData,
-        });
-        // imageService
-        //     .upload(formData, 'Actors')
-        //     .then((imgRes) => {
-        //         console.log(imgRes);
-        //         //Creating new actor
-        //         actorService
-        //             .create({ ...inputData, imageUrl: imgRes.imageUrl })
-        //             .then((res) => {
-        //                 //Add to context
-        //                 create(res);
-        //                 //Stop spinner
-        //                 setIsLoading(false);
-        //                 navigate('/actors/all');
-        //             })
-        //             .catch((err) => {
-        //                 //Stop spinner
-        //                 setIsLoading(false);
-        //                 setError({ active: true, message: err.message });
-        //             });
-        //     })
-        //     .catch((err) => {
-        //         //Stop spinner
-        //         setIsLoading(false);
-        //         setError({ active: true, message: err.message });
-        //     });
+        imageService
+            .upload(formData)
+            .then((imgRes) => {
+                //Creating new actor
+                actorService
+                    .create({ ...inputData, imageUrl: imgRes.imageUrl })
+                    .then((res) => {
+                        //Add to context
+                        create(res);
+                        //Stop spinner
+                        setIsLoading(false);
+                        navigate('/actors/all');
+                    })
+                    .catch((err) => {
+                        //Stop spinner
+                        setIsLoading(false);
+                        setError({ active: true, message: err.message });
+                    });
+            })
+            .catch((err) => {
+                //Stop spinner
+                setIsLoading(false);
+                setError({ active: true, message: err.message });
+            });
     };
     //Validation
     const nameValidator = (e) => {
