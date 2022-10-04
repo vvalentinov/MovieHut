@@ -36,22 +36,24 @@ export const CreateDirector = () => {
         //Creating local image url for visualization
         if (e.target.files[0]) {
             setVisualizationImageUrl(URL.createObjectURL(e.target.files[0]));
-        }else{
+        } else {
             setVisualizationImageUrl('');
         }
     };
-    
+
     const onSubmit = (e) => {
         e.preventDefault();
         inputData.userId = auth.id;
         const formData = new FormData(e.target);
+        //Creating formData for image request
+        formData.append('imageFile', imageData.imageFile);
+        formData.append('folderName', 'Directors');
         //Start spinner
         setIsLoading(true);
-        formData.append('imageFile', imageData.imageFile);
         imageService
-            .upload(formData, 'Directors')
+            .upload(formData)
             .then((imgRes) => {
-                //Creating new actor
+                //Creating new director
                 directorService
                     .create({ ...inputData, imageUrl: imgRes.imageUrl })
                     .then((res) => {
@@ -73,7 +75,7 @@ export const CreateDirector = () => {
                 setError({ active: true, message: err.message });
             });
     };
-    
+
     //Validation
     const nameValidator = (e) => {
         setErrors(state => ({ ...state, [e.target.name]: inputData.name.length < 3 }))
@@ -109,7 +111,7 @@ export const CreateDirector = () => {
                                 </div>
                                 {/* Alert */}
                                 {errors.name &&
-                                    <Alert message= "Please provide a valid name."/>
+                                    <Alert message="Please provide a valid name." />
                                 }
                                 <div>
                                     <input className="form-control" type="file" name="image" onChange={onSelectFile} />
@@ -122,7 +124,7 @@ export const CreateDirector = () => {
                                 </div> : null}
                                 {visualizationImageUrl &&
                                     <>
-                                        <img className='img-fluid' src={visualizationImageUrl} alt='actor img' style={{ height: 300 }} />
+                                        <img className='img-fluid' src={visualizationImageUrl} alt='director img' style={{ height: 300 }} />
                                     </>
                                 }
                                 {/* Button */}
