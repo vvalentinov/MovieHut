@@ -1,5 +1,5 @@
 import './MovieDetails.css'
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useMovie } from "../../hooks/useMovie";
 import image from '../../images/background.jpg'
 import { CelebrityCard } from './CelebrityCard/CelebrityCard';
@@ -31,14 +31,24 @@ export const MovieDetails = () => {
                     <div className="row mt-4">
                         <div className="col-10">
                             <p className="display-5">{movie?.title}</p>
-                            {isOwner ? <button
-                                className="btn btn-outline-light"
-                                style={{ backgroundColor: "#32CD32" }}
-                                onClick={onClickDelete}
-                                type="button"
-                            >
-                                Delete
-                            </button> : null}
+                            {isOwner ?
+                                <><button
+                                    className="btn btn-outline-light"
+                                    style={{ backgroundColor: "#32CD32" }}
+                                    onClick={onClickDelete}
+                                    type="button"
+                                >
+                                    Delete
+                                </button>
+                                    <Link
+                                        className="btn btn-outline-light"
+                                        style={{ backgroundColor: "#32CD32" }}
+                                        to={`/movies/edit/${movieId}`}
+                                        type="button"
+                                    >
+                                        Edit
+                                    </Link>
+                                </> : null}
                             <p style={{ margin: 0 }}>{movie?.released.slice(0, 4)}</p>
                             <p style={{ margin: 0 }}>{movie?.duration} minutes</p>
                         </div>
@@ -67,12 +77,12 @@ export const MovieDetails = () => {
                             <hr />
                             <h4>Actors</h4>
                             <div className='row gy-3'>
-                                {movie?.actors?.map(x => <CelebrityCard key={x.id} {...x} route='actors'/>)}
+                                {movie?.actors?.map(x => <CelebrityCard key={x.id} {...x} route='actors' />)}
                             </div>
                             <hr />
                             <h4>Directors</h4>
                             <div className='row gy-3'>
-                                {movie?.directors?.map(x => <CelebrityCard key={x.id} {...x} route='directors'/>)}
+                                {movie?.directors?.map(x => <CelebrityCard key={x.id} {...x} route='directors' />)}
                             </div>
                         </div>
                     </div>
