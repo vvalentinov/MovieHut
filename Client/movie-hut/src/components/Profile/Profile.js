@@ -24,14 +24,22 @@ export const Profile = () => {
                         </div>
                     </div>
                     <div className="col-lg" style={{ marginTop: '300px' }}>
-                        <div className='card'>
+                        <div className='card' style={{ borderRadius: 0 }}>
                             <div className='card-body'>
-                                <h1>Created movies</h1>
-                                <div className="container">
+                                <h3>Created movies</h3>
+                                <div className="container mt-3">
                                     <div className="row justify-content-center gy-5">
                                         <Card style = {{width: '50%', height: '50%'}} title = "Jaws" posterUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgF2v9aJyhpN88rs9pGpjAu2htkrp_Vdrn0w&usqp=CAU"/>
                                         <Card style = {{width: '50%', height: '50%'}} title = "Jaws 2" posterUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgF2v9aJyhpN88rs9pGpjAu2htkrp_Vdrn0w&usqp=CAU"/>
                                         <Card style = {{width: '50%', height: '50%'}} title = "Jaws 3" posterUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgF2v9aJyhpN88rs9pGpjAu2htkrp_Vdrn0w&usqp=CAU"/>
+                                    </div>
+                                </div>
+                                <h3 className='mt-3'>Created Tv-shows</h3>
+                                <div className="container mt-3">
+                                    <div className="row justify-content-center gy-5">
+                                        <Card style = {{width: '50%', height: '50%'}} title = "Loki" posterUrl="https://cdn.shopify.com/s/files/1/0581/5012/5749/products/loki_poster_goldposter_com_3_0565a49a-eae3-49f4-a3bc-af44a2b28dc1_473x700.jpg?v=1639346714"/>
+                                        <Card style = {{width: '50%', height: '50%'}} title = "Loki" posterUrl="https://cdn.shopify.com/s/files/1/0581/5012/5749/products/loki_poster_goldposter_com_3_0565a49a-eae3-49f4-a3bc-af44a2b28dc1_473x700.jpg?v=1639346714"/>
+                                        <Card style = {{width: '50%', height: '50%'}} title = "Loki" posterUrl="https://cdn.shopify.com/s/files/1/0581/5012/5749/products/loki_poster_goldposter_com_3_0565a49a-eae3-49f4-a3bc-af44a2b28dc1_473x700.jpg?v=1639346714"/>
                                     </div>
                                 </div>
                             </div>
