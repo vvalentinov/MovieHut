@@ -31,6 +31,8 @@ import { EditActor } from './components/EditActor/EditActor';
 import { EditDirector } from './components/EditDirector/EditDirector';
 import { EditMovie } from './components/EditMovie/EditMovie';
 import { Profile } from './components/Profile/Profile';
+import { Shows } from './components/Shows/Shows';
+import { ShowProvider } from './contexts/ShowContext';
 
 function App() {
     return (
@@ -40,31 +42,35 @@ function App() {
                 <MovieProvider>
                     <ActorProvider>
                         <DirectorProvider>
-                            <Routes>
-                                <Route path='/' element={<Home />} />
-                                <Route path='/profile' element={<Profile />} />
-                                <Route path='/logout' element={<Logout />} />
-                                <Route path='/movies/all' element={<Movies />} />
-                                <Route path='/movies/all/:genre' element={<Movies />} />
-                                <Route path='/movies/details/:movieId' element={<MovieDetails />} />
-                                <Route path='/movies/edit/:movieId' element={<EditMovie />} />
-                                <Route path='/movies/create' element={<CreateMovie />} />
-                                <Route path='/movies/mine' element={<MyMovies />} />
-                                <Route path='/genres/all' element={<Genres />} />
-                                <Route path='/actors/all' element={<Actors />} />
-                                <Route path='/actors/details/:actorId' element={<ActorDetails />} />
-                                <Route path='/actors/edit/:actorId' element={<EditActor />} />
-                                <Route path='/actors/create' element={<CreateActor />} />
-                                <Route path='/directors/all' element={<Directors />} />
-                                <Route path='/directors/details/:directorId' element={<DirectorDetails />} />
-                                <Route path='/directors/edit/:directorId' element={<EditDirector />} />
-                                <Route path='/directors/create' element={<CreateDirector />} />
-                                <Route element={<UserGuard />}>
-                                    <Route path='/login' element={<Login />} />
-                                    <Route path='/register' element={<Register />} />
-                                </Route>
-                                <Route path='*' element={<NotFound />} />
-                            </Routes>
+                            <ShowProvider>
+                                <Routes>
+                                    <Route path='/' element={<Home />} />
+                                    <Route path='/profile' element={<Profile />} />
+                                    <Route path='/logout' element={<Logout />} />
+                                    <Route path='/movies/all' element={<Movies />} />
+                                    <Route path='/movies/all/:genre' element={<Movies />} />
+                                    <Route path='/movies/details/:movieId' element={<MovieDetails />} />
+                                    <Route path='/movies/edit/:movieId' element={<EditMovie />} />
+                                    <Route path='/movies/create' element={<CreateMovie />} />
+                                    <Route path='/movies/mine' element={<MyMovies />} />
+                                    <Route path='/shows/all' element={<Shows />} />
+                                    <Route path='/shows/all/:genre' element={<Shows />} />
+                                    <Route path='/genres/all' element={<Genres />} />
+                                    <Route path='/actors/all' element={<Actors />} />
+                                    <Route path='/actors/details/:actorId' element={<ActorDetails />} />
+                                    <Route path='/actors/edit/:actorId' element={<EditActor />} />
+                                    <Route path='/actors/create' element={<CreateActor />} />
+                                    <Route path='/directors/all' element={<Directors />} />
+                                    <Route path='/directors/details/:directorId' element={<DirectorDetails />} />
+                                    <Route path='/directors/edit/:directorId' element={<EditDirector />} />
+                                    <Route path='/directors/create' element={<CreateDirector />} />
+                                    <Route element={<UserGuard />}>
+                                        <Route path='/login' element={<Login />} />
+                                        <Route path='/register' element={<Register />} />
+                                    </Route>
+                                    <Route path='*' element={<NotFound />} />
+                                </Routes>
+                            </ShowProvider>
                         </DirectorProvider>
                     </ActorProvider>
                 </MovieProvider>

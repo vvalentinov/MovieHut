@@ -6,6 +6,7 @@ export const ShowContext = createContext();
 
 export const ShowProvider = ({children}) => {
     const [shows, setShows] = useState([]);
+
     useEffect(() => {
         showService.getAll()
             .then(res => setShows(res))
@@ -20,8 +21,8 @@ export const ShowProvider = ({children}) => {
         }))
     }
     return (
-        <ShowProvider.Provider value={{shows, create, deleteShow}}>
+        <ShowContext.Provider value={{shows, create, deleteShow}}>
             {children}
-        </ShowProvider.Provider>  
+        </ShowContext.Provider>  
     );
 }

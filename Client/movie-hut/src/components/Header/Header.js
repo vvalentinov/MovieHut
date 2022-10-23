@@ -39,7 +39,7 @@ export const Header = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/tv-shows/all'>
+                            <Link className="nav-link" to='/shows/all'>
                                 Tv Shows
                             </Link>
                         </li>

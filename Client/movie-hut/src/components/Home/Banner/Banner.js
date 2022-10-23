@@ -50,7 +50,7 @@ export const Banner = () => {
                                             </li>
                                             <li>
                                                 <h5 className="dropdown-item" onClick={changeSelection} >
-                                                    Tv Shows
+                                                    Shows
                                                 </h5>
                                             </li>
                                             <li>
