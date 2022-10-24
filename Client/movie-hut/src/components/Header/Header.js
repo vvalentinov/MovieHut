@@ -40,7 +40,7 @@ export const Header = () => {
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to='/shows/all'>
-                                Tv Shows
+                                Shows
                             </Link>
                         </li>
                         <li className="nav-item dropdown">
@@ -104,7 +104,7 @@ export const Header = () => {
                                         </li>
                                         <li>
                                             <Link className="dropdown-item" to="/shows/create">
-                                                Tv Show
+                                                Show
                                             </Link>
                                         </li>
                                         <li>
@@ -148,7 +148,7 @@ export const Header = () => {
                                         </li>
                                         <li>
                                             <Link className="dropdown-item" to="/shows/mine">
-                                                My Tv Shows
+                                                My Shows
                                             </Link>
                                         </li>
                                         <li>
