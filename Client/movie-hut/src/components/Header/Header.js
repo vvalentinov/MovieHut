@@ -103,7 +103,7 @@ export const Header = () => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link className="dropdown-item" to="/tv-shows/create">
+                                            <Link className="dropdown-item" to="/shows/create">
                                                 Tv Show
                                             </Link>
                                         </li>
