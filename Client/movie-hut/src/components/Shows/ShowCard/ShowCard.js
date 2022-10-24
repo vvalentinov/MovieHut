@@ -7,12 +7,12 @@ export const ShowCard = (props) => {
             <div className='card-body'>
                 <div className="row my-3">
                     <div className="col-sm-3">
-                        <Link to={`/movies/details/${props.id}`}>
-                            <img className='img-fluid w-125 h-125' src={props.posterUrl} alt='movie img' />
+                        <Link to={`/shows/details/${props.id}`}>
+                            <img className='img-fluid w-125 h-125' src={props.posterUrl} alt='shows img' />
                         </Link>
                     </div>
                     <div className='col-sm-9'>
-                        <Link to={`/movies/details/${props.id}`} style={{ textDecoration: 'none' }}>
+                        <Link to={`/shows/details/${props.id}`} style={{ textDecoration: 'none' }}>
                             <h4>{props.title} ({props.released.slice(0, 4)})</h4>
                         </Link>
                         <p>45 min</p>
