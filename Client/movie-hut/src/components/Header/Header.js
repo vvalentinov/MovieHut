@@ -147,7 +147,7 @@ export const Header = () => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link className="dropdown-item" to="/tv-shows/yours">
+                                            <Link className="dropdown-item" to="/shows/mine">
                                                 My Tv Shows
                                             </Link>
                                         </li>

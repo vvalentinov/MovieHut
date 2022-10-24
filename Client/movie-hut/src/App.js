@@ -34,6 +34,7 @@ import { Profile } from './components/Profile/Profile';
 import { Shows } from './components/Shows/Shows';
 import { ShowProvider } from './contexts/ShowContext';
 import { CreateShow } from './components/CreateShow/CreateShow';
+import { MyShows } from './components/MyShows/MyShows';
 
 function App() {
     return (
@@ -57,6 +58,7 @@ function App() {
                                     <Route path='/shows/all' element={<Shows />} />
                                     <Route path='/shows/all/:genre' element={<Shows />} />
                                     <Route path='/shows/create' element={<CreateShow />} />
+                                    <Route path='/shows/mine' element={<MyShows />} />
                                     <Route path='/genres/all' element={<Genres />} />
                                     <Route path='/actors/all' element={<Actors />} />
                                     <Route path='/actors/details/:actorId' element={<ActorDetails />} />
