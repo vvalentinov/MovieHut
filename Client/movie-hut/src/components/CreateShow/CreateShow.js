@@ -23,7 +23,6 @@ export const CreateShow = () => {
         released: '',
         posterUrl: '',
         trailerUrl: '',
-        duration: '',
         seasonsCount: ''
     });
     const [error, setError] = useState({ active: false, message: '' });
@@ -33,7 +32,6 @@ export const CreateShow = () => {
         released: false,
         posterUrl: false,
         trailerUrl: false,
-        duration: false,
         actors: false,
         directors: false,
         genres: false,
@@ -300,26 +298,6 @@ export const CreateShow = () => {
                                 {errors.released &&
                                     <Alert message="Please provide a date." />
                                 }
-                                {/*Duration input*/}
-                                <div className='form-outline'>
-                                    <input
-                                        type='number'
-                                        id='duration'
-                                        name='duration'
-                                        className='form-control form-control-lg'
-                                        placeholder='Enter the duration of the show'
-                                        value={inputData.duration}
-                                        onBlur={(e) => minMaxNumberValidation(e, 1, 500)}
-                                        onChange={onChange}
-                                    />
-                                    <label className='form-label' htmlFor='duration'>
-                                        Duration (in minutes)
-                                    </label>
-                                </div>
-                                {/*Duration alert*/}
-                                {errors.duration &&
-                                    <Alert message="The duration must be between 1 and 500 minutes." />
-                                }
                                 {/*SeasonsCount input*/}
                                 <div className='form-outline'>
                                     <input
@@ -332,7 +310,7 @@ export const CreateShow = () => {
                                         onBlur={(e) => minMaxNumberValidation(e, 1, 30)}
                                         onChange={onChange}
                                     />
-                                    <label className='form-label' htmlFor='duration'>
+                                    <label className='form-label' htmlFor='seasonsCount'>
                                         Seasons
                                     </label>
                                 </div>
@@ -593,7 +571,7 @@ export const CreateShow = () => {
                                             <button
                                                 type='submit'
                                                 className='btn btn-success btn-lg'
-                                                disabled={!isValidForm || (!inputData.title || !inputData.plot || !inputData.released || !inputData.trailerUrl || !inputData.duration || !imageData.imageFile || addedActors.length <= 0 || addedDirectors.length <= 0 || !areChecked.some(x => x === true))}
+                                                disabled={!isValidForm || (!inputData.title || !inputData.plot || !inputData.released || !inputData.trailerUrl || !imageData.imageFile || addedActors.length <= 0 || addedDirectors.length <= 0 || !areChecked.some(x => x === true))}
                                                 style={{
                                                     paddingLeft: '2.5rem',
                                                     paddingRight: '2.5rem',
