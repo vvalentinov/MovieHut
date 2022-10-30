@@ -14,6 +14,16 @@ export const ShowDetails = () => {
     const { deleteShow } = useContext(ShowContext)
     const navigate = useNavigate();
     const { isOwner } = useOwner(showId, showService);
+    
+    const onClickDelete = () => {
+        showService.del(showId)
+            .then(res => {
+                deleteShow(showId)
+                navigate('/shows/all')
+            }).catch(err => {
+                alert(err)
+            })
+    }
     return (
         <div className="container text-light">
             <div className="card my-3" style={{ backgroundImage: `url(${image})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
@@ -22,7 +32,14 @@ export const ShowDetails = () => {
                         <div className="col-10">
                             <p className="display-5">{show?.title}</p>
                             {isOwner ?
-                                <>
+                                <><button
+                                    className="btn btn-outline-light"
+                                    style={{ backgroundColor: "#32CD32" }}
+                                    onClick={onClickDelete}
+                                    type="button"
+                                >
+                                    Delete
+                                </button>
                                     <Link
                                         className="btn btn-outline-light"
                                         style={{ backgroundColor: "#32CD32" }}
