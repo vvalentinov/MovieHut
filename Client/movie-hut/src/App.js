@@ -36,6 +36,7 @@ import { ShowProvider } from './contexts/ShowContext';
 import { CreateShow } from './components/CreateShow/CreateShow';
 import { MyShows } from './components/MyShows/MyShows';
 import { ShowDetails } from './components/ShowDetails/ShowDetails';
+import { EditShow } from './components/EditShow/EditShow';
 
 function App() {
     return (
@@ -61,6 +62,7 @@ function App() {
                                     <Route path='/shows/create' element={<CreateShow />} />
                                     <Route path='/shows/mine' element={<MyShows />} />
                                     <Route path='/shows/details/:showId' element={<ShowDetails />} />
+                                    <Route path='/shows/edit/:showId' element={<EditShow />} />
                                     <Route path='/genres/all' element={<Genres />} />
                                     <Route path='/actors/all' element={<Actors />} />
                                     <Route path='/actors/details/:actorId' element={<ActorDetails />} />
